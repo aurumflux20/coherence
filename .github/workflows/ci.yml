@@ -32,6 +32,9 @@ jobs:
       - name: Unit tests
         run: python -m unittest discover -s tests -v
 
+      - name: Storm proof (hostile)
+        run: python storm.py
+
       - name: Demo
         run: python -m coherence demo
 

@@ -11,6 +11,14 @@ Versioning: [SemVer](https://semver.org/).
 - PyPI package name (`aurumflux-coherence` if needed)  
 - Stronger decision checks without false positives  
 
+## [0.5.0] — 2026-08-15
+
+### Added
+
+- **`storm.py` + STORM-PROOF.md** — EffectFence-style hostile proof (7 claims)  
+- Evolution **hash chain** + `verify_chain()` (append-only integrity)  
+- CI runs storm; README: proof first, then deepen evolution  
+
 ## [0.4.0] — 2026-08-15
 
 ### Added

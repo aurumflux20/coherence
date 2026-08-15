@@ -28,6 +28,8 @@ class Lesson:
     uses: int = 0
     created_at: float = field(default_factory=time.time)
     tags: list[str] = field(default_factory=list)
+    prev_hash: str = "genesis"  # evolution chain (tamper-evident append)
+    entry_hash: str = ""
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -44,7 +46,22 @@ class Lesson:
             uses=int(d.get("uses", 0)),
             created_at=float(d.get("created_at", time.time())),
             tags=list(d.get("tags") or []),
+            prev_hash=d.get("prev_hash") or "genesis",
+            entry_hash=d.get("entry_hash") or "",
         )
+
+    def compute_entry_hash(self) -> str:
+        body = {
+            "id": self.id,
+            "problem": self.problem,
+            "lesson": self.lesson,
+            "proof": self.proof,
+            "next_domino": self.next_domino,
+            "source_domino": self.source_domino,
+            "prev_hash": self.prev_hash,
+            "tags": self.tags,
+        }
+        return digest(body)
 
 
 class EvolutionMemory:
@@ -83,6 +100,7 @@ class EvolutionMemory:
                 "Gilbert: learning requires next_domino "
                 "(what the cascade needs next, or 'chain complete')"
             )
+        prev = self.lessons[-1].entry_hash if self.lessons else "genesis"
         L = Lesson(
             id=new_id("les"),
             problem=problem.strip(),
@@ -91,13 +109,15 @@ class EvolutionMemory:
             next_domino=next_domino.strip(),
             source_domino=source_domino,
             tags=list(tags or []),
+            prev_hash=prev,
         )
+        L.entry_hash = L.compute_entry_hash()
         self.lessons.append(L)
         self._persist()
 
         art = Artifact(
             kind="lesson",
-            value=digest(L.to_dict()),
+            value=L.entry_hash,
             meta=L.to_dict(),
         )
         self.bundle.add(
@@ -111,7 +131,11 @@ class EvolutionMemory:
                 proven=proof,
                 artifacts=[art],
                 next_action=f"apply in future sessions → next risk: {L.next_domino}",
-                meta={"lesson_id": L.id, "lesson": L.to_dict()},
+                meta={
+                    "lesson_id": L.id,
+                    "lesson": L.to_dict(),
+                    "chain_ok": self.verify_chain(),
+                },
             )
         )
         return L
@@ -151,14 +175,38 @@ class EvolutionMemory:
             return
         data = json.loads(self.path.read_text(encoding="utf-8"))
         self.lessons = [Lesson.from_dict(x) for x in data.get("lessons", [])]
+        # Backfill hashes for pre-chain lessons (still append-only going forward)
+        for i, L in enumerate(self.lessons):
+            if not L.entry_hash:
+                L.prev_hash = (
+                    self.lessons[i - 1].entry_hash if i else "genesis"
+                )
+                L.entry_hash = L.compute_entry_hash()
+
+    def verify_chain(self) -> bool:
+        """Evolution integrity: each lesson links to previous entry_hash."""
+        prev = "genesis"
+        for L in self.lessons:
+            if L.prev_hash != prev:
+                return False
+            if L.entry_hash != L.compute_entry_hash():
+                return False
+            # proof required for every remembered lesson (law)
+            if not (L.proof or "").strip():
+                return False
+            if not (L.next_domino or "").strip():
+                return False
+            prev = L.entry_hash
+        return True
 
     def _persist(self) -> None:
         if not self.path:
             return
         self.path.parent.mkdir(parents=True, exist_ok=True)
         payload = {
-            "version": 1,
+            "version": 2,
             "updated_at": time.time(),
+            "chain_ok": self.verify_chain(),
             "lessons": [L.to_dict() for L in self.lessons],
         }
         self.path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
@@ -167,6 +215,7 @@ class EvolutionMemory:
         return {
             "lessons": len(self.lessons),
             "total_uses": sum(L.uses for L in self.lessons),
+            "chain_ok": self.verify_chain(),
             "path": str(self.path) if self.path else None,
         }
 

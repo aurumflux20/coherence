@@ -228,6 +228,19 @@ def main(argv: list[str] | None = None) -> None:
         raise SystemExit(evolve_demo())
     if cmd in ("law", "320", "iq"):
         raise SystemExit(law())
+    if cmd in ("storm", "proof", "storm-proof"):
+        # Hostile proof harness (EffectFence/Seal style)
+        from pathlib import Path as _P
+        import runpy
+
+        storm = _P(__file__).resolve().parents[2] / "storm.py"
+        if not storm.exists():
+            # installed wheel: look beside package or cwd
+            storm = _P.cwd() / "storm.py"
+        if storm.exists():
+            raise SystemExit(runpy.run_path(str(storm), run_name="__main__") or 0)
+        print("storm.py not found — run from repo: python storm.py", file=sys.stderr)
+        raise SystemExit(2)
     if cmd in ("prove-cmd", "prove_cmd", "prove"):
         raise SystemExit(cmd_prove(rest))
     if cmd == "said":
@@ -239,7 +252,7 @@ def main(argv: list[str] | None = None) -> None:
     if cmd in ("-h", "--help", "help"):
         print(
             "Usage: python -m coherence <command>\n"
-            "  law | demo | evolve\n"
+            "  law | demo | evolve | storm\n"
             "  said CLAIM --next NEXT\n"
             "  prove-cmd 'pytest -q'\n"
             "  check [--no-strict]\n"

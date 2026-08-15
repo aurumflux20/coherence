@@ -68,6 +68,26 @@ class TestDominos(unittest.TestCase):
             c.solve_domino(h.id, proof="p", lesson=f"learned {h.title}")
         self.assertIsNone(c.require_dominos_clear())
 
+    def test_evolution_chain_ok(self):
+        mem = Path(tempfile.mkdtemp()) / "chain.json"
+        c = Coherence(memory_path=mem)
+        c.evolve.learn(
+            problem="p1",
+            lesson="l1",
+            proof="exit 0",
+            next_domino="next-a",
+        )
+        c.evolve.learn(
+            problem="p2",
+            lesson="l2",
+            proof="exit 0",
+            next_domino="chain complete",
+        )
+        self.assertTrue(c.evolve.verify_chain())
+        c2 = Coherence(memory_path=mem)
+        self.assertTrue(c2.evolve.verify_chain())
+        self.assertEqual(len(c2.evolve.lessons), 2)
+
 
 if __name__ == "__main__":
     unittest.main()

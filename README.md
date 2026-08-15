@@ -56,9 +56,12 @@ pip install -e .
 
 ```bash
 python -m coherence law      # the whole product in three sentences
+python storm.py              # hostile proof (EffectFence-style) — must exit 0
 python -m coherence demo     # rungs 1–5
 python -m coherence evolve   # dominos + memory flywheel
 ```
+
+**Proof first:** [STORM-PROOF.md](STORM-PROOF.md) — chat never DONE, memory only from evidence, dominos ordered, evolution compounds.
 
 ```python
 from coherence import Coherence
