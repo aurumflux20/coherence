@@ -9,10 +9,32 @@ from pathlib import Path
 from coherence import Coherence, Truth
 
 
+def law() -> int:
+    from coherence.core.fact import LAW
+
+    print()
+    print("COHERENCE · 320 IQ law")
+    print("=" * 50)
+    print(LAW)
+    print()
+    print("Atom: Fact(claim, evidence, next)")
+    print("  done      ⇔ evidence non-empty")
+    print("  finished  ⇔ next non-empty (always)")
+    print("  remember  ⇔ done only")
+    print()
+    print("Everything else is costume.")
+    print("Docs: docs/320IQ.md")
+    return 0
+
+
 def demo() -> int:
     print()
-    print("COHERENCE — five rungs, one reality")
+    print("COHERENCE — one law, five costumes")
     print("=" * 50)
+    from coherence.core.fact import LAW
+
+    print(LAW)
+    print()
 
     c = Coherence(title="demo-pr-agent-fix")
     c.skills.audit("web-search-skill", ["network", "read"], source="marketplace:example")
@@ -114,10 +136,12 @@ def main(argv: list[str] | None = None) -> None:
         raise SystemExit(demo())
     if cmd in ("evolve", "domino", "flywheel"):
         raise SystemExit(evolve_demo())
+    if cmd in ("law", "320", "iq"):
+        raise SystemExit(law())
     if cmd in ("-h", "--help"):
-        print("Usage: python -m coherence demo|evolve")
+        print("Usage: python -m coherence demo|evolve|law")
         raise SystemExit(0)
-    print("Unknown command. Try: demo | evolve", file=sys.stderr)
+    print("Unknown command. Try: demo | evolve | law", file=sys.stderr)
     raise SystemExit(2)
 
 

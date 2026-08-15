@@ -71,6 +71,11 @@ class EvolutionMemory:
         source_domino: str = "",
         tags: Optional[list[str]] = None,
     ) -> Lesson:
+        # 320 IQ: nothing is remembered unless it was done (has evidence)
+        if not (proof or "").strip():
+            raise ValueError(
+                "LAW: nothing is remembered unless it was done — proof/evidence required"
+            )
         if not lesson.strip():
             raise ValueError("Gilbert/Evolution: empty lesson — nothing to remember")
         if not next_domino.strip():

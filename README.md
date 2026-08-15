@@ -1,39 +1,53 @@
 # Coherence
 
-### One reality for agent work — that gets smarter every time you solve a problem.
-
-Agents claim. Skills install. Specs live in Slack. PRs flood.  
-**Coherence** is five rungs + **dominos** + **evolution memory** so engineers see **one reality** that **compounds with use**.
+### One law. Two fields. Everything else is costume.
 
 ```text
-7  evolution  → lessons from solved problems (memory grows)
-6  dominos    → cascade order + Gilbert NEXT on every stone
-5  review     → what needs human eyes
-4  replay     → can we re-check what was proven?
-3  decisions  → locked project truths
-2  skills     → what did we install (MCP/skills risk)?
-1  claimproof → CLAIMED vs PROVEN (base language)
+Nothing is done unless there is evidence.
+Nothing is finished unless there is a next.
+Nothing is remembered unless it was done.
 ```
 
-### Revolutionary loop
+That is **320 IQ** building: not more features — **one rule so hard it stays true**.
 
-```text
-use → prove → knock domino → must leave a lesson + NEXT
-    → memory saves it → next session starts more coherent
-```
+| Field | Rule |
+|-------|------|
+| **evidence** | empty ⇒ **not done** (chat doesn’t count) |
+| **next** | empty ⇒ **illegal** (Gilbert — always tell what to do) |
 
-**Gilbert’s Law (product form):** you cannot “solve” without naming what to do next  
-(or explicit `chain complete`). Silent success is illegal.
-
-**Domino problem:** one lie (“tests passed”) knocks merge → prod → blame → freeze agents.  
-Coherence makes that cascade **visible and ordered**.
+The atom is a **Fact**. Rungs, dominos, memory = costumes for Fact.
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
+python -m coherence law
 python -m coherence demo
 python -m coherence evolve
 ```
+
+```python
+from coherence import Coherence
+
+c = Coherence()
+c.said("tests passed in chat", next="run pytest and attach exit code")
+c.prove("pytest", "exit 0", next="chain complete")
+# only the second is done → only done things may be remembered
+```
+
+### Costumes (same law)
+
+```text
+7  evolution  → remember only DONE facts
+6  dominos    → ordered Facts; next points at next stone
+5  review     → Fact: what needs eyes
+4  replay     → Fact: re-check evidence
+3  decisions  → Fact: locked rule
+2  skills     → Fact: install bill
+1  claimproof → Fact: said vs evidence
+```
+
+180 IQ adds modules. **320 IQ deletes until the law is obvious.**  
+See [docs/320IQ.md](docs/320IQ.md).
 
 ---
 
