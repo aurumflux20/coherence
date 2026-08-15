@@ -1,0 +1,26 @@
+name: Feature request
+description: Suggest an improvement that strengthens the law
+title: "[feat] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What pain does this solve for staff/DevEx verifying agent work?
+    validations:
+      required: true
+  - type: textarea
+    id: law
+    attributes:
+      label: How it enforces the law
+      description: "Does it create/enforce Fact (evidence + next)? If not, why here?"
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Sketch API or behavior
+    validations:
+      required: true

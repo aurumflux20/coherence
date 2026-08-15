@@ -5,18 +5,53 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "coherence"
 version = "0.3.0"
-description = "Coherence — evolving agent reality stack: claim≠proven, dominos, Gilbert next, memory"
+description = "One law for agent work: evidence + next. Claim≠proven, skills, decisions, replay, review, dominos."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "AurumFlux" }]
-keywords = ["agents", "ai", "claim", "proof", "mcp", "code-review", "developer-tools"]
+authors = [{ name = "AurumFlux", email = "security@aurumflux.co" }]
+keywords = [
+  "agents",
+  "ai",
+  "claim",
+  "proof",
+  "evidence",
+  "mcp",
+  "code-review",
+  "developer-tools",
+  "verification",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Quality Assurance",
+  "Topic :: Security",
+  "Typing :: Typed",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = []
 
 [project.urls]
 Homepage = "https://github.com/aurumflux20/coherence"
+Documentation = "https://github.com/aurumflux20/coherence/blob/main/docs/INDEX.md"
+Repository = "https://github.com/aurumflux20/coherence"
+Issues = "https://github.com/aurumflux20/coherence/issues"
+Changelog = "https://github.com/aurumflux20/coherence/blob/main/CHANGELOG.md"
+"Bug Tracker" = "https://github.com/aurumflux20/coherence/issues"
 
 [project.scripts]
 coherence = "coherence.__main__:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+coherence = ["py.typed"]

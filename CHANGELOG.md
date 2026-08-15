@@ -1,0 +1,47 @@
+# Changelog
+
+All notable changes to this project are documented here.  
+Format inspired by [Keep a Changelog](https://keepachangelog.com/).  
+Versioning: [SemVer](https://semver.org/).
+
+## [Unreleased]
+
+### Planned
+
+- GitHub Action badge for “open facts” on PRs  
+- Stronger decision checks without false positives  
+
+## [0.3.0] — 2026-08-15
+
+### Added
+
+- **Fact** atom (`claim` / `evidence` / `next`) — 320 IQ core law  
+- `Coherence.said` / `Coherence.prove`  
+- `docs/320IQ.md`, `python -m coherence law`  
+- Evolution memory refuses empty proof  
+
+### Changed
+
+- README centered on one law, two fields  
+
+## [0.2.0] — 2026-08-15
+
+### Added
+
+- Domino chains (rung 6) + Gilbert-required `next_action`  
+- Evolution memory (rung 7) with optional file persistence  
+- `python -m coherence evolve`  
+- `docs/EVOLUTION-AND-DOMINOS.md`  
+
+## [0.1.0] — 2026-08-15
+
+### Added
+
+- Initial public spine: claimproof, skills, decisions, replay, review  
+- Shared `Bundle` / `Record` / `Truth`  
+- Architecture docs, MIT license, demo CLI  
+
+[Unreleased]: https://github.com/aurumflux20/coherence/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/aurumflux20/coherence/releases/tag/v0.3.0
+[0.2.0]: https://github.com/aurumflux20/coherence/releases/tag/v0.2.0
+[0.1.0]: https://github.com/aurumflux20/coherence/releases/tag/v0.1.0

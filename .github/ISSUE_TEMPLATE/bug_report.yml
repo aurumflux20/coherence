@@ -1,0 +1,34 @@
+name: Bug report
+description: Something is wrong with Coherence
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Please avoid posting secrets.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: Expected vs actual
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: How to reproduce
+      description: Minimal steps or code
+      render: python
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version / commit
+      placeholder: "0.3.0 or git SHA"
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      placeholder: "Python 3.12, macOS/Linux, ..."

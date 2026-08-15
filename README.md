@@ -1,5 +1,10 @@
 # Coherence
 
+[![CI](https://github.com/aurumflux20/coherence/actions/workflows/ci.yml/badge.svg)](https://github.com/aurumflux20/coherence/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![GitHub](https://img.shields.io/badge/github-aurumflux20%2Fcoherence-black)](https://github.com/aurumflux20/coherence)
+
 ### One law. Two fields. Everything else is costume.
 
 ```text
@@ -8,21 +13,51 @@ Nothing is finished unless there is a next.
 Nothing is remembered unless it was done.
 ```
 
-That is **320 IQ** building: not more features — **one rule so hard it stays true**.
+**Coherence** helps engineers verify **AI agent work**: what was *said*, what was *shown*, and what to do **next** — so agent PRs stop living on chat vibes.
 
-| Field | Rule |
-|-------|------|
-| **evidence** | empty ⇒ **not done** (chat doesn’t count) |
-| **next** | empty ⇒ **illegal** (Gilbert — always tell what to do) |
+Standalone public repo under [AurumFlux](https://github.com/aurumflux20).  
+**Not** a monorepo with [seal](https://github.com/aurumflux20/seal) or [effectfence](https://github.com/aurumflux20/effectfence).
 
-The atom is a **Fact**. Rungs, dominos, memory = costumes for Fact.
+---
+
+## Why it exists
+
+Agents write code fast. Humans become the **verification bottleneck**.
+
+- “Tests passed” in chat ≠ exit code  
+- Mystery skills/MCP installs  
+- Specs forgotten mid-PR  
+- Review flood with no priority  
+
+Coherence is a **small Python library + CLI** that records reality as **Facts** and optional **domino** cascades that evolve as you solve problems.
+
+Ideal user: **staff engineer / tech lead / DevEx** who ships with coding agents daily.
+
+---
+
+## Install
 
 ```bash
+# from GitHub
+pip install "git+https://github.com/aurumflux20/coherence.git"
+
+# or clone (dev)
+git clone https://github.com/aurumflux20/coherence.git
+cd coherence
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
-python -m coherence law
-python -m coherence demo
-python -m coherence evolve
+```
+
+**Requires:** Python 3.10+ · **Dependencies:** none (stdlib only)
+
+---
+
+## 30-second start
+
+```bash
+python -m coherence law      # the whole product in three sentences
+python -m coherence demo     # rungs 1–5
+python -m coherence evolve   # dominos + memory flywheel
 ```
 
 ```python
@@ -30,104 +65,92 @@ from coherence import Coherence
 
 c = Coherence()
 c.said("tests passed in chat", next="run pytest and attach exit code")
-c.prove("pytest", "exit 0", next="chain complete")
-# only the second is done → only done things may be remembered
-```
-
-### Costumes (same law)
-
-```text
-7  evolution  → remember only DONE facts
-6  dominos    → ordered Facts; next points at next stone
-5  review     → Fact: what needs eyes
-4  replay     → Fact: re-check evidence
-3  decisions  → Fact: locked rule
-2  skills     → Fact: install bill
-1  claimproof → Fact: said vs evidence
-```
-
-180 IQ adds modules. **320 IQ deletes until the law is obvious.**  
-See [docs/320IQ.md](docs/320IQ.md).
-
----
-
-## 5th-grade picture
-
-| Rung | Kid words |
-|------|-----------|
-| 1 | “Said it” is not “showed it” |
-| 2 | Don’t plug in mystery toys |
-| 3 | We already decided the rules |
-| 4 | Can we do the same check again? |
-| 5 | What should a human look at first? |
-
-**Coherence** = all five talk to each other so the story doesn’t break.
-
----
-
-## Ideal user
-
-- Engineers using **coding agents** daily  
-- Staff/seniors drowning in **AI PRs**  
-- Teams installing **skills/MCP** without a bill of materials  
-- Big-tech and startups who need **shared reality**, not more chat  
-
----
-
-## Code shape
-
-```
-coherence/
-  claimproof/   # rung 1
-  skills/       # rung 2
-  decisions/    # rung 3
-  replay/       # rung 4
-  review/       # rung 5
-  core/         # shared CLAIM/PROOF/NEXT + Bundle + spine
-```
-
-One object:
-
-```python
-from coherence import Coherence
-
-c = Coherence(title="my-pr", memory_path=".coherence/memory.json", seed_cascade=True)
-c.skills.audit("shell-runner", ["shell"])
-c.decisions.lock("api", "MUST NOT break v1 clients")
-proof = c.claimproof.cmd("tests", "pytest -q", exit_code=0)
-c.replay.check()
-c.review.triage()
-
-# Knock the active domino — MUST teach the system
-head = c.dominos.head()
-c.solve_domino(
-    head.id,
-    proof=proof.proven,
-    lesson="Chat green is not CI green",
-    proof_record_id=proof.id,
-)
+c.prove("pytest -q", evidence="exit_code=0", next="chain complete")
 print(c.plain_english())
 ```
 
----
-
-## Coherence rules
-
-1. Higher rungs **cannot invent** PROVEN if rung 1 only has CLAIMED.  
-2. Every record has **NEXT** (what to do).  
-3. Every **solved domino** needs **proof + lesson + next** (Gilbert).  
-4. Evolution memory **loads next session** — the product evolves with use.  
-5. Deepen rungs **1 → 5** in public; dominos/memory are the flywheel.
-
-Full map: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · [docs/EVOLUTION-AND-DOMINOS.md](docs/EVOLUTION-AND-DOMINOS.md)
+More: [`examples/basic_fact.py`](examples/basic_fact.py) · [`examples/full_rungs.py`](examples/full_rungs.py)
 
 ---
 
-## Git isolation
+## The atom: Fact
 
-**Separate project.** Own git history. **No** remote to seal / aurumflux-api / other product repos.  
-See [docs/GIT-ISOLATION.md](docs/GIT-ISOLATION.md). First publish must be a **new empty** GitHub repo only.
+| Field | Rule |
+|-------|------|
+| **evidence** | empty ⇒ **not done** |
+| **next** | empty ⇒ **illegal** (Gilbert) |
+| **remember** | only if **done** |
+
+Rungs are **costumes** for the same Fact:
+
+```text
+7  evolution   remember only DONE facts
+6  dominos     ordered cascade; next names the next stone
+5  review      what needs human eyes
+4  replay      re-check evidence
+3  decisions   locked project rules
+2  skills      install bill of materials
+1  claimproof  said vs evidence
+```
+
+Philosophy: [docs/320IQ.md](docs/320IQ.md)
+
+---
+
+## Documentation
+
+| Doc | Contents |
+|-----|----------|
+| [docs/INDEX.md](docs/INDEX.md) | Full map |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Rung design |
+| [docs/EVOLUTION-AND-DOMINOS.md](docs/EVOLUTION-AND-DOMINOS.md) | Cascades + learning |
+| [docs/TRAITS.md](docs/TRAITS.md) | Traits of great code (our bar) |
+| [CHANGELOG.md](CHANGELOG.md) | Versions |
+| [SUPPORT.md](SUPPORT.md) | Help + related projects |
+
+---
+
+## Development & CI
+
+```bash
+pip install -e ".[dev]"
+python -m unittest discover -s tests -v
+```
+
+CI runs on Python 3.10–3.12 (see `.github/workflows/ci.yml`).
+
+Contributing: [CONTRIBUTING.md](CONTRIBUTING.md) · Conduct: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+
+---
+
+## Security
+
+Report vulnerabilities privately — [SECURITY.md](SECURITY.md).  
+Do **not** open public issues for security bugs.
+
+---
+
+## Honest limits
+
+| We do | We do not |
+|-------|-----------|
+| Record claim vs evidence + next | Stop offline rogue tools with stolen keys |
+| Local/stdlib kernel | Replace GitHub or your CI vendor |
+| Optional lesson memory on disk | Hosted multi-tenant SaaS in this repo |
+| Link to sibling AurumFlux tools | Share git history with seal/effectfence |
+
+---
+
+## Related (separate repos)
+
+| Repo | Role |
+|------|------|
+| [effectfence](https://github.com/aurumflux20/effectfence) | Causal concurrency fence |
+| [seal](https://github.com/aurumflux20/seal) | Production admission / gateway |
+| [fencescan](https://github.com/aurumflux20/fencescan) | Static double-effect scan |
+
+---
 
 ## License
 
-MIT
+[MIT](LICENSE) © AurumFlux
