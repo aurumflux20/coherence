@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "coherence"
+version = "0.1.0"
+description = "Coherence — agent reality stack: claim≠proven, skills, decisions, replay, review"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "AurumFlux" }]
+keywords = ["agents", "ai", "claim", "proof", "mcp", "code-review", "developer-tools"]
+
+[project.urls]
+Homepage = "https://github.com/aurumflux20/coherence"
+
+[project.scripts]
+coherence = "coherence.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
