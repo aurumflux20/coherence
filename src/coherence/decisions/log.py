@@ -54,17 +54,23 @@ class DecisionLog:
             )
             return self.bundle.add(rec)
 
-        # Lightweight: if agent text explicitly contradicts "MUST NOT" / "never" lines
+        # Lightweight v0: only flag clear admissions of forbidden acts.
+        # (Not NLP — higher rungs still need human review.)
         text = (locked[-1].meta.get("text") or "").lower()
         said = agent_said.lower()
         conflict = False
         if "must not" in text or "never" in text:
-            # crude signal: agent says they did the forbidden verb near never
-            for bad in ("deleted", "rewrote auth", "removed tests", "force push"):
-                if bad in said and bad.split()[0] in text.replace("must not ", ""):
+            for bad in (
+                "rewrote auth",
+                "rewrite auth",
+                "deleted auth",
+                "removed tests",
+                "force push",
+                "forced push",
+            ):
+                # "did not rewrite auth" is compliance, not violation
+                if bad in said and f"did not {bad}" not in said and f"didn't {bad}" not in said:
                     conflict = True
-        if "must " in text and "did not" in said:
-            conflict = True
 
         if conflict:
             rec = Record(
