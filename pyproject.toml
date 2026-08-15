@@ -8,7 +8,7 @@ version = "0.5.1"
 description = "One law for agent work: evidence + next. Claim≠proven, skills, decisions, replay, review, dominos."
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
+license = { text = "BSL-1.1" }
 authors = [{ name = "AurumFlux", email = "security@aurumflux.co" }]
 keywords = [
   "agents",
@@ -24,7 +24,7 @@ keywords = [
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
-  "License :: OSI Approved :: MIT License",
+  "License :: Other/Proprietary License",
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.10",

@@ -65,7 +65,7 @@ Versioning: [SemVer](https://semver.org/).
 
 - Initial public spine: claimproof, skills, decisions, replay, review  
 - Shared `Bundle` / `Record` / `Truth`  
-- Architecture docs, MIT license, demo CLI  
+- Architecture docs, BSL 1.1 license, demo CLI  
 
 [Unreleased]: https://github.com/aurumflux20/coherence/compare/v0.3.0...HEAD
 [0.3.0]: https://github.com/aurumflux20/coherence/releases/tag/v0.3.0
