@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Optional local daily health @ 09:00.
+     Install:
+       cp scripts/com.aurumflux.coherence.health.plist ~/Library/LaunchAgents/
+       launchctl load ~/Library/LaunchAgents/com.aurumflux.coherence.health.plist
+     Logs: ~/packages/coherence/.coherence/launchd-health.log
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.aurumflux.coherence.health</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/amanpreetkaur/packages/coherence/scripts/routine-health.sh</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>9</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+  <key>StandardOutPath</key>
+  <string>/Users/amanpreetkaur/packages/coherence/.coherence/launchd-health.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/amanpreetkaur/packages/coherence/.coherence/launchd-health.err</string>
+  <key>WorkingDirectory</key>
+  <string>/Users/amanpreetkaur/packages/coherence</string>
+</dict>
+</plist>

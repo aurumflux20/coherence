@@ -47,12 +47,15 @@ For this standalone public repo, Nova may push fixes to `main` when Zah has said
 
 ---
 
-## Triggers
+## Triggers (how Nova knows)
 
-1. **Daily cron** — `.github/workflows/health-scheduled.yml`  
-2. **PR/push CI** — storm + tests  
-3. **Manual** — `python -m coherence health`  
-4. **On RED** — workflow opens issue labeled `health-red` `nova-fix` (if token allows)
+1. **Agent scheduler (primary wake)** — durable daily task runs routine health and **starts a Nova turn** if RED (see [ROUTINE-HEALTH.md](ROUTINE-HEALTH.md))  
+2. **GitHub daily cron** — `.github/workflows/health-scheduled.yml` @ 14:00 UTC → failed run + `health-red` issue  
+3. **PR/push CI** — storm + tests  
+4. **Local** — `./scripts/routine-health.sh` or `python -m coherence health`  
+5. **On RED** — workflow opens/comments issue `health-red` + `nova-fix`  
+
+Without (1), GitHub alone does not wake the agent until a session opens.
 
 ---
 
