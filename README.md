@@ -63,6 +63,9 @@ python -m coherence evolve   # dominos + memory flywheel
 
 **Proof first:** [STORM-PROOF.md](STORM-PROOF.md) — chat never DONE, memory only from evidence, dominos ordered, evolution compounds.
 
+**Health (timely):** `python -m coherence health` · daily GitHub cron · [docs/HEALTH.md](docs/HEALTH.md)  
+Detect + gate + learn — not unsupervised “fix all bugs alone.”
+
 ```python
 from coherence import Coherence
 

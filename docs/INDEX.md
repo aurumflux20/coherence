@@ -5,6 +5,7 @@
 | [../README.md](../README.md) | Start here |
 | [320IQ.md](320IQ.md) | One law, two fields |
 | [CI.md](CI.md) | prove-cmd / check / PR badge |
+| [HEALTH.md](HEALTH.md) | Scheduled health + what “self-heal” means |
 | [DISTRIBUTION.md](DISTRIBUTION.md) | How people find the project |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Rungs 1–5 map |
 | [EVOLUTION-AND-DOMINOS.md](EVOLUTION-AND-DOMINOS.md) | Cascades + memory |

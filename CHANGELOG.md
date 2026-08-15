@@ -11,6 +11,14 @@ Versioning: [SemVer](https://semver.org/).
 - PyPI package name (`aurumflux-coherence` if needed)  
 - Stronger decision checks without false positives  
 
+## [0.5.1] — 2026-08-15
+
+### Added
+
+- `python -m coherence health` — law + tests + storm report  
+- Scheduled workflow `health-scheduled.yml` (daily UTC 14:00)  
+- [docs/HEALTH.md](docs/HEALTH.md) — timely health vs honest self-heal limits  
+
 ## [0.5.0] — 2026-08-15
 
 ### Added

@@ -228,6 +228,23 @@ def main(argv: list[str] | None = None) -> None:
         raise SystemExit(evolve_demo())
     if cmd in ("law", "320", "iq"):
         raise SystemExit(law())
+    if cmd in ("health", "doctor", "status"):
+        from coherence.health import plain_english, run_health, write_report
+
+        p = argparse.ArgumentParser(prog="coherence health")
+        p.add_argument("--out", default="", help="write JSON report path")
+        p.add_argument("--memory", default="", help="optional evolution memory to verify")
+        p.add_argument("--no-storm", action="store_true")
+        args = p.parse_args(rest)
+        report = run_health(
+            include_storm=not args.no_storm,
+            memory_path=Path(args.memory) if args.memory else None,
+        )
+        print(plain_english(report))
+        if args.out:
+            write_report(report, Path(args.out))
+            print(f"wrote {args.out}")
+        raise SystemExit(0 if report.ok else 1)
     if cmd in ("storm", "proof", "storm-proof"):
         # Hostile proof harness (EffectFence/Seal style)
         from pathlib import Path as _P
@@ -252,7 +269,7 @@ def main(argv: list[str] | None = None) -> None:
     if cmd in ("-h", "--help", "help"):
         print(
             "Usage: python -m coherence <command>\n"
-            "  law | demo | evolve | storm\n"
+            "  law | demo | evolve | storm | health\n"
             "  said CLAIM --next NEXT\n"
             "  prove-cmd 'pytest -q'\n"
             "  check [--no-strict]\n"
