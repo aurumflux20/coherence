@@ -69,6 +69,16 @@ c.prove("pytest -q", evidence="exit_code=0", next="chain complete")
 print(c.plain_english())
 ```
 
+### CI ship feature (agents can’t fake green)
+
+```bash
+python -m coherence prove-cmd "pytest -q" --claim "unit tests"
+python -m coherence check              # exit 1 if open facts
+python -m coherence report --out coherence-report.md
+```
+
+Copy-paste Action: [docs/CI.md](docs/CI.md) · dogfood workflow: `.github/workflows/coherence-pr.yml`
+
 More: [`examples/basic_fact.py`](examples/basic_fact.py) · [`examples/full_rungs.py`](examples/full_rungs.py)
 
 ---
@@ -102,6 +112,8 @@ Philosophy: [docs/320IQ.md](docs/320IQ.md)
 | Doc | Contents |
 |-----|----------|
 | [docs/INDEX.md](docs/INDEX.md) | Full map |
+| [docs/CI.md](docs/CI.md) | **PR check + badge (ship feature)** |
+| [docs/DISTRIBUTION.md](docs/DISTRIBUTION.md) | **How people find us** |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Rung design |
 | [docs/EVOLUTION-AND-DOMINOS.md](docs/EVOLUTION-AND-DOMINOS.md) | Cascades + learning |
 | [docs/TRAITS.md](docs/TRAITS.md) | Traits of great code (our bar) |

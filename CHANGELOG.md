@@ -8,8 +8,18 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Planned
 
-- GitHub Action badge for “open facts” on PRs  
+- PyPI package name (`aurumflux-coherence` if needed)  
 - Stronger decision checks without false positives  
+
+## [0.4.0] — 2026-08-15
+
+### Added
+
+- **CI ship feature:** `prove-cmd`, `said`, `check`, `report`  
+- Session file `.coherence/session.json`  
+- Markdown + shields badge URL in report  
+- Dogfood workflow `.github/workflows/coherence-pr.yml`  
+- [docs/CI.md](docs/CI.md) · [docs/DISTRIBUTION.md](docs/DISTRIBUTION.md)  
 
 ## [0.3.0] — 2026-08-15
 

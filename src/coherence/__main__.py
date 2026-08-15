@@ -1,12 +1,21 @@
-"""python -m coherence demo|evolve"""
+"""python -m coherence demo|evolve|law|prove-cmd|check|report"""
 
 from __future__ import annotations
 
+import argparse
+import json
 import sys
 import tempfile
 from pathlib import Path
 
-from coherence import Coherence, Truth
+from coherence import Coherence
+from coherence.ci.session import (
+    DEFAULT_SESSION,
+    SessionStore,
+    build_report,
+    check_exit_code,
+    report_markdown,
+)
 
 
 def law() -> int:
@@ -62,7 +71,6 @@ def demo() -> int:
 
 
 def evolve_demo() -> int:
-    """Show flywheel: cascade → prove → solve domino → memory → next session."""
     print()
     print("COHERENCE EVOLVE — dominos + Gilbert next + memory")
     print("=" * 56)
@@ -71,7 +79,6 @@ def evolve_demo() -> int:
     if mem.exists():
         mem.unlink()
 
-    # ── Session 1: face the cascade ───────────────────────────────────────
     c1 = Coherence(title="session-1", memory_path=mem, seed_cascade=True)
     print(c1.dominos.plain_english())
     print()
@@ -82,7 +89,6 @@ def evolve_demo() -> int:
     print(f"GILBERT NEXT: {head.next_action}")
     print()
 
-    # Solve first domino with real proof (rung 1)
     proof_rec = c1.claimproof.cmd("unit tests", "pytest -q", exit_code=0)
     c1.solve_domino(
         head.id,
@@ -97,7 +103,6 @@ def evolve_demo() -> int:
     print(c1.evolve.plain_english())
     print()
 
-    # Knock second with skill audit
     head2 = c1.dominos.head()
     assert head2 is not None
     sk = c1.skills.audit("shell-runner", ["shell"], source="gist")
@@ -112,7 +117,6 @@ def evolve_demo() -> int:
     print("Session 1 summary:", c1.summary())
     print()
 
-    # ── Session 2: memory loads — more coherent start ─────────────────────
     c2 = Coherence(title="session-2", memory_path=mem)
     print("SESSION 2 — evolution memory loaded")
     print(c2.evolve.plain_english())
@@ -129,19 +133,120 @@ def evolve_demo() -> int:
     return 0
 
 
+def cmd_prove(argv: list[str]) -> int:
+    p = argparse.ArgumentParser(prog="coherence prove-cmd")
+    p.add_argument("command", help="shell command to run and prove")
+    p.add_argument("--session", default=str(DEFAULT_SESSION))
+    p.add_argument("--claim", default="")
+    p.add_argument(
+        "--next",
+        default="close remaining open facts or chain complete",
+        dest="next_action",
+    )
+    args = p.parse_args(argv)
+    store = SessionStore(args.session)
+    c, fact, code = store.prove_command(
+        args.command,
+        claim=args.claim or None,
+        next_action=args.next_action,
+    )
+    print(fact.plain_english())
+    print(f"session: {store.path}  facts_done={len(c.done_facts())} open={len(c.open_facts())}")
+    # CI: non-zero if command failed
+    return 0 if code == 0 else 1
+
+
+def cmd_said(argv: list[str]) -> int:
+    p = argparse.ArgumentParser(prog="coherence said")
+    p.add_argument("claim")
+    p.add_argument("--next", required=True, dest="next_action")
+    p.add_argument("--session", default=str(DEFAULT_SESSION))
+    args = p.parse_args(argv)
+    store = SessionStore(args.session)
+    c = store.load()
+    f = c.said(args.claim, args.next_action)
+    store.save(c)
+    print(f.plain_english())
+    return 0
+
+
+def cmd_check(argv: list[str]) -> int:
+    p = argparse.ArgumentParser(prog="coherence check")
+    p.add_argument("--session", default=str(DEFAULT_SESSION))
+    p.add_argument(
+        "--strict",
+        action="store_true",
+        default=True,
+        help="fail if zero proven facts (default)",
+    )
+    p.add_argument("--no-strict", action="store_true", help="allow empty session")
+    args = p.parse_args(argv)
+    strict = not args.no_strict
+    store = SessionStore(args.session)
+    c = store.load()
+    report = build_report(c)
+    print(json.dumps(report, indent=2))
+    code = check_exit_code(c, strict=strict)
+    if code == 0:
+        print("CHECK PASS", file=sys.stderr)
+    elif code == 2:
+        print("CHECK FAIL: no proven facts (strict)", file=sys.stderr)
+    else:
+        print("CHECK FAIL: open or blocked facts remain", file=sys.stderr)
+    return code
+
+
+def cmd_report(argv: list[str]) -> int:
+    p = argparse.ArgumentParser(prog="coherence report")
+    p.add_argument("--session", default=str(DEFAULT_SESSION))
+    p.add_argument("--json", action="store_true")
+    p.add_argument("--out", default="", help="write markdown or json to file")
+    args = p.parse_args(argv)
+    store = SessionStore(args.session)
+    c = store.load()
+    if args.json:
+        body = json.dumps(build_report(c), indent=2)
+    else:
+        body = report_markdown(c)
+    if args.out:
+        Path(args.out).write_text(body + "\n", encoding="utf-8")
+        print(f"wrote {args.out}")
+    else:
+        print(body)
+    return 0
+
+
 def main(argv: list[str] | None = None) -> None:
     argv = list(sys.argv[1:] if argv is None else argv)
-    cmd = (argv[0] if argv else "demo").lower()
+    if not argv:
+        raise SystemExit(demo())
+    cmd = argv[0].lower()
+    rest = argv[1:]
     if cmd in ("demo", "run"):
         raise SystemExit(demo())
     if cmd in ("evolve", "domino", "flywheel"):
         raise SystemExit(evolve_demo())
     if cmd in ("law", "320", "iq"):
         raise SystemExit(law())
-    if cmd in ("-h", "--help"):
-        print("Usage: python -m coherence demo|evolve|law")
+    if cmd in ("prove-cmd", "prove_cmd", "prove"):
+        raise SystemExit(cmd_prove(rest))
+    if cmd == "said":
+        raise SystemExit(cmd_said(rest))
+    if cmd == "check":
+        raise SystemExit(cmd_check(rest))
+    if cmd == "report":
+        raise SystemExit(cmd_report(rest))
+    if cmd in ("-h", "--help", "help"):
+        print(
+            "Usage: python -m coherence <command>\n"
+            "  law | demo | evolve\n"
+            "  said CLAIM --next NEXT\n"
+            "  prove-cmd 'pytest -q'\n"
+            "  check [--no-strict]\n"
+            "  report [--json] [--out file.md]\n"
+        )
         raise SystemExit(0)
-    print("Unknown command. Try: demo | evolve | law", file=sys.stderr)
+    print(f"Unknown command: {cmd}. Try: law | demo | prove-cmd | check | report", file=sys.stderr)
     raise SystemExit(2)
 
 

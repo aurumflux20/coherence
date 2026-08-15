@@ -1,0 +1,41 @@
+# Example / dogfood: prove unit tests, fail PR if open facts remain.
+name: Coherence PR check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  coherence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Coherence
+        run: pip install -e .
+
+      - name: Prove unit tests (evidence, not chat)
+        run: |
+          python -m coherence prove-cmd "python -m unittest discover -s tests -q" \
+            --claim "unit tests" \
+            --next "chain complete if green"
+
+      - name: Check — no open facts
+        run: python -m coherence check
+
+      - name: Write PR report
+        if: always()
+        run: python -m coherence report --out coherence-report.md
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coherence-report
+          path: coherence-report.md
