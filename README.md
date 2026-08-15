@@ -1,11 +1,13 @@
 # Coherence
 
-### One stack so AI agent work stops falling apart in your head.
+### One reality for agent work — that gets smarter every time you solve a problem.
 
 Agents claim. Skills install. Specs live in Slack. PRs flood.  
-**Coherence** is five rungs that share **one language** so engineers see **one reality**.
+**Coherence** is five rungs + **dominos** + **evolution memory** so engineers see **one reality** that **compounds with use**.
 
 ```text
+7  evolution  → lessons from solved problems (memory grows)
+6  dominos    → cascade order + Gilbert NEXT on every stone
 5  review     → what needs human eyes
 4  replay     → can we re-check what was proven?
 3  decisions  → locked project truths
@@ -13,13 +15,24 @@ Agents claim. Skills install. Specs live in Slack. PRs flood.
 1  claimproof → CLAIMED vs PROVEN (base language)
 ```
 
-Not a payment product. Not a rewrite of GitHub.  
-It **sits on top** of agents + CI + MCP and makes them **complete together**.
+### Revolutionary loop
+
+```text
+use → prove → knock domino → must leave a lesson + NEXT
+    → memory saves it → next session starts more coherent
+```
+
+**Gilbert’s Law (product form):** you cannot “solve” without naming what to do next  
+(or explicit `chain complete`). Silent success is illegal.
+
+**Domino problem:** one lie (“tests passed”) knocks merge → prod → blame → freeze agents.  
+Coherence makes that cascade **visible and ordered**.
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
 python -m coherence demo
+python -m coherence evolve
 ```
 
 ---
@@ -64,12 +77,21 @@ One object:
 ```python
 from coherence import Coherence
 
-c = Coherence(title="my-pr")
+c = Coherence(title="my-pr", memory_path=".coherence/memory.json", seed_cascade=True)
 c.skills.audit("shell-runner", ["shell"])
 c.decisions.lock("api", "MUST NOT break v1 clients")
-c.claimproof.cmd("tests", "pytest -q", exit_code=0)
+proof = c.claimproof.cmd("tests", "pytest -q", exit_code=0)
 c.replay.check()
 c.review.triage()
+
+# Knock the active domino — MUST teach the system
+head = c.dominos.head()
+c.solve_domino(
+    head.id,
+    proof=proof.proven,
+    lesson="Chat green is not CI green",
+    proof_record_id=proof.id,
+)
 print(c.plain_english())
 ```
 
@@ -79,9 +101,11 @@ print(c.plain_english())
 
 1. Higher rungs **cannot invent** PROVEN if rung 1 only has CLAIMED.  
 2. Every record has **NEXT** (what to do).  
-3. Ship order is **1 → 2 → 3 → 4 → 5** (all named now; deepen in order).  
+3. Every **solved domino** needs **proof + lesson + next** (Gilbert).  
+4. Evolution memory **loads next session** — the product evolves with use.  
+5. Deepen rungs **1 → 5** in public; dominos/memory are the flywheel.
 
-Full map: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+Full map: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · [docs/EVOLUTION-AND-DOMINOS.md](docs/EVOLUTION-AND-DOMINOS.md)
 
 ---
 

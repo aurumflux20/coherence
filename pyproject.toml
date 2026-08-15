@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "coherence"
-version = "0.1.0"
-description = "Coherence — agent reality stack: claim≠proven, skills, decisions, replay, review"
+version = "0.2.0"
+description = "Coherence — evolving agent reality stack: claim≠proven, dominos, Gilbert next, memory"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
