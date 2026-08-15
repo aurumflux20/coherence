@@ -31,3 +31,4 @@ htmlcov/
 # Local experiment dumps
 /tmp/
 *.log
+dist/
