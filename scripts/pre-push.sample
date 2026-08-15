@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Block push to remotes that look like other product repos.
+set -euo pipefail
+ROOT="$(git rev-parse --show-toplevel)"
+UNSAFE='seal|aurumflux-api|bondpermit|/glint\.|glint-'
+
+remote_name="${1:-}"
+remote_url="${2:-}"
+
+check_url() {
+  local url="$1"
+  if echo "$url" | grep -Eiq "$UNSAFE"; then
+    if [ "${COHERENCE_ALLOW_UNSAFE_REMOTE:-}" = "1" ]; then
+      echo "pre-push: WARNING override allowing unsafe remote: $url" >&2
+      return 0
+    fi
+    echo "pre-push BLOCKED: Coherence must not push to: $url" >&2
+    echo "Use a separate empty GitHub repo (e.g. youruser/coherence)." >&2
+    echo "Override only if intentional: COHERENCE_ALLOW_UNSAFE_REMOTE=1" >&2
+    exit 1
+  fi
+}
+
+if [ -n "$remote_url" ]; then
+  check_url "$remote_url"
+fi
+# Also scan all configured remotes
+while read -r _url; do
+  [ -z "${_url:-}" ] && continue
+  check_url "$_url"
+done < <(git remote -v | awk '{print $2}' | sort -u)
+
+exit 0

@@ -123,6 +123,11 @@ Full map: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · [docs/EVOLUTION-AND-DO
 
 ---
 
+## Git isolation
+
+**Separate project.** Own git history. **No** remote to seal / aurumflux-api / other product repos.  
+See [docs/GIT-ISOLATION.md](docs/GIT-ISOLATION.md). First publish must be a **new empty** GitHub repo only.
+
 ## License
 
 MIT
