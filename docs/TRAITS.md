@@ -50,7 +50,7 @@ We use this checklist when reviewing our own work and PRs.
 | Trait | File / practice |
 |-------|-----------------|
 | Discoverable pitch | `README.md` |
-| License | `LICENSE` (BSL 1.1) |
+| License | `LICENSE` (Apache 2.0) |
 | How to help | `CONTRIBUTING.md` |
 | Community norms | `CODE_OF_CONDUCT.md` |
 | Vuln process | `SECURITY.md` |

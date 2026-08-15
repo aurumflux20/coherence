@@ -1,7 +1,7 @@
 # Coherence
 
 [![CI](https://github.com/aurumflux20/coherence/actions/workflows/ci.yml/badge.svg)](https://github.com/aurumflux20/coherence/actions/workflows/ci.yml)
-[![License: BSL 1.1](https://img.shields.io/badge/license-BSL%201.1-blue.svg)](LICENSE)
+[![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 
 ### Your agent says the work is done. This makes it prove it.
@@ -168,11 +168,10 @@ a public issue.
 
 ## License
 
-**Business Source License 1.1** — see [LICENSE](LICENSE).
+**Apache License 2.0** — see [LICENSE](LICENSE).
 
-In plain words: you can read it, run it, and use it at work — including
-commercially — for free. The one thing you can't do is sell it back to the
-world as a hosted or managed service. On **2030-08-15**, each version converts
-automatically to Apache 2.0 and that restriction ends.
+In plain words: use it, change it, ship it inside your own product, even sell
+something built on top of it — no restrictions, no fees, no asking. This is
+built to help developers; the only ask back is a ⭐ if it did.
 
 © 2026 AurumFlux (A. Kaur)
