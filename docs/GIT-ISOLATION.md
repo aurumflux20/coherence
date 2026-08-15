@@ -5,9 +5,9 @@
 | Rule | Status |
 |------|--------|
 | Own git root at `packages/coherence` | Yes — separate `.git` |
-| **No** git remote until you add one | Yes — no `origin` by default |
-| **Not** a submodule of seal / aurumflux-api / home | Yes |
-| **Not** the same history as seal | Yes — independent commits only |
+| **Live origin (only)** | `https://github.com/aurumflux20/coherence` |
+| **Not** seal / effectfence / aurumflux-api | Yes — different repo, different history |
+| **Not** a submodule of other products | Yes |
 | Home monorepo must **not** track this tree | `packages/coherence/` in `~/`.gitignore |
 
 ## What this means
