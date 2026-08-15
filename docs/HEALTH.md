@@ -50,14 +50,15 @@ Exit **0** = GREEN · Exit **1** = RED (with Gilbert-style NEXT printed).
 
 ```
 scheduled health RED
-  → GitHub notifies (failed workflow)
-  → human or coding agent opens issue / local fix
+  → GitHub failed workflow + issue labeled health-red / nova-fix
+  → Nova (this agent) fixes — see docs/NOVA-HEALTH-AGENT.md
   → prove with storm + tests (evidence)
-  → PR → CI green → merge
+  → push / PR → CI green
   → optional: solve_domino + lesson into evolution memory
 ```
 
-That is **detect → prove fix → merge → learn** — not a black-box self-rewriting binary.
+**Zah:** the fixer is **Nova**, not an unnamed human.  
+That is **detect → Nova proves fix → merge → learn** — not a black-box self-rewriting binary.
 
 ## Metrics that mean healthy
 
