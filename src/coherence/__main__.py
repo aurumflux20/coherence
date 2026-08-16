@@ -22,7 +22,7 @@ def law() -> int:
     from coherence.core.fact import LAW
 
     print()
-    print("COHERENCE · 320 IQ law")
+    print("COHERENCE · the law")
     print("=" * 50)
     print(LAW)
     print()
@@ -31,14 +31,14 @@ def law() -> int:
     print("  finished  ⇔ next non-empty (always)")
     print("  remember  ⇔ done only")
     print()
-    print("Everything else is costume.")
-    print("Docs: docs/320IQ.md")
+    print("Everything else is a view over the same Fact.")
+    print("Docs: README.md")
     return 0
 
 
 def demo() -> int:
     print()
-    print("COHERENCE — one law, five costumes")
+    print("COHERENCE — one law, five kinds of Fact")
     print("=" * 50)
     from coherence.core.fact import LAW
 
@@ -72,7 +72,7 @@ def demo() -> int:
 
 def evolve_demo() -> int:
     print()
-    print("COHERENCE EVOLVE — dominos + Gilbert next + memory")
+    print("COHERENCE EVOLVE — dominos + next steps + memory")
     print("=" * 56)
 
     mem = Path(tempfile.gettempdir()) / "coherence_evolve_demo.json"

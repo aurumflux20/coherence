@@ -74,7 +74,7 @@ class DominoChain:
     ) -> Domino:
         if not (next_action or "").strip():
             raise ValueError(
-                "Gilbert: every domino must name next_action "
+                "every domino must name next_action "
                 "(what to do after this stone, or 'chain complete')"
             )
         d = Domino(
@@ -132,7 +132,7 @@ class DominoChain:
     ) -> Record:
         """Knock one stone. Requires proof + lesson (evolution fuel)."""
         if not (proof or "").strip():
-            raise ValueError("Murphy/Gilbert: cannot solve a domino without proof")
+            raise ValueError("cannot solve a domino without proof")
         if not (lesson or "").strip():
             raise ValueError(
                 "Evolution: cannot solve without a lesson "

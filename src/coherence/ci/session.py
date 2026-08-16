@@ -210,7 +210,7 @@ def report_markdown(c: Coherence) -> str:
         "",
     ]
     if r["open_next"]:
-        lines.append("### Open — what to do next (Gilbert)")
+        lines.append("### Open — what to do next")
         for n in r["open_next"]:
             lines.append(f"- {n}")
         lines.append("")

@@ -66,7 +66,7 @@ class Fact:
 
     @property
     def finished_shape(self) -> bool:
-        """Gilbert: next is always present (construction enforces)."""
+        """Next is always present (construction enforces it)."""
         return bool(self.next and self.next.strip())
 
     @property
@@ -103,7 +103,7 @@ class Fact:
             raise FactError("empty claim", "say what happened or what was asserted")
         if not next:
             raise FactError(
-                "Gilbert: empty next — communication did not happen",
+                "empty next — every fact must say what happens next",
                 "set next= to the next real action, or 'chain complete'",
             )
         return Fact(

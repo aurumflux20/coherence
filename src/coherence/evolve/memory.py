@@ -94,10 +94,10 @@ class EvolutionMemory:
                 "LAW: nothing is remembered unless it was done — proof/evidence required"
             )
         if not lesson.strip():
-            raise ValueError("Gilbert/Evolution: empty lesson — nothing to remember")
+            raise ValueError("empty lesson — nothing to remember")
         if not next_domino.strip():
             raise ValueError(
-                "Gilbert: learning requires next_domino "
+                "learning requires next_domino "
                 "(what the cascade needs next, or 'chain complete')"
             )
         prev = self.lessons[-1].entry_hash if self.lessons else "genesis"
