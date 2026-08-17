@@ -211,6 +211,54 @@ def cmd_check(argv: list[str]) -> int:
     return code
 
 
+def cmd_scope(argv: list[str]) -> int:
+    """Blast radius: what the agent touched, and where this report's edge is."""
+    p = argparse.ArgumentParser(prog="coherence scope")
+    p.add_argument("transcript")
+    p.add_argument("--json", action="store_true", dest="as_json")
+    p.add_argument("--full", action="store_true", help="list every item, not a sample")
+    args = p.parse_args(argv)
+    from coherence.audit.scope import scope_transcript
+    sc = scope_transcript(args.transcript)
+    if args.as_json:
+        print(json.dumps({
+            "commands": sc.commands, "bounded": sc.bounded(),
+            "files": sorted(sc.files), "pushes": sorted(sc.pushes),
+            "hosts": sorted(sc.hosts), "installs": sorted(sc.installs),
+            "opaque": [{"line": a, "command": b, "why": c} for a, b, c in sc.opaque],
+        }, indent=2))
+        return sc.exit_code()
+
+    def show(label, items):
+        items = sorted(items)
+        print(f"\n  {label} ({len(items)})")
+        for i in (items if args.full else items[:8]):
+            print(f"    {i}")
+        if not args.full and len(items) > 8:
+            print(f"    … {len(items) - 8} more (--full)")
+
+    print(f"blast radius of {sc.commands} commands\n")
+    show("files touched", sc.files)
+    show("repos pushed", sc.pushes)
+    show("network hosts contacted", sc.hosts)
+    show("packages installed", sc.installs)
+
+    print(f"\n  OPAQUE — effects this report CANNOT see ({len(sc.opaque)})")
+    for seq, cmd, why in (sc.opaque if args.full else sc.opaque[:8]):
+        print(f"    line {seq}: {cmd}")
+        print(f"        why: {why}")
+    if not args.full and len(sc.opaque) > 8:
+        print(f"    … {len(sc.opaque) - 8} more (--full)")
+
+    if sc.bounded():
+        print(f"\nVERDICT: BOUNDED — {len(sc.opaque)} command(s) could do anything this")
+        print("report cannot see. Everything above is what IS visible, not everything")
+        print("that happened. Unknown is reported as unknown, never as 'nothing'.")
+    else:
+        print("\nVERDICT: fully readable — every command's effects were determinable.")
+    return sc.exit_code()
+
+
 def cmd_audit(argv: list[str]) -> int:
     """Audit an agent transcript: every checkable claim vs. what actually ran."""
     p = argparse.ArgumentParser(prog="coherence audit")
@@ -360,6 +408,8 @@ def main(argv: list[str] | None = None) -> None:
         raise SystemExit(cmd_said(rest))
     if cmd == "check":
         raise SystemExit(cmd_check(rest))
+    if cmd == "scope":
+        raise SystemExit(cmd_scope(rest))
     if cmd == "audit":
         raise SystemExit(cmd_audit(rest))
     if cmd in ("tamper-demo", "tamper_demo", "tamper"):
@@ -374,6 +424,7 @@ def main(argv: list[str] | None = None) -> None:
             "  prove-cmd 'pytest -q'\n"
             "  tamper-demo   (10s: forge a green, watch it get caught)\n"
             "  audit FILE.jsonl   (agent transcript: claims vs. what actually ran)\n"
+            "  scope FILE.jsonl   (blast radius: what it touched + what we cannot see)\n"
             "  check [--no-strict]\n"
             "  report [--json] [--out file.md]\n"
         )

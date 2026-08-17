@@ -1,0 +1,1373 @@
+{
+  "commands": 744,
+  "bounded": true,
+  "files": [
+    "$B/mt-body.md\" \"$V/modern-treasury.md",
+    "$B/paddle-body.md\" \"$V/paddle-mcp.md",
+    "$DL\" \"$DEST",
+    "$OUT",
+    "$PGDATA",
+    "$PGDATA/postgresql.conf",
+    "$PGROOT/sock",
+    "$S",
+    "$S/pages_x",
+    "$S/seal-poster.html\" ~/Documents/Obsidian/Bond/OSS/assets/seal-poster.html",
+    "$S/seal-poster.png\" ~/Desktop/seal-poster.png",
+    "$S/seal-poster.png\" ~/Documents/Obsidian/Bond/OSS/assets/seal-poster.png",
+    "$SCRATCH/authcheck",
+    "$SCRATCH/final",
+    "$SCRATCH/gradcheck",
+    "$SCRATCH/rangecheck",
+    "$SP",
+    "$SP/LICENSE",
+    "$SP/all.txt",
+    "$SP/coherence",
+    "$SP/ef.txt",
+    "$SP/efbuild.txt",
+    "$SP/efstorm.txt",
+    "$SP/efstorm2.txt",
+    "$SP/eftest.txt",
+    "$SP/fin.txt",
+    "$SP/fin2.txt",
+    "$SP/fs.txt",
+    "$SP/full.txt",
+    "$SP/full2.txt",
+    "$SP/hc3.txt",
+    "$SP/hc4.txt",
+    "$SP/hcinst.txt",
+    "$SP/hcmcp.txt",
+    "$SP/html.txt",
+    "$SP/inst.txt",
+    "$SP/mand.txt",
+    "$SP/mand2.txt",
+    "$SP/mand3.txt",
+    "$SP/par.txt",
+    "$SP/rcpt.txt",
+    "$SP/rcpt2.txt",
+    "$SP/rec.txt",
+    "$SP/rep.txt",
+    "$SP/rint.txt",
+    "$SP/sample_receipt.json",
+    "$SP/sample_receipt2.json",
+    "$SP/seal_hc.txt",
+    "$SP/seal_hc2.txt",
+    "$SP/sstorm.txt",
+    "$SP/st3.txt",
+    "$SP/storm4.txt",
+    "$SP/storm5.txt",
+    "$SP/sver.txt",
+    "$SRC",
+    ")",
+    "))",
+    "),",
+    "**Avoiding",
+    "+x ~/scripts/brand-watch.sh",
+    ",",
+    ",'\\n')",
+    ",'every",
+    ".git/DEPLOY_APPROVED",
+    ".gitignore",
+    ".venv",
+    ".venv2",
+    "/",
+    "/<session>.jsonl",
+    "/Users/amanpreetkaur/.claude/projects/-Users-amanpreetkaur/memory/MEMORY.md",
+    "/Users/amanpreetkaur/.claude/projects/-Users-amanpreetkaur/memory/licensing-strategy-locked-aug16.md",
+    "/Users/amanpreetkaur/.claude/projects/-Users-amanpreetkaur/memory/never-name-a-company-next-to-a-bug.md",
+    "/Users/amanpreetkaur/.claude/projects/-Users-amanpreetkaur/memory/never-revive-old-email-threads.md",
+    "/Users/amanpreetkaur/.claude/projects/-Users-amanpreetkaur/memory/no-calls-all-outreach-written-only.md",
+    "/Users/amanpreetkaur/.claude/projects/-Users-amanpreetkaur/memory/oss-launch-dates-week-two-not-months.md",
+    "/Users/amanpreetkaur/.claude/projects/-Users-amanpreetkaur/memory/outlook-autocorrect-mangles-drafts.md",
+    "/Users/amanpreetkaur/.claude/projects/-Users-amanpreetkaur/memory/post-linkedin-with-x-always.md",
+    "/Users/amanpreetkaur/.claude/projects/-Users-amanpreetkaur/memory/read-the-targets-own-governance-page.md",
+    "/Users/amanpreetkaur/.claude/projects/-Users-amanpreetkaur/memory/send-tap-lifted-for-oss-maintainer-outreach.md",
+    "/Users/amanpreetkaur/.claude/projects/-Users-amanpreetkaur/memory/standing-order-build-without-asking.md",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/AurumFlux-MASTER-HANDOFF-Aug14-2026.md",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/MESSAGE-TO-GLINT-BONDPERMIT-SESSION.md",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/OSS",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/AurumFlux-MASTER-HANDOFF-Aug13-2026.md",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/COHERENCE-ICP-Aug16-2026.md",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/DOC-RECONCILIATION-Aug13-2026.md",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/FINDING-quackai-q402-mcp.md",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/HANDOFF-MASTER.md",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/ICP-15-GATE-A.md",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/LAUNCH-coherence-Aug16-2026.md",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/MISSION-ONE-PAGER.md",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/OS.md",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/OUTREACH-spaceflow.md",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/PATH2-MONEY-AGENT-COMPANIES.md",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/PIPELINE-BOARD.md",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/REPLY-TO-GROK-icp-board-8.md",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/demo-approval-transcript.txt",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/outreach/arispay-x402.md",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/outreach/hoodpocket-pocket-wallet.md",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/outreach/posts-Aug12-seal-scars.md",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/outreach/posts-Aug14-our-own-double-charge.md",
+    "/Users/amanpreetkaur/Documents/Obsidian/Bond/STRATEGY-FIRST-DOLLAR-Aug13-2026.md",
+    "/Users/amanpreetkaur/aurumflux-api/glint_funnel.py",
+    "/Users/amanpreetkaur/data/oss/tools/harvest_money.py",
+    "/Users/amanpreetkaur/data/oss/tools/money_refine.py",
+    "/Users/amanpreetkaur/packages/effectfence-npm/README.md",
+    "/Users/amanpreetkaur/packages/seal/.github/workflows/ci.yml",
+    "/Users/amanpreetkaur/packages/seal/LICENSE",
+    "/Users/amanpreetkaur/packages/seal/README.md",
+    "/Users/amanpreetkaur/packages/seal/STORM-PROOF.md",
+    "/Users/amanpreetkaur/packages/seal/approval_demo.py",
+    "/Users/amanpreetkaur/packages/seal/demo.py",
+    "/Users/amanpreetkaur/packages/seal/docs/DEPLOYMENT.md",
+    "/Users/amanpreetkaur/packages/seal/docs/PLAIN-ENGLISH.md",
+    "/Users/amanpreetkaur/packages/seal/docs/RANGE-SAFETY-TEST.md",
+    "/Users/amanpreetkaur/packages/seal/pyproject.toml",
+    "/Users/amanpreetkaur/packages/seal/range_safety_test.py",
+    "/Users/amanpreetkaur/packages/seal/seal/__init__.py",
+    "/Users/amanpreetkaur/packages/seal/seal/__main__.py",
+    "/Users/amanpreetkaur/packages/seal/seal/authority.py",
+    "/Users/amanpreetkaur/packages/seal/seal/budget.py",
+    "/Users/amanpreetkaur/packages/seal/seal/clearance.py",
+    "/Users/amanpreetkaur/packages/seal/seal/cli.py",
+    "/Users/amanpreetkaur/packages/seal/seal/core.py",
+    "/Users/amanpreetkaur/packages/seal/seal/freshness.py",
+    "/Users/amanpreetkaur/packages/seal/seal/graduated.py",
+    "/Users/amanpreetkaur/packages/seal/seal/graph.py",
+    "/Users/amanpreetkaur/packages/seal/seal/mandate.py",
+    "/Users/amanpreetkaur/packages/seal/seal/mcp_server.py",
+    "/Users/amanpreetkaur/packages/seal/seal/receipt.py",
+    "/Users/amanpreetkaur/packages/seal/seal/reconcile.py",
+    "/Users/amanpreetkaur/packages/seal/seal/witness.py",
+    "/Users/amanpreetkaur/packages/seal/stripe_demo.py",
+    "/Users/amanpreetkaur/packages/seal/tests/_gateway_executors.py",
+    "/Users/amanpreetkaur/packages/seal/tests/test_authority.py",
+    "/Users/amanpreetkaur/packages/seal/tests/test_budget.py",
+    "/Users/amanpreetkaur/packages/seal/tests/test_clearance.py",
+    "/Users/amanpreetkaur/packages/seal/tests/test_finality.py",
+    "/Users/amanpreetkaur/packages/seal/tests/test_freshness.py",
+    "/Users/amanpreetkaur/packages/seal/tests/test_graduated.py",
+    "/Users/amanpreetkaur/packages/seal/tests/test_graph.py",
+    "/Users/amanpreetkaur/packages/seal/tests/test_mandate.py",
+    "/Users/amanpreetkaur/packages/seal/tests/test_mcp.py",
+    "/Users/amanpreetkaur/packages/seal/tests/test_receipt.py",
+    "/Users/amanpreetkaur/packages/seal/tests/test_reconcile.py",
+    "/Users/amanpreetkaur/packages/seal/tests/test_seal.py",
+    "/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/afsite/index.html",
+    "/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/bodies",
+    "/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/bodies/mt-body.md",
+    "/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/bodies/paddle-body.md",
+    "/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/build_salesplan.js",
+    "/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/chiko.md",
+    "/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/coherence/.github/workflows/coherence-pr.yml",
+    "/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/coherence/README.md",
+    "/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/coherence/action.yml",
+    "/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/coherence/src/coherence/audit/scope.py",
+    "/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/coherence/src/coherence/audit/transcript.py",
+    "/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/hpp-io-12.md",
+    "/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/hpp-io-design-partner.md",
+    "/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/hypawave-reply.md",
+    "/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/sample-receipt.html ~/packages/seal/.receipt-preview/index.html",
+    "/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/seal-poster.html",
+    "/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/seal-verify",
+    "/private/tmp/claude-501/-Users-amanpreetkaur/a9c5849a-24f1-4240-95f2-feff89742be8/scratchpad/ef-note.md",
+    "/tmp/F1.log",
+    "/tmp/F2.log",
+    "/tmp/F3.log",
+    "/tmp/F4.log",
+    "/tmp/G$r.log",
+    "/tmp/agent_repos.txt",
+    "/tmp/all.log",
+    "/tmp/all2.log",
+    "/tmp/all3.log",
+    "/tmp/auth.log",
+    "/tmp/auth2.log",
+    "/tmp/auth3.log",
+    "/tmp/b.log",
+    "/tmp/base.log",
+    "/tmp/c1.log",
+    "/tmp/cl.log",
+    "/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/ci.txt",
+    "/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/ef.txt",
+    "/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/fresh1.txt",
+    "/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/full.txt",
+    "/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/full2.txt",
+    "/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/full3.txt",
+    "/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/mcp1.txt",
+    "/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/pytest.txt",
+    "/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/pytest2.txt",
+    "/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/replay.txt",
+    "/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/repro.py",
+    "/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/sec.txt",
+    "/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/storm.txt",
+    "/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/verify.txt",
+    "/tmp/claude_repos.txt",
+    "/tmp/coht",
+    "/tmp/cvenv",
+    "/tmp/d.log",
+    "/tmp/d2.log",
+    "/tmp/d3.log",
+    "/tmp/dbg.json",
+    "/tmp/dbg2.json",
+    "/tmp/demo.log",
+    "/tmp/f$r.log",
+    "/tmp/f.log",
+    "/tmp/final_check.log",
+    "/tmp/fresh.log",
+    "/tmp/fresh_g.log",
+    "/tmp/fresh_rst.log",
+    "/tmp/full.log",
+    "/tmp/full_g.log",
+    "/tmp/full_g2.log",
+    "/tmp/grad.log",
+    "/tmp/grad2.log",
+    "/tmp/mcp.log",
+    "/tmp/merged_tally.txt",
+    "/tmp/out.txt\"),",
+    "/tmp/pre_push.log",
+    "/tmp/r2.log",
+    "/tmp/receipt-preview.log",
+    "/tmp/reg.log",
+    "/tmp/rst.log",
+    "/tmp/rst2.log",
+    "/tmp/s$r.log",
+    "/tmp/s2.log",
+    "/tmp/s3.log",
+    "/tmp/sd_final.log",
+    "/tmp/sdemo.log",
+    "/tmp/seal_pytest.log",
+    "/tmp/seal_storm.log",
+    "/tmp/seal_storm_$run.log",
+    "/tmp/sealsock",
+    "/tmp/st.log",
+    "/tmp/storm_after.log",
+    "/tmp/t.log",
+    "/tmp/v_storm.log",
+    "/tmp/v_test.log",
+    "0",
+    "0)",
+    "0)}/{len(dl)}",
+    "1",
+    "1):",
+    "1,",
+    "1.",
+    "2>",
+    "30s)",
+    "3}/180",
+    "3}/{dl['days']:<3}",
+    "4}",
+    "600 ~/.seal-stripe-key",
+    "600)",
+    "7}",
+    "7}dl",
+    "8:",
+    "8}",
+    "9}",
+    "<b>[^<]+</b><span>[^<]+",
+    "<summary>Add",
+    "=1000:',len(cand))",
+    "=1000]",
+    "=120",
+    "=2000]",
+    "=2026-08-12",
+    "=3.10,",
+    "=5000')",
+    "=5000]",
+    "=60",
+    "=80",
+    "ACTUAL_EXECUTIONS",
+    "ALWAYS_HUMAN)",
+    "Apache",
+    "Apache-2.0\")",
+    "BLOCKED",
+    "BSL",
+    "CHANGELOG.md",
+    "CHANGELOG.md.bak",
+    "CNAME",
+    "CSS / <style> / script / animation? ===",
+    "HANDOFF-MASTER.md \"AurumFlux-MASTER-HANDOFF-Aug13-2026.md",
+    "LICENSE.tmp LICENSE",
+    "NOTICE",
+    "None:",
+    "One",
+    "Stripe",
+    "WORLD_DIVERGED,",
+    "WORLD_FINAL,",
+    "[^<]*</title>",
+    "]*>/",
+    "]*>//g",
+    "]*>[^<]+",
+    "]+>\",",
+    "]+>','',x)",
+    "`",
+    "`LemonCake:",
+    "a",
+    "adoption",
+    "afsite",
+    "afsite2",
+    "alert(1)</script>",
+    "alert(1)</script>',",
+    "arispay keryx",
+    "aurumflux20.github.io,",
+    "block",
+    "but",
+    "chain",
+    "check",
+    "coherence",
+    "dict:",
+    "dist build *.egg-info",
+    "dl['total']*0.15",
+    "docs/TRAITS.md.bak",
+    "docs/provenance",
+    "docs/provenance/self-audit-2026-08-17.json",
+    "docs/provenance/self-scope-2026-08-17.json",
+    "dust skyfire trigger",
+    "evidai",
+    "evidai-issue.md",
+    "exactly",
+    "exit",
+    "for m in re.finditer(rb'[\\x20-\\x7e\\n\\t]{20,}', bytes(raw)):",
+    "from",
+    "gate.",
+    "glint-pricing.html glint-pricing.html.bak",
+    "glint.html glint.html.bak",
+    "hc-stranger",
+    "hp",
+    "hunt",
+    "int:",
+    "is needed. Cold hand-reading more archived MCP repos has hit diminishing returns.",
+    "issue-body.md",
+    "line",
+    "list[str]:",
+    "ln",
+    "open/blocked,",
+    "package \"${f%.tgz}",
+    "package hp-pub",
+    "package payagent-pub",
+    "paddlesdk",
+    "payment_orders\" 2>/dev/null",
+    "pub",
+    "q402fresh",
+    "ql",
+    "ql/*.png 2>/dev/null",
+    "reaches open-source MCP authors",
+    "read",
+    "recon_unzip",
+    "replaced\")",
+    "replaced,",
+    "result.",
+    "salesplan_x",
+    "skyfire-pkg",
+    "src/coherence/audit/__init__.py",
+    "static/glint.html.bak static/glint-pricing.html.bak",
+    "sticky",
+    "str:",
+    "str:\")",
+    "str:''')",
+    "str:''',",
+    "strangertest",
+    "tag",
+    "tests/test_audit.py",
+    "tests/test_authority.py",
+    "tests/test_ci_session.py",
+    "tests/test_finality.py",
+    "tests/test_graduated.py",
+    "tests/test_graph.py",
+    "tests/test_mcp.py",
+    "tests/test_receipt.py",
+    "tests/test_reconcile.py",
+    "tests/test_scope.py",
+    "the",
+    "the credential while they quietly do.",
+    "ticket,",
+    "trigger-fresh",
+    "trigger-issue.md",
+    "try:",
+    "tuple[Coherence,",
+    "unknown",
+    "vault:",
+    "{",
+    "{_row(\"Action\",",
+    "{_row(\"Authorisation",
+    "{sorted(missing)}\")",
+    "{src.count(k)}\")",
+    "}",
+    "~/.seal-stripe-key",
+    "~/Documents/Obsidian/Bond/OSS/assets",
+    "~/Documents/Obsidian/Bond/OSS/seal/STORM-PROOF.md ~/packages/seal/STORM-PROOF.md",
+    "~/Documents/Obsidian/Bond/OSS/seal/seal.py ~/packages/seal/seal/core.py",
+    "~/Documents/Obsidian/Bond/OSS/seal/storm.py ~/packages/seal/storm.py",
+    "~/packages/effectfence-npm/README.md npm/README.md",
+    "~/packages/seal $SCRATCH/authcheck",
+    "~/packages/seal $SCRATCH/gradcheck",
+    "~/packages/seal $SCRATCH/rangecheck",
+    "~/packages/seal/.receipt-preview",
+    "~/packages/seal/README.md ~/packages/seal/docs/PLAIN-ENGLISH.md ./ 2>/dev/null",
+    "~/packages/seal/seal ~/packages/seal/tests ~/packages/seal/.github/workflows",
+    "~/scripts",
+    "~/scripts/brand-watch.sh"
+  ],
+  "pushes": [
+    "git push -q origin action-e2e-test 2>",
+    "git push -q origin main",
+    "git push -q origin main 2>",
+    "git push -q origin v1.0.0 v1 --force 2>",
+    "git push -q origin v1.0.0 v1 -f 2>",
+    "git push -qf origin v1",
+    "git push origin HEAD:main 2>",
+    "git push origin HEAD:main`).",
+    "git push origin main 2>",
+    "git push origin main\"),",
+    "git push origin main\"), _result(\"b\", \"\"),",
+    "git push origin main\"), _result(\"t1\", \"[exited with code 0]\"),",
+    "git push) was fixed and pinned as"
+  ],
+  "hosts": [
+    "api.github.com",
+    "api.npmjs.org",
+    "api.stripe.com",
+    "aurumflux-api.onrender.com",
+    "aurumflux.co",
+    "aurumflux20.github.io",
+    "crates.io",
+    "evil.example.com",
+    "github.com",
+    "glint.aurumflux.co",
+    "index.html",
+    "mkt.html",
+    "mkt2.html",
+    "pypi.org",
+    "receipt-preview.log",
+    "registry.npmjs.org",
+    "www.apache.org",
+    "www.aurumflux.co",
+    "www.npmjs.com",
+    "x.io"
+  ],
+  "installs": [
+    "-U pip -q 2>",
+    "-e \"$SP2/coherence\" pytest -q 2>",
+    "-e .",
+    "-e . -q 2>",
+    "-e . -q > \"$SP/hcinst.txt\" 2>",
+    "-e . -q > \"$SP/inst.txt\" 2>",
+    "-e . 2>",
+    "-e . fixes it)? ===\"",
+    "-q -e . 2>",
+    "-q -e . pytest 2>",
+    "-q build 2>",
+    "-q dist/*.whl 2>",
+    "-q python-snappy 2>",
+    "ed version + repo freshness\"",
+    "ed versions\"",
+    "effectfence` get ours, `pip install effectfence` gets yours.",
+    "n this same niche since Aug 5\" \\",
+    "nstall docx 2>",
+    "pytest -q 2>",
+    "python-snappy --quiet 2>",
+    "pyyaml -q",
+    "requests\"), _result(\"c\", \"\"),"
+  ],
+  "opaque": [
+    {
+      "line": 25,
+      "command": "python3 ~/data/oss/tools/adoption_radar.py 2>&1 | tail -40; echo \"EXIT=$?\"",
+      "why": "runs a program file"
+    },
+    {
+      "line": 195,
+      "command": "cd /private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/ln && echo \"=== request(",
+      "why": "command substitution"
+    },
+    {
+      "line": 428,
+      "command": "cd ~/packages/seal && export SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\n.venv/bin/python storm.py",
+      "why": "runs a program file"
+    },
+    {
+      "line": 444,
+      "command": "cd ~/packages/seal && export SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\n.venv/bin/python -m pytes",
+      "why": "runs a program file"
+    },
+    {
+      "line": 448,
+      "command": "cd ~/packages/seal && export SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\nfor run in 2 3 4; do\n  .v",
+      "why": "runs a program file"
+    },
+    {
+      "line": 451,
+      "command": "cd ~/packages/seal && cat > .gitignore <<'EOF'\n.venv/\n__pycache__/\n*.egg-info/\n*.pyc\nEOF\ngit add -A && git -c user.name=",
+      "why": "runs a program file"
+    },
+    {
+      "line": 572,
+      "command": "export SEAL_DSN_OLD=\"host=/tmp/sealsock port=5433 user=postgres dbname=sealold\"\npsql \"host=/tmp/sealsock port=5433 user=",
+      "why": "command substitution"
+    },
+    {
+      "line": 597,
+      "command": "cd ~/packages/seal && export SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\n.venv/bin/python storm.py",
+      "why": "runs a program file"
+    },
+    {
+      "line": 604,
+      "command": "cd ~/packages/seal && export SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\nfor r in 2 3 4; do\n  .ven",
+      "why": "runs a program file"
+    },
+    {
+      "line": 624,
+      "command": "cd ~/packages/seal && export SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\npass=0\nfor r in 1 2 3 4 5",
+      "why": "runs a program file"
+    },
+    {
+      "line": 666,
+      "command": "cd ~/packages/seal && export SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\n.venv/bin/python demo.py ",
+      "why": "runs a program file"
+    },
+    {
+      "line": 676,
+      "command": "cd ~/packages/seal && cat >> tests/test_graph.py <<'PY'\n\n\ndef test_retried_compensation_still_ends_compensated(g: Effect",
+      "why": "runs a program file"
+    },
+    {
+      "line": 708,
+      "command": "SCRATCH=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\npsql \"host=/tmp/sea",
+      "why": "runs a program file"
+    },
+    {
+      "line": 712,
+      "command": "cd /private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/final\nexport SEAL_DSN=\"h",
+      "why": "runs a program file"
+    },
+    {
+      "line": 726,
+      "command": "export PGDATA=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/seal-pg\npg_ct",
+      "why": "command substitution"
+    },
+    {
+      "line": 743,
+      "command": "cd ~/data/oss && python3 tools/harvest_money.py 2>&1 | tail -40; echo \"HARVEST_EXIT=$?\"",
+      "why": "runs a program file"
+    },
+    {
+      "line": 756,
+      "command": "cd ~/data/oss && python3 tools/money_refine.py 2>&1 | tail -45",
+      "why": "runs a program file"
+    },
+    {
+      "line": 777,
+      "command": "S=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/hunt; cd $S\nfor d in */; ",
+      "why": "command substitution"
+    },
+    {
+      "line": 1330,
+      "command": "S=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/hunt/mt; cd $S\necho \"=== ",
+      "why": "command substitution"
+    },
+    {
+      "line": 1457,
+      "command": "SK=\"/Users/amanpreetkaur/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/00940669-7056-4314-9",
+      "why": "runs a program file"
+    },
+    {
+      "line": 1461,
+      "command": "SK=\"/Users/amanpreetkaur/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/00940669-7056-4314-9",
+      "why": "runs a program file"
+    },
+    {
+      "line": 1501,
+      "command": "cd /private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\nF=\"/Users/amanpreetkaur/",
+      "why": "command substitution"
+    },
+    {
+      "line": 1588,
+      "command": "S=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/hunt; cd $S\nfor r in \"fia",
+      "why": "command substitution"
+    },
+    {
+      "line": 1620,
+      "command": "cat >> /Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/PIPELINE-BOARD.md << 'EOF'\n\n## SHARPENED ICP (Zah + Nova, Aug 12",
+      "why": "command substitution"
+    },
+    {
+      "line": 1633,
+      "command": "S=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/hunt/XRPL-Utilities_xrpl-",
+      "why": "command substitution"
+    },
+    {
+      "line": 1644,
+      "command": "S=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/hunt; cd $S\nfor r in \"qua",
+      "why": "command substitution"
+    },
+    {
+      "line": 1667,
+      "command": "cat >> /Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/PIPELINE-BOARD.md << 'EOF'\n\n## Gate-1 pass 2 (sharpened-ICP batc",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 1719,
+      "command": "echo \"=== PROD HEALTH ===\"; curl -s --max-time 25 https://aurumflux-api.onrender.com/health; echo; echo \"---\"\necho \"=== ",
+      "why": "runs a program file"
+    },
+    {
+      "line": 2506,
+      "command": "SRC=\"$HOME/Library/Mobile Documents/com~apple~CloudDocs/untitled folder 5/Stripe sandbox key.rtf\"\n# strip RTF markup, ex",
+      "why": "command substitution"
+    },
+    {
+      "line": 2511,
+      "command": "KEY=$(grep -oE '(sk|rk)_test_[A-Za-z0-9]+' ~/.seal-stripe-key)\necho \"=== Stripe test-mode auth check (GET /v1/balance):\"",
+      "why": "command substitution"
+    },
+    {
+      "line": 2531,
+      "command": "cd ~/packages/seal && psql -h /tmp/sealsock -p 5433 -U postgres -c \"CREATE DATABASE sealstripe\" 2>&1 | tail -1\nexport SE",
+      "why": "runs a program file"
+    },
+    {
+      "line": 2548,
+      "command": "cd ~/packages/seal\nexport SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=sealstripe\"\nexport STRIPE_TEST_KEY",
+      "why": "runs a program file"
+    },
+    {
+      "line": 2569,
+      "command": "cd ~/packages/seal\nexport SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=sealstripe\"\nexport STRIPE_TEST_KEY",
+      "why": "runs a program file"
+    },
+    {
+      "line": 2585,
+      "command": "cd ~/packages/seal\nexport SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=sealstripe\"\nexport STRIPE_TEST_KEY",
+      "why": "runs a program file"
+    },
+    {
+      "line": 2588,
+      "command": "cd ~/packages/seal\nexport SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\npsql -h /tmp/sealsock -p 543",
+      "why": "delegates to a script target"
+    },
+    {
+      "line": 2601,
+      "command": "echo \"=== PROD HEALTH ===\"; curl -s --max-time 25 https://aurumflux-api.onrender.com/health; echo\necho \"=== ADOPTION RAD",
+      "why": "runs a program file"
+    },
+    {
+      "line": 2620,
+      "command": "cat >> /Users/amanpreetkaur/Documents/Obsidian/Bond/OSS/OS.md << 'EOF'\n\n## FIRST DEEP ENGAGEMENT \u2014 hypawave/astradivari ",
+      "why": "delegates to a script target"
+    },
+    {
+      "line": 2746,
+      "command": "cd ~/packages/seal\nexport SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\necho \"=== storm regression (",
+      "why": "runs a program file"
+    },
+    {
+      "line": 2825,
+      "command": "cd ~/packages/seal\nexport SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\n.venv/bin/python -m pytest t",
+      "why": "runs a program file"
+    },
+    {
+      "line": 2835,
+      "command": "cd ~/packages/seal && git add -A && git -c user.name=aurumflux20 -c user.email=hello@aurumflux.co commit -q -m \"Exclusiv",
+      "why": "delegates to a script target"
+    },
+    {
+      "line": 3036,
+      "command": "cd ~/packages/seal\nexport PGDATA=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scrat",
+      "why": "runs a program file"
+    },
+    {
+      "line": 3039,
+      "command": "cd ~/packages/seal\nexport SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\nexport STRIPE_TEST_KEY=$(gre",
+      "why": "runs a program file"
+    },
+    {
+      "line": 3053,
+      "command": "cd ~/packages/seal\nexport SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\n.venv/bin/python -m pytest t",
+      "why": "runs a program file"
+    },
+    {
+      "line": 3121,
+      "command": "cd ~/packages/seal\nexport SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\n.venv/bin/python -m pytest t",
+      "why": "runs a program file"
+    },
+    {
+      "line": 3194,
+      "command": "cd ~/packages/seal\n.venv/bin/python -c \"import ast;ast.parse(open('range_safety_test.py').read());print('syntax OK')\"\n.v",
+      "why": "runs a program file"
+    },
+    {
+      "line": 3198,
+      "command": "cd ~/packages/seal && .venv/bin/python range_safety_test.py --n 1000 2>&1; echo \"EXIT=$?\"",
+      "why": "runs a program file"
+    },
+    {
+      "line": 3218,
+      "command": "cd ~/packages/seal\nexport SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\n.venv/bin/python -m pytest t",
+      "why": "runs a program file"
+    },
+    {
+      "line": 3220,
+      "command": "SCRATCH=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\nrm -rf $SCRATCH/ran",
+      "why": "runs a program file"
+    },
+    {
+      "line": 3262,
+      "command": "echo \"=== 1. PROD HEALTH ===\"\ncurl -s --max-time 25 https://aurumflux-api.onrender.com/health; echo\necho\necho \"=== 2. AD",
+      "why": "runs a program file"
+    },
+    {
+      "line": 3263,
+      "command": "echo \"=== 3. SEAL REPO \u2014 public state vs local ===\"\ncd ~/packages/seal\ngit fetch -q origin 2>&1\necho \"local HEAD:  $(git",
+      "why": "command substitution"
+    },
+    {
+      "line": 3318,
+      "command": "SRC=~/packages/seal/docs/STRATEGY-MASTER-PACK.md\nDEST=~/Documents/Obsidian/Bond/OSS/STRATEGY-MASTER-PACK.md\nDL=\"$HOME/Do",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 3546,
+      "command": "cd ~/packages/seal && export SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\n.venv/bin/python demo.py ",
+      "why": "runs a program file"
+    },
+    {
+      "line": 3553,
+      "command": "cd ~/packages/seal && cat >> tests/test_graph.py <<'PY'\n\n\ndef test_retried_compensation_still_ends_compensated(g: Effect",
+      "why": "runs a program file"
+    },
+    {
+      "line": 3579,
+      "command": "SCRATCH=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\npsql \"host=/tmp/sea",
+      "why": "runs a program file"
+    },
+    {
+      "line": 3583,
+      "command": "cd /private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/final\nexport SEAL_DSN=\"h",
+      "why": "runs a program file"
+    },
+    {
+      "line": 3594,
+      "command": "export PGDATA=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/seal-pg\npg_ct",
+      "why": "command substitution"
+    },
+    {
+      "line": 3623,
+      "command": "SK=\"/Users/amanpreetkaur/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/00940669-7056-4314-9",
+      "why": "runs a program file"
+    },
+    {
+      "line": 3627,
+      "command": "SK=\"/Users/amanpreetkaur/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/00940669-7056-4314-9",
+      "why": "runs a program file"
+    },
+    {
+      "line": 3646,
+      "command": "cd /private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\nF=\"/Users/amanpreetkaur/",
+      "why": "command substitution"
+    },
+    {
+      "line": 3886,
+      "command": "cd ~/packages/seal\nexport SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\n.venv/bin/python -m pytest t",
+      "why": "runs a program file"
+    },
+    {
+      "line": 3893,
+      "command": "cd ~/packages/seal && git add -A && git -c user.name=aurumflux20 -c user.email=hello@aurumflux.co commit -q -m \"Exclusiv",
+      "why": "delegates to a script target"
+    },
+    {
+      "line": 4029,
+      "command": "cd ~/packages/seal\nexport PGDATA=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scrat",
+      "why": "runs a program file"
+    },
+    {
+      "line": 4032,
+      "command": "cd ~/packages/seal\nexport SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\nexport STRIPE_TEST_KEY=$(gre",
+      "why": "runs a program file"
+    },
+    {
+      "line": 4043,
+      "command": "cd ~/packages/seal\nexport SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\n.venv/bin/python -m pytest t",
+      "why": "runs a program file"
+    },
+    {
+      "line": 4096,
+      "command": "cd ~/packages/seal\nexport SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\n.venv/bin/python -m pytest t",
+      "why": "runs a program file"
+    },
+    {
+      "line": 4154,
+      "command": "cd ~/packages/seal\n.venv/bin/python -c \"import ast;ast.parse(open('range_safety_test.py').read());print('syntax OK')\"\n.v",
+      "why": "runs a program file"
+    },
+    {
+      "line": 4158,
+      "command": "cd ~/packages/seal && .venv/bin/python range_safety_test.py --n 1000 2>&1; echo \"EXIT=$?\"",
+      "why": "runs a program file"
+    },
+    {
+      "line": 4175,
+      "command": "cd ~/packages/seal\nexport SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\n.venv/bin/python -m pytest t",
+      "why": "runs a program file"
+    },
+    {
+      "line": 4177,
+      "command": "SCRATCH=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\nrm -rf $SCRATCH/ran",
+      "why": "runs a program file"
+    },
+    {
+      "line": 4211,
+      "command": "SRC=~/packages/seal/docs/STRATEGY-MASTER-PACK.md\nDEST=~/Documents/Obsidian/Bond/OSS/STRATEGY-MASTER-PACK.md\nDL=\"$HOME/Do",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 4293,
+      "command": "psql -h /tmp/sealsock -p 5433 -U postgres -c \"DROP DATABASE IF EXISTS sealdemo\" -c \"CREATE DATABASE sealdemo\" 2>&1 | tai",
+      "why": "runs a program file"
+    },
+    {
+      "line": 4296,
+      "command": "SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=sealdemo\" python3 approval_demo.py 2>&1 | tail -70; echo \"EX",
+      "why": "runs a program file"
+    },
+    {
+      "line": 4327,
+      "command": "psql -h /tmp/sealsock -p 5433 -U postgres -c \"DROP DATABASE IF EXISTS sealdemo\" -c \"CREATE DATABASE sealdemo\" >/dev/null",
+      "why": "runs a program file"
+    },
+    {
+      "line": 4394,
+      "command": "psql -h /tmp/sealsock -p 5433 -U postgres -c \"DROP DATABASE IF EXISTS sealdemo\" -c \"CREATE DATABASE sealdemo\" >/dev/null",
+      "why": "runs a program file"
+    },
+    {
+      "line": 4905,
+      "command": "for h in aurumflux.co www.aurumflux.co glint.aurumflux.co seal.aurumflux.co bondpermit.com; do\n  code=$(curl -s -o /dev/",
+      "why": "command substitution"
+    },
+    {
+      "line": 4914,
+      "command": "cd ~ 2>/dev/null\necho \"=== candidate site dirs ===\"\nls -d ~/packages/* 2>/dev/null | head -20\necho \"--- anything named a",
+      "why": "command substitution"
+    },
+    {
+      "line": 4925,
+      "command": "f=~/Desktop/AurumFlux-Site/aurumflux-site.html\necho \"=== title / meta ===\"; grep -oE \"<title>[^<]*</title>|<meta name=\\\"",
+      "why": "command substitution"
+    },
+    {
+      "line": 4937,
+      "command": "echo \"=== is the Pages site live? ===\"\ncurl -s -o /dev/null -w \"aurumflux20.github.io  %{http_code}\\n\" -L --max-time 12 ",
+      "why": "base64 decoded into execution"
+    },
+    {
+      "line": 4981,
+      "command": "cd ~/packages/seal\necho \"=== bugs we found attacking ourselves (STORM-PROOF) ===\"\ngrep -nE \"^[0-9]+\\.|^### |^## \" STORM-",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 5045,
+      "command": "cd /private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/afsite\necho \"=== product",
+      "why": "command substitution"
+    },
+    {
+      "line": 5062,
+      "command": "echo \"waiting for Pages build...\"; for i in $(seq 1 10); do\n  st=$(gh api repos/aurumflux20/aurumflux20.github.io/pages ",
+      "why": "command substitution"
+    },
+    {
+      "line": 5066,
+      "command": "body=$(curl -s -L --max-time 20 \"https://aurumflux20.github.io/?cb=$RANDOM\")\necho \"=== literal (fixed-string) checks ===",
+      "why": "command substitution"
+    },
+    {
+      "line": 5255,
+      "command": "echo \"=== http://aurumflux.co ===\"\ncurl -s -o /dev/null -w \"  status: %{http_code}  final: %{url_effective}\\n\" -L --max-",
+      "why": "command substitution"
+    },
+    {
+      "line": 5374,
+      "command": "echo \"=== EMAIL \u2014 must be UNCHANGED from baseline ===\"\necho \"--- MX ---\"; dig +short aurumflux.co MX\necho \"--- send MX (",
+      "why": "command substitution"
+    },
+    {
+      "line": 5378,
+      "command": "echo \"=== enforce HTTPS on Pages ===\"\ngh api -X PUT repos/aurumflux20/aurumflux20.github.io/pages -f https_enforced=true",
+      "why": "command substitution"
+    },
+    {
+      "line": 5516,
+      "command": "cd ~/packages/seal && cat > /tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/repro.p",
+      "why": "runs a program file"
+    },
+    {
+      "line": 5518,
+      "command": "cd ~/packages/seal && SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=sealtest\" PYTHONPATH=/Users/amanpreetk",
+      "why": "runs a program file"
+    },
+    {
+      "line": 5548,
+      "command": "cd ~/packages/seal && SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=sealtest\" PYTHONPATH=/Users/amanpreetk",
+      "why": "runs a program file"
+    },
+    {
+      "line": 5561,
+      "command": "cd ~/packages/seal && git add -A && git commit -q -F - <<'EOF' && git log --oneline -1\nGateway MCP tools + fix a real cr",
+      "why": "delegates to a script target"
+    },
+    {
+      "line": 5590,
+      "command": "cd ~ && echo \"=== Seal / spec docs (Downloads + Desktop + vault), newest first ===\"\nfind ~/Downloads ~/Desktop ~/Documen",
+      "why": "command substitution"
+    },
+    {
+      "line": 5601,
+      "command": "cd ~ && for f in \\\n  \"$HOME/Desktop/SEAL-LOCKED-SPEC.md\" \\\n  \"$HOME/Downloads/Range Safety for Agent Money \u2014 Proof Pack.",
+      "why": "command substitution"
+    },
+    {
+      "line": 5767,
+      "command": "cd ~/packages/seal && git log --oneline -5\necho\necho \"=== re-run the exact repro that found the double-execution ===\"\nps",
+      "why": "runs a program file"
+    },
+    {
+      "line": 5774,
+      "command": "cd ~/packages/seal\necho \"=== full suite, clean db ===\"\npsql -h /tmp/sealsock -p 5433 -U postgres -c \"DROP DATABASE IF EX",
+      "why": "base64 decoded into execution"
+    },
+    {
+      "line": 5796,
+      "command": "echo \"=== www.aurumflux.co right now ===\"\necho \"--- DNS ---\"; dig +short www.aurumflux.co\necho \"--- HTTP ---\"; printf \" ",
+      "why": "command substitution"
+    },
+    {
+      "line": 5821,
+      "command": "cd /private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\necho \"=== GATE 2 recheck",
+      "why": "command substitution"
+    },
+    {
+      "line": 5825,
+      "command": "cd /private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\nrm -rf hunt && mkdir hun",
+      "why": "command substitution"
+    },
+    {
+      "line": 5827,
+      "command": "cd /private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/hunt\nfor r in \"quackai-o",
+      "why": "command substitution"
+    },
+    {
+      "line": 5877,
+      "command": "cd /private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/hunt/q402-mcp\necho \"=== ",
+      "why": "command substitution"
+    },
+    {
+      "line": 5887,
+      "command": "echo \"=== www.aurumflux.co ===\"; dig +short www.aurumflux.co\nprintf \"  https: %s\\n\" \"$(curl -s -o /dev/null -w '%{http_c",
+      "why": "command substitution"
+    },
+    {
+      "line": 5896,
+      "command": "echo \"=== npm downloads, last 30 days ===\"\nfor p in \"@quackai/q402-mcp\" \"@xrpl-utilities/mcp\"; do\n  enc=$(printf '%s' \"$",
+      "why": "command substitution"
+    },
+    {
+      "line": 5909,
+      "command": "echo \"=== npm: first publish date per package ===\"\nfor p in once-kernel effectfence fencescan; do\n  r=$(curl -s --max-ti",
+      "why": "command substitution"
+    },
+    {
+      "line": 5977,
+      "command": "cd ~/packages/seal\npsql -h /tmp/sealsock -p 5433 -U postgres -c \"DROP DATABASE IF EXISTS sealstorm\" -c \"CREATE DATABASE ",
+      "why": "runs a program file"
+    },
+    {
+      "line": 6053,
+      "command": "echo \"=== find the glint site source ===\"\nfind ~ -maxdepth 4 -iname \"*glint*\" -type d -not -path \"*/node_modules/*\" -not",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 6122,
+      "command": "cd ~/aurumflux-api\ngit add static/glint.html static/glint-pricing.html\ngit commit -q -F - <<'EOF'\nfix: route merchant se",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 6216,
+      "command": "cd ~/Documents/Obsidian\necho \"=== vault top level ===\"; ls\necho\necho \"=== Glint + BondPermit + Bond docs touched in last",
+      "why": "command substitution"
+    },
+    {
+      "line": 6221,
+      "command": "cd ~/Documents/Obsidian\necho \"=== Glint folder ===\"; find Glint -type f | while read f; do printf \"%s  %s\\n\" \"$(stat -f ",
+      "why": "command substitution"
+    },
+    {
+      "line": 6257,
+      "command": "echo \"=== EFFECTFENCE \u2014 repo activity ===\"\ngh repo view aurumflux20/effectfence --json stargazerCount,forkCount,pushedAt",
+      "why": "command substitution"
+    },
+    {
+      "line": 6265,
+      "command": "echo \"=== repo status (valid fields) ===\"\nfor r in effectfence once-kernel once-kernel-ts fencescan seal; do\n  gh repo v",
+      "why": "command substitution"
+    },
+    {
+      "line": 6361,
+      "command": "cd ~/packages/core-rs\necho \"=== what does it claim? ===\"\nhead -20 README.md\necho\necho \"=== source layout ===\"; ls src/ t",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 6441,
+      "command": "echo \"=== which python3 is being used now ===\"\nwhich -a python3 | head -5\npython3 -c \"import sys;print(' running:',sys.e",
+      "why": "command substitution"
+    },
+    {
+      "line": 6445,
+      "command": "SP=/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\nPY=/opt/homebrew/opt/python@3.14",
+      "why": "runs a program file"
+    },
+    {
+      "line": 6489,
+      "command": "cd ~/packages/seal\npython3 - <<'PYEOF'\nimport re, pathlib\nfiles = [\"README.md\", \"docs/PLAIN-ENGLISH.md\", \"STORM-PROOF.md",
+      "why": "runs a program file"
+    },
+    {
+      "line": 6503,
+      "command": "PGROOT=\"$HOME/.seal-pg\"\ncd ~/packages/seal\necho \"=== run the README commands verbatim, as a stranger would ===\"\nexport S",
+      "why": "runs a program file"
+    },
+    {
+      "line": 6521,
+      "command": "PGROOT=\"$HOME/.seal-pg\"\ncd /private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\n",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 6527,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\nPGROOT=\"$HOME/.seal-pg\"\n",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 6530,
+      "command": "cd ~/packages/seal\ngit add README.md docs/PLAIN-ENGLISH.md STORM-PROOF.md\ngit commit -q -F - <<'EOF'\nFix the quickstart ",
+      "why": "runs a program file"
+    },
+    {
+      "line": 6533,
+      "command": "cd ~/packages/core-rs\ngit add npm/README.md npm/package.json\ngit commit -q -F - <<'EOF'\nnpm: state the single-process sc",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 6546,
+      "command": "for q in \"Portia AI agent guardrails\" \"AgentShield agent spend firewall\" \"Skyfire agent payments\" \"Nevermined agent paym",
+      "why": "command substitution"
+    },
+    {
+      "line": 6771,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP\"\ncat > evidai-is",
+      "why": "delegates to a script target"
+    },
+    {
+      "line": 7105,
+      "command": "cd ~/packages/seal\ngit add seal/receipt.py tests/test_receipt.py\ngit commit -q -F - <<'EOF'\nReceipt: HTML export, and fi",
+      "why": "delegates to a script target"
+    },
+    {
+      "line": 7267,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\nPGROOT=\"$HOME/.seal-pg\";",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 7270,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\nPGROOT=\"$HOME/.seal-pg\"\n",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 7277,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\necho \"########## 6. EFFE",
+      "why": "command substitution"
+    },
+    {
+      "line": 7280,
+      "command": "cd ~/packages/seal\necho \"=== who wrote these, and when? ===\"\nfor f in docs/AURUMFLUX-GATEWAY-ACTIONS-V0.md docs/CEO-SELF",
+      "why": "command substitution"
+    },
+    {
+      "line": 7325,
+      "command": "echo \"=== Dust \u2014 is dust.tt's agent stack public/npm? ===\"\nfor p in \"@dust-tt/client\" \"@dust-tt/sdk\" \"dust-tt\"; do\n  r=$",
+      "why": "command substitution"
+    },
+    {
+      "line": 7337,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP\" && rm -rf dust ",
+      "why": "command substitution"
+    },
+    {
+      "line": 7463,
+      "command": "echo \"=== DNS ===\"; dig +short www.aurumflux.co\necho \"=== HTTP ===\"; printf \"  http:  %s\\n\" \"$(curl -s -o /dev/null -w '",
+      "why": "command substitution"
+    },
+    {
+      "line": 7478,
+      "command": "echo \"=== via Cloudflare's own resolver (1.1.1.1), bypasses any caching ===\"\ndig +short www.aurumflux.co @1.1.1.1\necho\ne",
+      "why": "command substitution"
+    },
+    {
+      "line": 7500,
+      "command": "printf \"https: %s\\n\" \"$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 15 \"https://www.aurumflux.co/?cb=$RANDOM\" 2",
+      "why": "command substitution"
+    },
+    {
+      "line": 7514,
+      "command": "printf \"www https: %s\\n\" \"$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 15 \"https://www.aurumflux.co/?cb=$RANDO",
+      "why": "command substitution"
+    },
+    {
+      "line": 7590,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/coherence\ncd \"$SP\"\nPY=/o",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 7597,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/coherence\ncd \"$SP\" && so",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 7649,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/coherence\ncd \"$SP\"\n# CHA",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 7655,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/coherence\ncd \"$SP\"\ngit a",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 7707,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/coherence\ncd \"$SP\"\necho ",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 7710,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/coherence\ncd \"$SP\"\ngit a",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 7750,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\"\necho ",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 7776,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\"\npytho",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 7790,
+      "command": "until [ \"$(gh run list --repo aurumflux20/coherence --commit 450cbde --json status --jq '[.[] | select(.status!=\"complet",
+      "why": "command substitution"
+    },
+    {
+      "line": 7795,
+      "command": "printf \"www https: %s\\n\" \"$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 15 \"https://www.aurumflux.co/?cb=$RANDO",
+      "why": "command substitution"
+    },
+    {
+      "line": 7831,
+      "command": "echo \"=== current repo topics + description (discovery basics) ===\"\ngh api repos/aurumflux20/coherence --jq '{descriptio",
+      "why": "command substitution"
+    },
+    {
+      "line": 7835,
+      "command": "echo \"=== 1. add the search terms our exact ICP actually types ===\"\ngh api -X PUT repos/aurumflux20/coherence/topics \\\n ",
+      "why": "command substitution"
+    },
+    {
+      "line": 7850,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\"\necho ",
+      "why": "command substitution"
+    },
+    {
+      "line": 7862,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\"\npytho",
+      "why": "delegates to a script target"
+    },
+    {
+      "line": 7876,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\"\ncat >",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 7879,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\" && so",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 7886,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\"\npytho",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 7888,
+      "command": "until [ \"$(gh run list --repo aurumflux20/coherence --commit d110cd7 --json status --jq '[.[]|select(.status!=\"completed",
+      "why": "command substitution"
+    },
+    {
+      "line": 7919,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\" && gi",
+      "why": "command substitution"
+    },
+    {
+      "line": 7933,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\"\necho ",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 7945,
+      "command": "i=0\nuntil [ \"$(gh pr checks 1 --repo aurumflux20/coherence --json bucket --jq '[.[]|select(.bucket==\"pending\")]|length' ",
+      "why": "command substitution"
+    },
+    {
+      "line": 8020,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\"\npytho",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 8023,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\"\npytho",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 8025,
+      "command": "until [ \"$(gh run list --repo aurumflux20/coherence --commit af81c82 --json status --jq '[.[]|select(.status!=\"completed",
+      "why": "command substitution"
+    },
+    {
+      "line": 8052,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\"\npytho",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 8056,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\"\n# Kee",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 8075,
+      "command": "echo \"=== 1. marketplace page for the action ===\"\nfor u in \"https://github.com/marketplace/actions/coherence-proof-gated",
+      "why": "command substitution"
+    },
+    {
+      "line": 8078,
+      "command": "echo \"=== repo page: does GitHub show the marketplace banner? ===\"\ncurl -s -L --max-time 25 \"https://github.com/aurumflu",
+      "why": "command substitution"
+    },
+    {
+      "line": 8120,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\" && gi",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 8122,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\"\ngit a",
+      "why": "command substitution"
+    },
+    {
+      "line": 8187,
+      "command": "for u in \"https://github.com/marketplace/actions/coherence-proof-gated-prs\"; do\n  code=$(curl -s -o /tmp/mkt2.html -w \"%",
+      "why": "command substitution"
+    },
+    {
+      "line": 8218,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\"\npytho",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 8225,
+      "command": "until [ \"$(gh run list --repo aurumflux20/coherence --commit c3d568f --json status --jq '[.[]|select(.status!=\"completed",
+      "why": "command substitution"
+    },
+    {
+      "line": 8244,
+      "command": "gh run list --repo aurumflux20/coherence --limit 4 2>/dev/null\necho\necho \"=== final end-to-end sanity: does the demo sti",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 8341,
+      "command": "for r in coherence seal effectfence once-kernel-ts; do\n  lic=$(gh api repos/aurumflux20/$r --jq '.license.spdx_id // \"NO",
+      "why": "command substitution"
+    },
+    {
+      "line": 8359,
+      "command": "cd /Users/amanpreetkaur/.claude/projects/-Users-amanpreetkaur/memory\npython3 - <<'PY'\nimport pathlib\np=pathlib.Path(\"MEM",
+      "why": "command substitution"
+    },
+    {
+      "line": 8364,
+      "command": "echo \"=== 1. virajsabhaya23/effectfence \u2014 OUR NAME, similar description ===\"\ngh api repos/virajsabhaya23/effectfence --j",
+      "why": "base64 decoded into execution"
+    },
+    {
+      "line": 8407,
+      "command": "echo \"=== how many public PRs do the big coding agents open? (market size check) ===\"\nfor a in \"devin-ai-integration[bot",
+      "why": "command substitution"
+    },
+    {
+      "line": 8433,
+      "command": "echo \"=== what does their CI actually gate? ===\"\ngh api repos/exa-labs/exa-mcp-server/contents/.github/workflows/ci.yml ",
+      "why": "base64 decoded into execution"
+    },
+    {
+      "line": 8438,
+      "command": "echo \"Repos merging agent PRs \u2014 do they actually GATE on tests? (the real ICP filter)\"\necho \"gate = has workflows AND a ",
+      "why": "base64 decoded into execution"
+    },
+    {
+      "line": 8456,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\necho \"=== uncommitted wo",
+      "why": "command substitution"
+    },
+    {
+      "line": 8488,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\"\ncat >",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 8495,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\" && so",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 8504,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\"\npytho",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 8509,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\"\npytho",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 8516,
+      "command": "until [ \"$(gh run list --repo aurumflux20/coherence --commit c1d51ca --json status --jq '[.[]|select(.status!=\"completed",
+      "why": "command substitution"
+    },
+    {
+      "line": 8553,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\"\npytho",
+      "why": "eval \u2014 constructs code at runtime"
+    },
+    {
+      "line": 8561,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\" && so",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 8565,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\"\n# Arc",
+      "why": "eval \u2014 constructs code at runtime"
+    },
+    {
+      "line": 8575,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\" && so",
+      "why": "source \u2014 runs another file's contents"
+    },
+    {
+      "line": 8579,
+      "command": "SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \"$SP/coherence\" && so",
+      "why": "source \u2014 runs another file's contents"
+    }
+  ]
+}

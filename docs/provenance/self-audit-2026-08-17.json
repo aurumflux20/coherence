@@ -1,0 +1,425 @@
+{
+  "commands": 743,
+  "claims": 79,
+  "counts": {
+    "supported": 20,
+    "supported_weak": 11,
+    "unsupported": 46,
+    "contradicted": 2
+  },
+  "findings": [
+    {
+      "seq": 300,
+      "kind": "test",
+      "text": "## What's\u771f proven\nSlice 0 passed, and it's a real result \u2014 not a claim I'm dressing up:\n- 1,000 concurrent threads, one shared Postgres, released by a single ba",
+      "verdict": "unsupported",
+      "evidence": null
+    },
+    {
+      "seq": 479,
+      "kind": "test",
+      "text": "## METRIC\n- Seal: **13/13 attack tests green \u00b7 storm 1,000\u21921 execution, 4/4 \u00b7 all by exit code \u00b7 re-verified from a fresh clone**\n- Committed locally at `~/pack",
+      "verdict": "supported_weak",
+      "evidence": "line 451: cd ~/packages/seal && cat > .gitignore <<'EOF'\n.venv/\n__pycache__/\n*.egg-info/\n*.pyc\nEOF\ngit add -A "
+    },
+    {
+      "seq": 505,
+      "kind": "test",
+      "text": "13 tests all pass.",
+      "verdict": "supported_weak",
+      "evidence": "line 451: cd ~/packages/seal && cat > .gitignore <<'EOF'\n.venv/\n__pycache__/\n*.egg-info/\n*.pyc\nEOF\ngit add -A "
+    },
+    {
+      "seq": 518,
+      "kind": "commit",
+      "text": "Everything up to it is done and committed locally.",
+      "verdict": "unsupported",
+      "evidence": null
+    },
+    {
+      "seq": 630,
+      "kind": "test",
+      "text": "Storm first, quickly: with the wider budget, **3/3 passed and unreachable dropped to 0\u20139** (was 216\u2013430).",
+      "verdict": "contradicted",
+      "evidence": "line 624: cd ~/packages/seal && export SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\npass="
+    },
+    {
+      "seq": 648,
+      "kind": "test",
+      "text": "**Current state: 49 tests passing, storm 1,000 \u2192 exactly 1 execution, chain verified.** All three parts are built \u2014 exactly-once, world-witness with the four ce",
+      "verdict": "contradicted",
+      "evidence": "line 624: cd ~/packages/seal && export SEAL_DSN=\"host=/tmp/sealsock port=5433 user=postgres dbname=seal\"\npass="
+    },
+    {
+      "seq": 679,
+      "kind": "test",
+      "text": "51 tests green, all three demos pass.",
+      "verdict": "supported_weak",
+      "evidence": "line 676: cd ~/packages/seal && cat >> tests/test_graph.py <<'PY'\n\n\ndef test_retried_compensation_still_ends_c"
+    },
+    {
+      "seq": 728,
+      "kind": "test",
+      "text": "| Check | Result |\n|---|---|\n| Tests (3 layers) | **56 passed** |\n| End-to-end demos | **11/11 checks** |\n| Storm 1,000 concurrent | **exactly 1 execution, 4/4*",
+      "verdict": "unsupported",
+      "evidence": "line 712: cd /private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/fina"
+    },
+    {
+      "seq": 740,
+      "kind": "commit",
+      "text": "Honest answer: **nothing is running right now.** I hit a clean stop \u2014 Seal's three parts are built, proven, and committed; Postgres shut down; OS file updated.",
+      "verdict": "unsupported",
+      "evidence": null
+    },
+    {
+      "seq": 2120,
+      "kind": "commit",
+      "text": "**Layers 2 & 3 (witness + graph, the 0.2.0 build) are committed locally but not pushed** \u2014 local is 2 commits ahead.",
+      "verdict": "unsupported",
+      "evidence": null
+    },
+    {
+      "seq": 2600,
+      "kind": "commit",
+      "text": "Committed.",
+      "verdict": "unsupported",
+      "evidence": null
+    },
+    {
+      "seq": 2767,
+      "kind": "commit",
+      "text": "**75/75 green, committed.** Now \u2014 Exclusive Authority.",
+      "verdict": "unsupported",
+      "evidence": null
+    },
+    {
+      "seq": 2838,
+      "kind": "commit",
+      "text": "Committed at `7823ff4`.",
+      "verdict": "unsupported",
+      "evidence": null
+    },
+    {
+      "seq": 3253,
+      "kind": "push",
+      "text": "## Numbers\n**113/113 tests, storm still 1,000\u21921, verified from fresh clones three separate times tonight.** All pushed and confirmed live on GitHub.",
+      "verdict": "unsupported",
+      "evidence": "line 3226: cd ~/packages/seal\ngit add -A && git -c user.name=aurumflux20 -c user.email=hello@aurumflux.co commi"
+    },
+    {
+      "seq": 3308,
+      "kind": "commit",
+      "text": "**But it's internal AurumFlux sales/confidence material, referencing your local `~/Downloads` and `~/Desktop` paths \u2014 not something that belongs in a public ope",
+      "verdict": "unsupported",
+      "evidence": null
+    },
+    {
+      "seq": 3537,
+      "kind": "test",
+      "text": "13 tests all pass.",
+      "verdict": "unsupported",
+      "evidence": "line 3297: echo \"=== 5. SEAL TEST SUITE \u2014 full regression, right now ===\"\ncd ~/packages/seal\nexport PGDATA=/pri"
+    },
+    {
+      "seq": 3556,
+      "kind": "test",
+      "text": "51 tests green, all three demos pass.",
+      "verdict": "supported_weak",
+      "evidence": "line 3553: cd ~/packages/seal && cat >> tests/test_graph.py <<'PY'\n\n\ndef test_retried_compensation_still_ends_c"
+    },
+    {
+      "seq": 3596,
+      "kind": "test",
+      "text": "| Check | Result |\n|---|---|\n| Tests (3 layers) | **56 passed** |\n| End-to-end demos | **11/11 checks** |\n| Storm 1,000 concurrent | **exactly 1 execution, 4/4*",
+      "verdict": "unsupported",
+      "evidence": "line 3583: cd /private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/fina"
+    },
+    {
+      "seq": 3896,
+      "kind": "commit",
+      "text": "Committed at `7823ff4`.",
+      "verdict": "unsupported",
+      "evidence": null
+    },
+    {
+      "seq": 4204,
+      "kind": "push",
+      "text": "## Numbers\n**113/113 tests, storm still 1,000\u21921, verified from fresh clones three separate times tonight.** All pushed and confirmed live on GitHub.",
+      "verdict": "unsupported",
+      "evidence": "line 4180: cd ~/packages/seal\ngit add -A && git -c user.name=aurumflux20 -c user.email=hello@aurumflux.co commi"
+    },
+    {
+      "seq": 5579,
+      "kind": "test",
+      "text": "**125 tests pass**, and I proved the migration works on a store that predates the new table, not just a fresh one \u2014 that scar was already on the list.",
+      "verdict": "unsupported",
+      "evidence": "line 5555: cd ~/packages/seal\necho \"=== simulate an OLD store: drop the new table ===\"\npsql -h /tmp/sealsock -p"
+    },
+    {
+      "seq": 5579,
+      "kind": "commit",
+      "text": "It's committed, pushed, and live.",
+      "verdict": "unsupported",
+      "evidence": "line 5576: cd ~/packages/seal && git add STORM-PROOF.md && git commit -q -m \"Publish bug #7 \u2014 the cross-process"
+    },
+    {
+      "seq": 5776,
+      "kind": "test",
+      "text": "| Check | Result |\n|---|---|\n| Repro that found the bug | **1 provider call**, was 2 |\n| Full test suite, clean DB | **133 passed**, exit 0 |\n| Local = remote |",
+      "verdict": "supported_weak",
+      "evidence": "line 5774: cd ~/packages/seal\necho \"=== full suite, clean db ===\"\npsql -h /tmp/sealsock -p 5433 -U postgres -c "
+    },
+    {
+      "seq": 5785,
+      "kind": "test",
+      "text": "You said *\"I want my code to prove.\"* The strongest proof isn't another test passing in your own repo \u2014 it's your engine finding a **real bug in a stranger's mo",
+      "verdict": "supported_weak",
+      "evidence": "line 5774: cd ~/packages/seal\necho \"=== full suite, clean db ===\"\npsql -h /tmp/sealsock -p 5433 -U postgres -c "
+    },
+    {
+      "seq": 5976,
+      "kind": "commit",
+      "text": "B1 is genuinely enforced, not just committed \u2014 `core.py:437` raises on stale facts, with 6 dedicated tests including an honest one for the inert case.",
+      "verdict": "unsupported",
+      "evidence": "line 5747: cd ~/packages/seal && git add -A && git commit -q -F - <<'EOF' && git log --oneline -3\nEnforce pre-c"
+    },
+    {
+      "seq": 6143,
+      "kind": "commit",
+      "text": "- Fix is 5 links, 2 files, committed locally: `fix: route merchant self-serve door through the leak-check estimate, not straight to the key form`\n- Verified bef",
+      "verdict": "unsupported",
+      "evidence": "line 6122: cd ~/aurumflux-api\ngit add static/glint.html static/glint-pricing.html\ngit commit -q -F - <<'EOF'\nfi"
+    },
+    {
+      "seq": 6163,
+      "kind": "commit",
+      "text": "**My routing change stays committed locally and unpushed.** It's not wrong \u2014 it's unverified, and I'd rather ship the thing that tells us whether it's right.",
+      "verdict": "unsupported",
+      "evidence": "line 6122: cd ~/aurumflux-api\ngit add static/glint.html static/glint-pricing.html\ngit commit -q -F - <<'EOF'\nfi"
+    },
+    {
+      "seq": 6426,
+      "kind": "test",
+      "text": "EffectFence green \u2014 27 passed, 0 failed, 1 ignored.",
+      "verdict": "supported_weak",
+      "evidence": "line 6423: SP=/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\nmkdir -p \"$S"
+    },
+    {
+      "seq": 6535,
+      "kind": "test",
+      "text": "| Component | Result |\n|---|---|\n| **EffectFence** (Rust) | \u2705 build clean \u00b7 **27 tests pass** \u00b7 storm: **ACTUAL EXECUTIONS 1**, 19.95ms |\n| **Seal** (Python) | ",
+      "verdict": "unsupported",
+      "evidence": "line 6533: cd ~/packages/core-rs\ngit add npm/README.md npm/package.json\ngit commit -q -F - <<'EOF'\nnpm: state t"
+    },
+    {
+      "seq": 6564,
+      "kind": "test",
+      "text": "LinkedIn + X versions of one story: **we sell software that stops double-charges, and last night our own gateway double-charged.** It leads with the counter, ex",
+      "verdict": "unsupported",
+      "evidence": "line 6533: cd ~/packages/core-rs\ngit add npm/README.md npm/package.json\ngit commit -q -F - <<'EOF'\nnpm: state t"
+    },
+    {
+      "seq": 7233,
+      "kind": "test",
+      "text": "**177 tests pass, storm holds, migration clean.** Now wiring the receipt to show the Mandate \u2014 that's the point of building it:",
+      "verdict": "supported_weak",
+      "evidence": "line 7230: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\nPGRO"
+    },
+    {
+      "seq": 7283,
+      "kind": "commit",
+      "text": "These are Grok's spec docs, timestamped in the last hour \u2014 not mine, not committed, and I hadn't seen them until this check surfaced them.",
+      "verdict": "unsupported",
+      "evidence": "line 7252: cd ~/packages/seal\ngit add seal/mandate.py seal/core.py seal/authority.py seal/receipt.py tests/test"
+    },
+    {
+      "seq": 7283,
+      "kind": "test",
+      "text": "| Check | Result |\n|---|---|\n| Seal full suite (fresh DB) | \u2705 **179 passed** |\n| MCP subprocess tests (real JSON-RPC) | \u2705 **15 passed** |\n| Storm \u2014 1,000 concur",
+      "verdict": "supported_weak",
+      "evidence": "line 7277: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\necho"
+    },
+    {
+      "seq": 7451,
+      "kind": "test",
+      "text": "179 tests green.",
+      "verdict": "supported_weak",
+      "evidence": "line 7277: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\necho"
+    },
+    {
+      "seq": 7604,
+      "kind": "test",
+      "text": "Real `pytest` \u2014 **25/25 pass.** GitHub Actions CI is **genuinely green**, not just a badge \u2014 I checked the actual run history, and there's a scheduled health cr",
+      "verdict": "unsupported",
+      "evidence": "line 7597: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/cohe"
+    },
+    {
+      "seq": 7604,
+      "kind": "test",
+      "text": "- **The market timing is real.** Every team now shipping code through AI agents has this exact problem \u2014 \"tests passed\" in chat with nobody checking the exit co",
+      "verdict": "unsupported",
+      "evidence": "line 7597: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/cohe"
+    },
+    {
+      "seq": 7660,
+      "kind": "test",
+      "text": "**Zero source code changed** \u2014 `storm.py` still 7/7, 25 tests still pass, CI green after the push (verified).",
+      "verdict": "unsupported",
+      "evidence": "line 7655: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/cohe"
+    },
+    {
+      "seq": 7709,
+      "kind": "test",
+      "text": "Clean, tests still green.",
+      "verdict": "unsupported",
+      "evidence": "line 7707: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad/cohe"
+    },
+    {
+      "seq": 7806,
+      "kind": "push",
+      "text": "**Verified, not assumed:** 25/25 tests \u00b7 storm 7/7 \u00b7 `law`/`demo`/`evolve` all exit 0 from a **fresh venv** \u00b7 pushed as `450cbde` \u00b7 **GitHub CI green on that ex",
+      "verdict": "unsupported",
+      "evidence": "line 7784: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    },
+    {
+      "seq": 7842,
+      "kind": "test",
+      "text": "Stars come from three things: **being findable** (topics \u2705, PyPI, pins), **being visible in other people's workflows** (the Action + PR comment \u2014 this is the co",
+      "verdict": "supported_weak",
+      "evidence": "line 7776: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    },
+    {
+      "seq": 7909,
+      "kind": "test",
+      "text": "Where things stand: Coherence's two audit holes are closed and proven, tests and CI green, tamper-evidence demonstrated end-to-end.",
+      "verdict": "unsupported",
+      "evidence": "line 7886: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    },
+    {
+      "seq": 8028,
+      "kind": "commit",
+      "text": "**The honesty fix you approved on Aug 14 never reached the public.** It's committed locally (`ad834f6`), CI green \u2014 but npm still serves the Aug 8 build.",
+      "verdict": "unsupported",
+      "evidence": "line 8023: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    },
+    {
+      "seq": 8028,
+      "kind": "test",
+      "text": "31 tests pass, storm green, pushed as `af81c82`, CI confirming now.",
+      "verdict": "unsupported",
+      "evidence": "line 8023: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    },
+    {
+      "seq": 8067,
+      "kind": "test",
+      "text": "The hook is the honest one: *\"Your AI agent says the tests passed.",
+      "verdict": "unsupported",
+      "evidence": "line 8056: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    },
+    {
+      "seq": 8067,
+      "kind": "commit",
+      "text": "**The live npm listing is still overclaiming.** Your Aug 14 honesty fix is committed and CI-green but was never published, so npmjs.com still says *\"stops agent",
+      "verdict": "unsupported",
+      "evidence": "line 8056: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    },
+    {
+      "seq": 8177,
+      "kind": "commit",
+      "text": "Fixed (now 91 chars), committed, pushed, and the `v1`/`v1.0.0` tags moved to the corrected commit so `uses: aurumflux20/coherence@v1` still resolves correctly.",
+      "verdict": "unsupported",
+      "evidence": "line 8122: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    },
+    {
+      "seq": 8334,
+      "kind": "test",
+      "text": "**Coherence has nothing to do with those.** It solves a different problem: *the agent said the tests passed \u2014 prove it.* Claim vs.",
+      "verdict": "unsupported",
+      "evidence": "line 8218: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    },
+    {
+      "seq": 8415,
+      "kind": "commit",
+      "text": "Better cut \u2014 repos that installed the Claude/agent GitHub workflows (they've *committed* to agent PRs) plus high-star repos with agent-PR history:",
+      "verdict": "unsupported",
+      "evidence": "line 8218: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    },
+    {
+      "seq": 8446,
+      "kind": "test",
+      "text": "**Bad news:** I checked 14 repos that merge agent PRs \u2014 **13 already run tests in CI.** Their CI already catches \"the agent said tests passed but they didn't.\" ",
+      "verdict": "unsupported",
+      "evidence": "line 8218: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    },
+    {
+      "seq": 8446,
+      "kind": "test",
+      "text": "- An agent working for hours in a sandbox, reporting \"done\" to a human\n- Agent orchestrators/frameworks where one agent reports to another\n- **Exactly our situa",
+      "verdict": "unsupported",
+      "evidence": "line 8218: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    },
+    {
+      "seq": 8446,
+      "kind": "test",
+      "text": "And sharpen the README: not *\"prove your tests passed\"* (CI does that) but *\"prove your agent did what it said, when nobody re-ran it.\"*",
+      "verdict": "unsupported",
+      "evidence": "line 8218: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    },
+    {
+      "seq": 8472,
+      "kind": "test",
+      "text": "Tests pass \u2705\" that wasn't.",
+      "verdict": "unsupported",
+      "evidence": "line 8218: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    },
+    {
+      "seq": 8472,
+      "kind": "test",
+      "text": "The feature: **`coherence audit`** \u2014 feed it an agent session transcript, it extracts every claim the agent made (\"tests pass\", \"pushed\", \"fixed\") and cross-che",
+      "verdict": "unsupported",
+      "evidence": "line 8218: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    },
+    {
+      "seq": 8472,
+      "kind": "test",
+      "text": "Three verdicts: **supported, unsupported, contradicted** \u2014 the last one being the lie class: *said tests passed; the exit code in its own transcript says 1.*",
+      "verdict": "unsupported",
+      "evidence": "line 8218: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    },
+    {
+      "seq": 8520,
+      "kind": "test",
+      "text": "**The auditor's first-ever run was on my own 51MB session \u2014 the agent that built it.** It flagged its own author: 2 success claims my own transcript contradicts",
+      "verdict": "unsupported",
+      "evidence": "line 8509: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    },
+    {
+      "seq": 8536,
+      "kind": "test",
+      "text": "Every engineer who lets an agent run overnight has the same 3am fear \u2014 not \"did the tests really pass\" but **\"what else did it touch?\"** Did it write outside th",
+      "verdict": "unsupported",
+      "evidence": "line 8509: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    },
+    {
+      "seq": 8564,
+      "kind": "test",
+      "text": "Yes, built \u2014 8 attack tests pass, and I ran it for real on my own 741-command session, same proof standard as `audit`.",
+      "verdict": "unsupported",
+      "evidence": "line 8561: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    },
+    {
+      "seq": 8574,
+      "kind": "commit",
+      "text": "Stop \u2014 those provenance files are **empty**, and I just committed them as \"proof.\" That's precisely the failure this whole feature exists to catch.",
+      "verdict": "unsupported",
+      "evidence": "line 8565: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    },
+    {
+      "seq": 8578,
+      "kind": "commit",
+      "text": "Each Bash call gets a **fresh shell**; my archive command changed directory but never re-activated the venv in that same call, so `python3` silently fell back t",
+      "verdict": "unsupported",
+      "evidence": "line 8565: SP=/private/tmp/claude-501/-Users-amanpreetkaur/3fad4325-83e2-4fb7-bc78-b801b0dc18e4/scratchpad\ncd \""
+    }
+  ]
+}
