@@ -126,6 +126,28 @@ Run it yourself — it must exit 0. Full write-up: [STORM-PROOF.md](STORM-PROOF.
 
 ---
 
+## GitHub Action — the gate in one block
+
+```yaml
+permissions:
+  pull-requests: write   # for the sticky report comment
+
+steps:
+  - uses: actions/checkout@v4
+  - uses: aurumflux20/coherence@v1
+    with:
+      prove: |
+        pytest -q
+        npm test
+```
+
+Each command becomes evidence. The PR fails on claims without proof, on an
+empty session, or — loudest of all — on a session that was edited after the
+facts were recorded (exit 3). A sticky comment on the PR shows what was proven
+and what is still open, so reviewers see it without installing anything.
+
+---
+
 ## Trust boundary — who runs the check
 
 This matters most, so it goes first.

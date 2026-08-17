@@ -1,4 +1,5 @@
-# Example / dogfood: prove unit tests, fail PR if open facts remain.
+# Dogfood: this repo gates its own PRs with the action it ships (uses: ./).
+# If the action breaks, our own CI goes red before any user's does.
 name: Coherence PR check
 
 on:
@@ -6,6 +7,10 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write   # the sticky report comment
 
 jobs:
   coherence:
@@ -17,21 +22,12 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install Coherence
-        run: pip install -e .
-
-      - name: Prove unit tests (evidence, not chat)
-        run: |
-          python -m coherence prove-cmd "python -m unittest discover -s tests -q" \
-            --claim "unit tests" \
-            --next "chain complete if green"
-
-      - name: Check — no open facts
-        run: python -m coherence check
-
-      - name: Write PR report
-        if: always()
-        run: python -m coherence report --out coherence-report.md
+      - name: Proof gate (the shipped action, from this very commit)
+        uses: ./
+        with:
+          prove: |
+            python -m unittest discover -s tests -q
+            python storm.py
 
       - name: Upload report
         if: always()

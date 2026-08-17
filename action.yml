@@ -1,0 +1,138 @@
+name: "Coherence — proof-gated PRs"
+description: >-
+  Your AI agent says the work is done. This gate makes it prove it: commands
+  run as evidence, sessions are hash-chained against tampering, and the PR
+  gets a sticky report of what was proven vs. merely claimed.
+author: "AurumFlux"
+branding:
+  icon: "check-circle"
+  color: "green"
+
+inputs:
+  prove:
+    description: >-
+      Commands to run as evidence, one per line. Each becomes a proven fact on
+      exit 0, or an open (failing) fact otherwise. Leave empty if your steps
+      already record facts with `coherence prove-cmd`.
+    required: false
+    default: ""
+  session:
+    description: "Path to the session file."
+    required: false
+    default: ".coherence/session.json"
+  strict:
+    description: "Fail when the session has zero proven facts (true/false)."
+    required: false
+    default: "true"
+  comment:
+    description: "Post/update a sticky PR comment with the report (true/false)."
+    required: false
+    default: "true"
+  github-token:
+    description: "Token used to post the PR comment."
+    required: false
+    default: ${{ github.token }}
+
+outputs:
+  exit-code:
+    description: "coherence check exit code: 0 pass · 1 open facts · 2 empty (strict) · 3 tampered session"
+    value: ${{ steps.check.outputs.exit-code }}
+  report:
+    description: "Path to the generated markdown report."
+    value: ${{ steps.report.outputs.path }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install Coherence (the action's own copy — nothing fetched at run time)
+      shell: bash
+      run: python3 -m pip install --quiet "${{ github.action_path }}"
+
+    - name: Prove commands
+      if: inputs.prove != ''
+      shell: bash
+      env:
+        PROVE_INPUT: ${{ inputs.prove }}
+      run: |
+        # Each line is one command; each command becomes one fact. A failing
+        # command records an OPEN fact (so the check below fails) rather than
+        # aborting here — the report should show every claim, not stop at the
+        # first bad one.
+        while IFS= read -r cmd; do
+          [ -z "$(echo "$cmd" | tr -d '[:space:]')" ] && continue
+          echo "::group::prove: $cmd"
+          python3 -m coherence prove-cmd "$cmd" --session "${{ inputs.session }}" || true
+          echo "::endgroup::"
+        done <<< "$PROVE_INPUT"
+
+    - name: Check — integrity first, then no open facts
+      id: check
+      shell: bash
+      run: |
+        set +e
+        if [ "${{ inputs.strict }}" = "true" ]; then
+          python3 -m coherence check --session "${{ inputs.session }}"
+        else
+          python3 -m coherence check --session "${{ inputs.session }}" --no-strict
+        fi
+        code=$?
+        set -e
+        echo "exit-code=$code" >> "$GITHUB_OUTPUT"
+        # Do not fail YET — the report and PR comment must exist even (and
+        # especially) when the check fails. The final step re-raises.
+
+    - name: Write report
+      id: report
+      if: always()
+      shell: bash
+      run: |
+        python3 -m coherence report --session "${{ inputs.session }}" --out coherence-report.md || true
+        echo "path=coherence-report.md" >> "$GITHUB_OUTPUT"
+
+    - name: Sticky PR comment
+      if: >-
+        always() && inputs.comment == 'true' &&
+        github.event_name == 'pull_request'
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.github-token }}
+        REPO: ${{ github.repository }}
+        PR: ${{ github.event.pull_request.number }}
+        CHECK_CODE: ${{ steps.check.outputs.exit-code }}
+      run: |
+        marker="<!-- coherence-sticky-report -->"
+        verdict="✅ proof gate passed"
+        case "$CHECK_CODE" in
+          1) verdict="❌ open facts — claims without evidence remain" ;;
+          2) verdict="❌ empty session — nothing was proven (strict)" ;;
+          3) verdict="🚨 session TAMPERED — recorded facts were edited after the fact" ;;
+        esac
+        {
+          echo "$marker"
+          echo "**Coherence: $verdict**"
+          echo
+          cat coherence-report.md 2>/dev/null || echo "_no report generated_"
+        } > /tmp/coherence-comment.md
+        # Sticky: update our previous comment instead of stacking new ones.
+        cid=$(gh api "repos/$REPO/issues/$PR/comments" --paginate \
+              --jq ".[] | select(.body | startswith(\"$marker\")) | .id" | head -1)
+        if [ -n "$cid" ]; then
+          gh api -X PATCH "repos/$REPO/issues/comments/$cid" -F body=@/tmp/coherence-comment.md >/dev/null
+          echo "updated sticky comment $cid"
+        else
+          gh api "repos/$REPO/issues/$PR/comments" -F body=@/tmp/coherence-comment.md >/dev/null
+          echo "created sticky comment"
+        fi
+
+    - name: Enforce the gate
+      if: always()
+      shell: bash
+      env:
+        CHECK_CODE: ${{ steps.check.outputs.exit-code }}
+      run: |
+        # Exit with the check's real code so the PR status is honest.
+        # 3 (tampered) must be the loudest failure of all.
+        if [ "$CHECK_CODE" != "0" ]; then
+          echo "Coherence gate failed with exit $CHECK_CODE" >&2
+          exit "$CHECK_CODE"
+        fi
