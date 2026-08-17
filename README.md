@@ -48,6 +48,68 @@ A forged green is caught. That is the whole idea.
 
 Runs in a throwaway temp directory; touches nothing of yours.
 
+## Audit a real agent session — the confession is already on disk
+
+Every coding agent writes a full transcript: every command, every real exit
+code. Nobody reads it. `coherence audit` does — it pulls out every checkable
+claim the agent made ("tests pass", "pushed to main") and checks each one
+against what actually ran, in the same file:
+
+```bash
+coherence audit ~/.claude/projects/<your-project>/<session>.jsonl
+```
+
+```
+audited: 735 commands, 74 checkable claims
+
+  supported     20
+  weak evidence 11   (piped exit codes — pytest | tail class)
+  unsupported   41   (claims resting on nothing)
+  CONTRADICTED   2   (claimed success; its own transcript says failure)
+```
+
+That output is real: the auditor's first run was on the 51 MB session of the
+agent that built it. It flagged its own author — two success claims its own
+transcript contradicts, and eleven "tests pass" claims whose only evidence was
+a piped command (`pytest | tail` reports tail's exit code, not pytest's — a
+mistake that same agent had made earlier in the same session).
+
+Verdicts are heuristic pattern-matching, not magic: unusual phrasing slips
+past, and only checkable claims (tests / build / push / commit) are judged.
+The point is the direction of error — a claim with no evidence is flagged for
+a human, never silently trusted. Exit codes: 0 all supported · 1 unsupported ·
+2 contradicted.
+
+---
+
+## What did it touch — and what CAN'T we see?
+
+`audit` catches a lie. `scope` catches a silence: did the agent do anything it
+never mentioned? Reading a transcript can't prove a negative — a single
+`bash deploy.sh` could hide anything — so `coherence scope` never claims full
+visibility. It reports what's readable (files, pushes, hosts, installs) and
+marks what ISN'T as **OPAQUE**, loudly, every time:
+
+```bash
+coherence scope session.jsonl
+```
+
+```
+files touched (394)   repos pushed (13)   network hosts contacted (20)
+
+OPAQUE — effects this report CANNOT see (178)
+  line 428: cd ~/packages/seal && ... storm.py
+      why: runs a program file
+
+VERDICT: BOUNDED — 178 command(s) could do anything this report cannot see.
+```
+
+Same doctrine as the witness above: **unknown never collapses into "clean."**
+A report exits non-zero the moment anything is opaque, even if everything
+visible looks fine — a bounded answer that shows its edge beats a false
+complete one. Real numbers from our own 741-command session, byte-verified
+before publishing: [docs/provenance/](docs/provenance/).
+
 ## The problem it fixes
 
 Agents write code fast, so the slow part is now a human checking it. And the
@@ -146,40 +208,6 @@ RESULT: 7/7 checks PASS
 ```
 
 Run it yourself — it must exit 0. Full write-up: [STORM-PROOF.md](STORM-PROOF.md).
-
----
-
-## Audit a real agent session — the confession is already on disk
-
-Every coding agent writes a full transcript: every command, every real exit
-code. Nobody reads it. `coherence audit` does — it pulls out every checkable
-claim the agent made ("tests pass", "pushed to main") and checks each one
-against what actually ran, in the same file:
-
-```bash
-coherence audit ~/.claude/projects/<your-project>/<session>.jsonl
-```
-
-```
-audited: 735 commands, 74 checkable claims
-
-  supported     20
-  weak evidence 11   (piped exit codes — pytest | tail class)
-  unsupported   41   (claims resting on nothing)
-  CONTRADICTED   2   (claimed success; its own transcript says failure)
-```
-
-That output is real: the auditor's first run was on the 51 MB session of the
-agent that built it. It flagged its own author — two success claims its own
-transcript contradicts, and eleven "tests pass" claims whose only evidence was
-a piped command (`pytest | tail` reports tail's exit code, not pytest's — a
-mistake that same agent had made earlier in the same session).
-
-Verdicts are heuristic pattern-matching, not magic: unusual phrasing slips
-past, and only checkable claims (tests / build / push / commit) are judged.
-The point is the direction of error — a claim with no evidence is flagged for
-a human, never silently trusted. Exit codes: 0 all supported · 1 unsupported ·
-2 contradicted.
 
 ---
 
