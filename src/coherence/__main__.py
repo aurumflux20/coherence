@@ -211,6 +211,54 @@ def cmd_check(argv: list[str]) -> int:
     return code
 
 
+def cmd_tamper_demo(argv: list[str]) -> int:
+    """Show, in one command, the thing that is hard to believe from prose:
+    a forged 'proven' in the session file is caught.
+
+    Runs entirely in a throwaway temp directory — touches nothing of yours.
+    """
+    import tempfile
+    from coherence.ci.session import SessionStore
+
+    with tempfile.TemporaryDirectory() as td:
+        sess = Path(td) / "session.json"
+        store = SessionStore(sess)
+
+        print("1. An agent runs a check. It FAILS — so no proof is recorded.")
+        store.prove_command("false", claim="test suite")
+        print(f"   coherence check  ->  exit {cmd_exit(sess)}   (open fact, no evidence)\n")
+
+        print("2. The agent edits its own session file to claim it passed.")
+        data = json.loads(sess.read_text())
+        data["facts"][0]["evidence"] = "exit_code=0 output_digest=deadbeef"
+        data["facts"][0]["next"] = "chain complete"
+        sess.write_text(json.dumps(data, indent=2))
+        print('   forged: evidence = "exit_code=0 ..."\n')
+
+        print("3. The check runs again. The hash chain does not match.")
+        code = cmd_exit(sess)
+        v = store.verify()
+        print(f"   coherence check  ->  exit {code}   {v['status'].upper()} at entry {v.get('position')}")
+        print(f"   {v.get('detail')}\n")
+
+        if code != 3:
+            print("UNEXPECTED: tampering was not caught", file=sys.stderr)
+            return 1
+        print("A forged green is caught. That is the whole idea.")
+        print("Exit codes: 0 pass · 1 open facts · 2 empty · 3 tampered")
+    return 0
+
+
+def cmd_exit(session: Path) -> int:
+    """Run the real check logic quietly and return only its exit code."""
+    from coherence.ci.session import SessionStore, check_exit_code
+    store = SessionStore(session)
+    integ = store.verify()
+    if integ["status"] == "tampered":
+        return 3
+    return check_exit_code(store.load(), strict=True)
+
+
 def cmd_report(argv: list[str]) -> int:
     p = argparse.ArgumentParser(prog="coherence report")
     p.add_argument("--session", default=str(DEFAULT_SESSION))
@@ -279,6 +327,8 @@ def main(argv: list[str] | None = None) -> None:
         raise SystemExit(cmd_said(rest))
     if cmd == "check":
         raise SystemExit(cmd_check(rest))
+    if cmd in ("tamper-demo", "tamper_demo", "tamper"):
+        raise SystemExit(cmd_tamper_demo(rest))
     if cmd == "report":
         raise SystemExit(cmd_report(rest))
     if cmd in ("-h", "--help", "help"):
@@ -287,6 +337,7 @@ def main(argv: list[str] | None = None) -> None:
             "  law | demo | evolve | storm | health\n"
             "  said CLAIM --next NEXT\n"
             "  prove-cmd 'pytest -q'\n"
+            "  tamper-demo   (10s: forge a green, watch it get caught)\n"
             "  check [--no-strict]\n"
             "  report [--json] [--out file.md]\n"
         )

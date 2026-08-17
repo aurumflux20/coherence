@@ -127,3 +127,12 @@ def test_full_output_evidence_covers_stderr(tmp_path):
 
     assert d1 != d2, "stderr must be part of the evidence digest"
     assert f1.artifacts[0].meta["stderr_bytes"] == 3
+
+
+def test_tamper_demo_actually_catches_it(capsys):
+    """The README's headline demo must keep working — if the chain ever stops
+    catching a forged green, this fails before a visitor finds out."""
+    from coherence.__main__ import cmd_tamper_demo
+    assert cmd_tamper_demo([]) == 0
+    out = capsys.readouterr().out
+    assert "exit 3" in out and "TAMPERED" in out

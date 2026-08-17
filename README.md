@@ -25,6 +25,28 @@ No dependencies. Pure standard library. It runs where your code runs.
 
 ---
 
+
+## See it in 10 seconds
+
+```bash
+pip install -e . && python -m coherence tamper-demo
+```
+
+```
+1. An agent runs a check. It FAILS — so no proof is recorded.
+   coherence check  ->  exit 1   (open fact, no evidence)
+
+2. The agent edits its own session file to claim it passed.
+   forged: evidence = "exit_code=0 ..."
+
+3. The check runs again. The hash chain does not match.
+   coherence check  ->  exit 3   TAMPERED at entry 0
+
+A forged green is caught. That is the whole idea.
+```
+
+Runs in a throwaway temp directory; touches nothing of yours.
+
 ## The problem it fixes
 
 Agents write code fast, so the slow part is now a human checking it. And the
