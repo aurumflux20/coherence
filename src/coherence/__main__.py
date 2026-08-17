@@ -183,12 +183,27 @@ def cmd_check(argv: list[str]) -> int:
     args = p.parse_args(argv)
     strict = not args.no_strict
     store = SessionStore(args.session)
+
+    # Integrity FIRST. If the session file was edited after the facts were
+    # recorded, nothing else it says can be trusted — so a tampered chain is a
+    # hard failure (exit 3) before any fact is read. This is the guard that
+    # makes "agents can't fake green" true for the case that actually matters:
+    # the policed agent editing its own session on disk.
+    integ = store.verify()
+    if integ["status"] == "tampered":
+        print(json.dumps({"ok": False, "integrity": integ}, indent=2))
+        print(f"CHECK FAIL: session tampered at entry {integ.get('position')} "
+              f"— {integ.get('detail')}", file=sys.stderr)
+        return 3
+
     c = store.load()
     report = build_report(c)
+    report["integrity"] = integ
     print(json.dumps(report, indent=2))
     code = check_exit_code(c, strict=strict)
     if code == 0:
-        print("CHECK PASS", file=sys.stderr)
+        note = "" if integ["status"] == "ok" else f" ({integ['status']})"
+        print(f"CHECK PASS{note}", file=sys.stderr)
     elif code == 2:
         print("CHECK FAIL: no proven facts (strict)", file=sys.stderr)
     else:

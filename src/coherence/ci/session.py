@@ -14,7 +14,7 @@ from typing import Any, Optional
 
 from coherence.core.fact import Fact, FactKind
 from coherence.core.spine import Coherence
-from coherence.core.types import Artifact, Truth, digest
+from coherence.core.types import Artifact, Truth, digest, digest_full
 
 
 DEFAULT_SESSION = Path(".coherence/session.json")
@@ -72,18 +72,62 @@ class SessionStore:
 
     def save(self, c: Coherence) -> None:
         self.path.parent.mkdir(parents=True, exist_ok=True)
+        # Hash-chain the entries. Each entry's hash covers the fact AND the
+        # previous entry's hash, so editing any recorded fact — or deleting or
+        # reordering one — breaks every hash after it, and `coherence check`
+        # refuses the session instead of trusting it. This makes after-the-fact
+        # tampering DETECTABLE; it does not make the writer honest (see the
+        # Trust boundary section of the README).
+        chained = []
+        prev = "genesis"
+        for f in c.facts:
+            fd = _fact_to_dict(f)
+            eh = digest_full({"prev": prev, "fact": fd})
+            chained.append({**fd, "prev_hash": prev, "entry_hash": eh})
+            prev = eh
         payload = {
-            "version": 1,
+            "version": 2,
             "title": c.bundle.title,
             "updated_at": time.time(),
             "law": c.LAW,
-            "facts": [_fact_to_dict(f) for f in c.facts],
+            "chain_head": prev,
+            "facts": chained,
             "summary": {
                 "done": len(c.done_facts()),
                 "open": len(c.open_facts()),
             },
         }
         self.path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+
+    def verify(self) -> dict:
+        """Recompute the session's hash chain from the file alone.
+
+        Returns {"status": "ok" | "tampered" | "unchained" | "missing", ...}.
+        "unchained" = a v1 file from before chaining existed: nothing wrong is
+        proven, but nothing is protected either — say so rather than imply
+        more. Never maps a broken chain to anything soft: an edited session
+        must fail the check, loudly, at the exact position it was edited.
+        """
+        if not self.path.exists():
+            return {"status": "missing", "detail": str(self.path)}
+        data = json.loads(self.path.read_text(encoding="utf-8"))
+        entries = data.get("facts") or []
+        if data.get("version", 1) < 2 or (entries and "entry_hash" not in entries[0]):
+            return {"status": "unchained",
+                    "detail": "legacy session without a hash chain — re-record to protect it"}
+        prev = "genesis"
+        for i, e in enumerate(entries):
+            fd = {k: v for k, v in e.items() if k not in ("prev_hash", "entry_hash")}
+            expect = digest_full({"prev": prev, "fact": fd})
+            if e.get("prev_hash") != prev or e.get("entry_hash") != expect:
+                return {"status": "tampered", "position": i,
+                        "claim": (fd.get("claim") or "")[:80],
+                        "detail": f"entry {i} does not match the recorded chain"}
+            prev = e["entry_hash"]
+        if entries and data.get("chain_head") != prev:
+            return {"status": "tampered", "position": len(entries),
+                    "detail": "chain head does not match the last entry"}
+        return {"status": "ok", "entries": len(entries)}
 
     def prove_command(
         self,
@@ -92,6 +136,7 @@ class SessionStore:
         claim: Optional[str] = None,
         next_action: str = "review remaining open facts or chain complete",
         cwd: Optional[Path] = None,
+        timeout: float = 600.0,
     ) -> tuple[Coherence, Fact, int]:
         """Run a shell command; record PROVEN or BLOCKED Fact; save session."""
         c = self.load()
@@ -103,7 +148,7 @@ class SessionStore:
                 cwd=str(cwd) if cwd else None,
                 capture_output=True,
                 text=True,
-                timeout=600,
+                timeout=timeout,
             )
             code = int(proc.returncode)
         except subprocess.TimeoutExpired:
@@ -121,15 +166,22 @@ class SessionStore:
             return c, f, 124
 
         if code == 0:
-            out_d = digest((proc.stdout or "")[:2000])
+            # Digest the WHOLE output of both streams. Truncating to stdout's
+            # first 2000 chars discarded stderr entirely and silently dropped
+            # long output — so a command that exits 0 while warning on stderr
+            # lost that evidence forever, and two different runs could share a
+            # fingerprint. The evidence a proof rests on must not be lossy.
+            out_d = digest_full({"stdout": proc.stdout or "", "stderr": proc.stderr or ""})
             art = Artifact(
                 kind="cmd_exit",
                 value=f"{command} → 0",
-                meta={"stdout_digest": out_d},
+                meta={"output_digest": out_d,
+                      "stdout_bytes": len(proc.stdout or ""),
+                      "stderr_bytes": len(proc.stderr or "")},
             )
             f = c.prove(
                 claim,
-                evidence=f"exit_code=0 digest={out_d}",
+                evidence=f"exit_code=0 output_digest={out_d}",
                 next=next_action,
                 kind=FactKind.STEP,
                 artifact=art,

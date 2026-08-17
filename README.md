@@ -126,6 +126,33 @@ Run it yourself — it must exit 0. Full write-up: [STORM-PROOF.md](STORM-PROOF.
 
 ---
 
+## Trust boundary — who runs the check
+
+This matters most, so it goes first.
+
+The session file records what was proven. **The protection only holds when
+something the agent does not control runs the check** — normally your CI, not
+the agent under review. If the agent that writes the session can also edit the
+file and then declare itself green, the guarantee is gone.
+
+Coherence closes the tampering half of that: every session entry is
+hash-chained, so editing, deleting, or reordering a recorded fact breaks the
+chain, and `coherence check` fails with exit code 3 at the exact entry that was
+changed — a forged "green" is caught, not trusted.
+
+```bash
+# In CI (not the agent): the check re-verifies the chain before trusting a
+# single fact. A tampered session fails here even if every fact reads "proven".
+coherence check          # exit 0 pass · 1 open facts · 2 empty · 3 tampered
+```
+
+What it still does **not** do: stop an agent that never records a fact at all,
+or one running as the same identity as your CI with write access to the run
+itself. Chaining makes after-the-fact edits detectable; it does not make the
+writer honest. Run the check as a step your agent cannot rewrite.
+
+---
+
 ## Honest limits
 
 Printed here so you find them now, not later:

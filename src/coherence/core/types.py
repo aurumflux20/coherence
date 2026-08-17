@@ -26,6 +26,13 @@ def digest(obj: Any) -> str:
     return hashlib.sha256(raw.encode()).hexdigest()[:16]
 
 
+def digest_full(obj: Any) -> str:
+    """Untruncated SHA-256. Use for tamper-evidence (chain links), where the
+    16-char id-grade digest above would be too easy to collide on purpose."""
+    raw = json.dumps(obj, sort_keys=True, default=str, separators=(",", ":"))
+    return hashlib.sha256(raw.encode()).hexdigest()
+
+
 def new_id(prefix: str) -> str:
     return f"{prefix}_{uuid.uuid4().hex[:10]}"
 
