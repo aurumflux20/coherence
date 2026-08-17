@@ -149,6 +149,40 @@ Run it yourself — it must exit 0. Full write-up: [STORM-PROOF.md](STORM-PROOF.
 
 ---
 
+## Audit a real agent session — the confession is already on disk
+
+Every coding agent writes a full transcript: every command, every real exit
+code. Nobody reads it. `coherence audit` does — it pulls out every checkable
+claim the agent made ("tests pass", "pushed to main") and checks each one
+against what actually ran, in the same file:
+
+```bash
+coherence audit ~/.claude/projects/<your-project>/<session>.jsonl
+```
+
+```
+audited: 735 commands, 74 checkable claims
+
+  supported     20
+  weak evidence 11   (piped exit codes — pytest | tail class)
+  unsupported   41   (claims resting on nothing)
+  CONTRADICTED   2   (claimed success; its own transcript says failure)
+```
+
+That output is real: the auditor's first run was on the 51 MB session of the
+agent that built it. It flagged its own author — two success claims its own
+transcript contradicts, and eleven "tests pass" claims whose only evidence was
+a piped command (`pytest | tail` reports tail's exit code, not pytest's — a
+mistake that same agent had made earlier in the same session).
+
+Verdicts are heuristic pattern-matching, not magic: unusual phrasing slips
+past, and only checkable claims (tests / build / push / commit) are judged.
+The point is the direction of error — a claim with no evidence is flagged for
+a human, never silently trusted. Exit codes: 0 all supported · 1 unsupported ·
+2 contradicted.
+
+---
+
 ## GitHub Action — the gate in one block
 
 ```yaml

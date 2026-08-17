@@ -211,6 +211,39 @@ def cmd_check(argv: list[str]) -> int:
     return code
 
 
+def cmd_audit(argv: list[str]) -> int:
+    """Audit an agent transcript: every checkable claim vs. what actually ran."""
+    p = argparse.ArgumentParser(prog="coherence audit")
+    p.add_argument("transcript", help="agent session .jsonl (Claude Code format)")
+    p.add_argument("--json", action="store_true", dest="as_json")
+    args = p.parse_args(argv)
+    from coherence.audit.transcript import (
+        audit_transcript, SUPPORTED, WEAK, UNSUPPORTED, CONTRADICTED)
+    a = audit_transcript(args.transcript)
+    c = a.counts()
+    if args.as_json:
+        print(json.dumps({
+            "commands": a.commands, "claims": len(a.claims), "counts": c,
+            "findings": [vars(x) for x in a.claims
+                         if x.verdict in (UNSUPPORTED, CONTRADICTED, WEAK)],
+        }, indent=2))
+        return a.exit_code()
+    print(f"audited: {a.commands} commands, {len(a.claims)} checkable claims\n")
+    print(f"  supported     {c[SUPPORTED]}")
+    print(f"  weak evidence {c[WEAK]}   (piped exit codes — pytest | tail class)")
+    print(f"  unsupported   {c[UNSUPPORTED]}   (claims resting on nothing)")
+    print(f"  CONTRADICTED  {c[CONTRADICTED]}   (claimed success; its own transcript says failure)")
+    for x in a.claims:
+        if x.verdict == CONTRADICTED:
+            print(f"\n  LIE at line {x.seq} [{x.kind}]: \"{x.text}\"")
+            print(f"      evidence against: {x.evidence}")
+    for x in a.claims:
+        if x.verdict == UNSUPPORTED:
+            print(f"\n  unsupported line {x.seq} [{x.kind}]: \"{x.text[:100]}\"")
+    print(f"\nexit {a.exit_code()}  (0 all supported · 1 unsupported · 2 contradicted)")
+    return a.exit_code()
+
+
 def cmd_tamper_demo(argv: list[str]) -> int:
     """Show, in one command, the thing that is hard to believe from prose:
     a forged 'proven' in the session file is caught.
@@ -327,6 +360,8 @@ def main(argv: list[str] | None = None) -> None:
         raise SystemExit(cmd_said(rest))
     if cmd == "check":
         raise SystemExit(cmd_check(rest))
+    if cmd == "audit":
+        raise SystemExit(cmd_audit(rest))
     if cmd in ("tamper-demo", "tamper_demo", "tamper"):
         raise SystemExit(cmd_tamper_demo(rest))
     if cmd == "report":
@@ -338,6 +373,7 @@ def main(argv: list[str] | None = None) -> None:
             "  said CLAIM --next NEXT\n"
             "  prove-cmd 'pytest -q'\n"
             "  tamper-demo   (10s: forge a green, watch it get caught)\n"
+            "  audit FILE.jsonl   (agent transcript: claims vs. what actually ran)\n"
             "  check [--no-strict]\n"
             "  report [--json] [--out file.md]\n"
         )
