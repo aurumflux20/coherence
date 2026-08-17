@@ -136,3 +136,15 @@ def test_tamper_demo_actually_catches_it(capsys):
     assert cmd_tamper_demo([]) == 0
     out = capsys.readouterr().out
     assert "exit 3" in out and "TAMPERED" in out
+
+
+def test_pr_comment_carries_the_adoption_loop(tmp_path):
+    """The growth mechanism: every gated PR's comment must contain the badge
+    (linked to the Marketplace) and the copy-paste adopt snippet."""
+    from coherence.ci.session import report_markdown
+    store = SessionStore(tmp_path / "s.json")
+    c, _, _ = store.prove_command("true", claim="tests")
+    md = report_markdown(c)
+    assert "marketplace/actions/coherence-proof-gated-prs" in md
+    assert "uses: aurumflux20/coherence@v1" in md
+    assert "img.shields.io" in md
