@@ -1,8 +1,5 @@
 name: "Coherence — proof-gated PRs"
-description: >-
-  Your AI agent says the work is done. This gate makes it prove it: commands
-  run as evidence, sessions are hash-chained against tampering, and the PR
-  gets a sticky report of what was proven vs. merely claimed.
+description: "Your AI agent says the work is done. This PR gate makes it prove it — evidence, not claims."
 author: "AurumFlux"
 branding:
   icon: "check-circle"
