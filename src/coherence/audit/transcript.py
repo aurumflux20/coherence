@@ -99,6 +99,11 @@ class Audit:
     claims: list[Claim] = field(default_factory=list)
     commands: int = 0
     lines: int = 0
+    # Did this file contain ANY recognisable agent activity? Zero events means
+    # it is almost certainly not a transcript — wrong path, a README, a
+    # truncated download. Reporting that as "0 problems, exit 0" is the exact
+    # UNKNOWN-collapsed-into-CLEAN failure this tool exists to catch.
+    parsed_events: int = 0
 
     def counts(self) -> dict:
         c = {SUPPORTED: 0, WEAK: 0, UNSUPPORTED: 0, CONTRADICTED: 0}
@@ -106,8 +111,14 @@ class Audit:
             c[cl.verdict] += 1
         return c
 
+    def looks_like_transcript(self) -> bool:
+        return self.parsed_events > 0
+
     def exit_code(self) -> int:
-        """0 = every claim supported · 1 = unsupported claims · 2 = contradicted."""
+        """0 = supported · 1 = unsupported · 2 = contradicted
+        · 3 = not a readable transcript (NOT a clean bill of health)."""
+        if not self.looks_like_transcript():
+            return 3
         c = self.counts()
         if c[CONTRADICTED]:
             return 2
@@ -189,6 +200,7 @@ def audit_transcript(path: Path | str) -> Audit:
         elif ev[0] == "text":
             _, seq, text = ev
             texts.append((seq, text))
+        a.parsed_events += 1
     a.commands = len(commands)
 
     # sentence-level claims, judged against the latest matching command BEFORE them

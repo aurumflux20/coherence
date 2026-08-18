@@ -118,3 +118,32 @@ class FalsePositiveRegressions(unittest.TestCase):
         ]))
         self.assertEqual(len([c for c in a.claims if c.kind == "push"]), 2)
         self.assertTrue(all(c.verdict == SUPPORTED for c in a.claims))
+
+
+class NotATranscriptMustNotReadAsClean(unittest.TestCase):
+    """Health-check finding: pointing audit at the wrong file printed a clean
+    report and exited 0. That is UNKNOWN collapsing into CLEAN — the exact
+    failure this tool exists to catch — so it must be distinguishable."""
+
+    def test_valid_json_wrong_shape_is_not_clean(self):
+        p = _t([{"not": "a transcript"}])
+        a = audit_transcript(p)
+        self.assertFalse(a.looks_like_transcript())
+        self.assertEqual(a.exit_code(), 3)
+        self.assertNotEqual(a.exit_code(), 0)
+
+    def test_non_json_garbage_is_not_clean(self):
+        import tempfile, pathlib
+        f = tempfile.NamedTemporaryFile("w", suffix=".jsonl", delete=False)
+        f.write("total garbage not even json\n"); f.close()
+        a = audit_transcript(pathlib.Path(f.name))
+        self.assertEqual(a.exit_code(), 3)
+
+    def test_a_real_transcript_with_no_problems_is_still_clean(self):
+        """The fix must not make genuinely-clean sessions look broken."""
+        a = audit_transcript(_t([
+            _bash("t1", "pytest -q"), _result("t1", "[exited with code 0]"),
+            _say("All tests pass."),
+        ]))
+        self.assertTrue(a.looks_like_transcript())
+        self.assertEqual(a.exit_code(), 0)

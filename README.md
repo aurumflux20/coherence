@@ -29,8 +29,8 @@ No dependencies. Pure standard library. It runs where your code runs.
 ## See it in 10 seconds
 
 ```bash
-git clone https://github.com/aurumflux20/coherence && cd coherence
-pip install -e . && python -m coherence tamper-demo
+pip install coherence-check
+coherence tamper-demo
 ```
 
 ```
@@ -133,7 +133,7 @@ day and are tired of trusting "done" on faith.
 ## Install
 
 ```bash
-pip install "git+https://github.com/aurumflux20/coherence.git"
+pip install coherence-check
 ```
 
 Or for local development:

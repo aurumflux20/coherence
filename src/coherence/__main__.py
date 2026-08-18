@@ -267,7 +267,19 @@ def cmd_audit(argv: list[str]) -> int:
     args = p.parse_args(argv)
     from coherence.audit.transcript import (
         audit_transcript, SUPPORTED, WEAK, UNSUPPORTED, CONTRADICTED)
+    from pathlib import Path as _P
+    if not _P(args.transcript).exists():
+        print(f"error: no such file: {args.transcript}", file=sys.stderr)
+        return 3
     a = audit_transcript(args.transcript)
+    # A file we could not read as a transcript must never print like a clean
+    # audit. Say so, and exit non-zero.
+    if not a.looks_like_transcript():
+        print(f"error: {args.transcript} does not look like an agent transcript "
+              f"(no commands or assistant messages found).", file=sys.stderr)
+        print("       Expected a Claude Code .jsonl session file. This is NOT "
+              "a clean result.", file=sys.stderr)
+        return 3
     c = a.counts()
     if args.as_json:
         print(json.dumps({
