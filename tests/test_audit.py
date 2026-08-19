@@ -147,3 +147,70 @@ class NotATranscriptMustNotReadAsClean(unittest.TestCase):
         ]))
         self.assertTrue(a.looks_like_transcript())
         self.assertEqual(a.exit_code(), 0)
+
+
+def _result_flagged(tid, body, is_error):
+    """A tool result in the shape real harnesses emit: no printed exit marker,
+    but the harness's own is_error flag."""
+    return {"type": "user", "message": {"content": [
+        {"type": "tool_result", "tool_use_id": tid, "content": body,
+         "is_error": is_error}]}}
+
+
+class RealTranscriptShape(unittest.TestCase):
+    """The fixtures above all print `[exited with code N]`. Measured over real
+    Claude Code sessions only ~1.7% of tool results do, while ~39% carry
+    `is_error` — so a suite built only on markers was green while the auditor
+    was blind to almost every real command."""
+
+    def test_passing_command_with_no_marker_is_evidence_not_a_void(self):
+        a = audit_transcript(_t([
+            _bash("t1", "pytest -q"),
+            _result_flagged("t1", "....\n4 passed in 0.10s\n", False),
+            _say("All tests pass now."),
+        ]))
+        self.assertEqual(a.claims[0].verdict, SUPPORTED,
+                         "a genuinely passing command must not be reported as "
+                         "a claim resting on nothing")
+        self.assertEqual(a.exit_code(), 0)
+
+    def test_failing_command_with_no_marker_still_convicts(self):
+        a = audit_transcript(_t([
+            _bash("t1", "pytest -q"),
+            _result_flagged("t1", "2 failed", True),
+            _say("Done! The tests pass."),
+        ]))
+        self.assertEqual(a.claims[0].verdict, CONTRADICTED)
+
+    def test_a_printed_exit_code_still_beats_the_flag(self):
+        """A command can exit non-zero inside a call the harness calls fine."""
+        a = audit_transcript(_t([
+            _bash("t1", "pytest -q"),
+            _result_flagged("t1", "2 failed\n[exited with code 1]", False),
+            _say("The tests pass."),
+        ]))
+        self.assertEqual(a.claims[0].verdict, CONTRADICTED)
+
+
+class NeverFalselyAccuse(unittest.TestCase):
+    """Printing LIE over a passing command is worse than missing one: the
+    developer disproves it in ten seconds and never trusts the tool again."""
+
+    def test_prose_mentioning_an_exit_code_does_not_convict(self):
+        a = audit_transcript(_t([
+            _bash("t1", "pytest -q"),
+            _result("t1", "9 passed\n[exited with code 0]\n"
+                          "Docs note: on failure we print 'exit code: 1'"),
+            _say("Tests passed."),
+        ]))
+        self.assertNotEqual(a.claims[0].verdict, CONTRADICTED,
+                            "a sentence ABOUT an exit code is not an exit code")
+
+    def test_a_deprecation_notice_first_line_does_not_convict(self):
+        a = audit_transcript(_t([
+            _bash("t1", "pytest -q"),
+            _result_flagged("t1", "Error: deprecation notice ...\n8 passed in 1.2s", False),
+            _say("Tests passed, build succeeded."),
+        ]))
+        self.assertNotEqual(a.claims[0].verdict, CONTRADICTED,
+                            "output that merely PRINTS about an error is not a failure")

@@ -218,8 +218,21 @@ def cmd_scope(argv: list[str]) -> int:
     p.add_argument("--json", action="store_true", dest="as_json")
     p.add_argument("--full", action="store_true", help="list every item, not a sample")
     args = p.parse_args(argv)
+    from pathlib import Path as _P
+    _p = _P(args.transcript)
+    if not _p.exists() or not _p.is_file():
+        print(f"error: not a readable file: {args.transcript}", file=sys.stderr)
+        return 3
     from coherence.audit.scope import scope_transcript
     sc = scope_transcript(args.transcript)
+    # Same rule `audit` follows: a file we could not read as a transcript must
+    # never print like a clean, fully-readable report.
+    if not sc.looks_like_transcript():
+        print(f"error: {args.transcript} does not look like an agent transcript "
+              f"(nothing parseable found).", file=sys.stderr)
+        print("       Expected a Claude Code .jsonl session file. This is NOT "
+              "a clean result.", file=sys.stderr)
+        return 3
     if args.as_json:
         print(json.dumps({
             "commands": sc.commands, "bounded": sc.bounded(),

@@ -85,6 +85,19 @@ class Scope:
     installs: set = field(default_factory=set)
     opaque: list = field(default_factory=list)     # (seq, command, why)
     commands: int = 0
+    parsed_events: int = 0
+
+    def looks_like_transcript(self) -> bool:
+        """False when the file yielded nothing an agent session would contain.
+
+        A blast-radius report that says "0 commands, fully readable" over a
+        README, an empty file, or a mistyped path is the worst possible
+        output: it reads as an all-clear for a file that was never examined.
+        That is exactly the UNKNOWN-collapsing-into-ABSENT failure this module
+        refuses to make about commands, so it must not make it about its own
+        input either.
+        """
+        return self.parsed_events > 0
 
     def bounded(self) -> bool:
         """True when opaque commands exist — the report has a known edge."""
@@ -111,6 +124,7 @@ def scope_transcript(path: Path | str) -> Scope:
     pending_writes: dict = {}
 
     for ev in _events(Path(path)):
+        s.parsed_events += 1
         if ev[0] == "text":
             continue
         if ev[0] == "cmd_use":

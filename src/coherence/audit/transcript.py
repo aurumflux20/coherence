@@ -68,11 +68,14 @@ COMMAND_PATTERNS = {
 }
 
 # rightmost explicit exit signal wins; harness formats vary
+# Anchored to their own line / end of output. An unanchored scan let PROSE
+# decide the verdict: output containing the sentence `on failure we print
+# "exit code: 1"` convicted a command whose tests had passed. A real harness
+# prints its exit status as its own trailing line, so require that shape.
 _EXIT_RES = [
-    re.compile(r"\[exited with code (\d+)\]"),
-    re.compile(r"\bexit(?:ed)?(?: with)? code:? (\d+)", re.I),
-    re.compile(r"(?:^|\n)[A-Z_]*EXIT[A-Z_]*=(\d+)"),
-    re.compile(r"\bExit code:? (\d+)", re.I),
+    re.compile(r"\[exited with code (\d+)\]\s*$"),
+    re.compile(r"(?:^|\n)\s*exit(?:ed)?(?: with)? code:? (\d+)\s*$", re.I),
+    re.compile(r"(?:^|\n)[A-Z_]*EXIT[A-Z_]*=(\d+)\s*$"),
 ]
 _PIPE_EATS_EXIT = re.compile(r"\|\s*(?:tail|head|grep|tee|wc|sort|awk|sed)\b")
 
@@ -127,11 +130,25 @@ class Audit:
         return 0
 
 
-def _result_ok(text: str) -> Optional[bool]:
-    """Judge a tool result by its rightmost explicit exit signal only.
+def _result_ok(text: str, is_error: Optional[bool] = None) -> Optional[bool]:
+    """Judge a tool result: explicit exit marker first, then the harness's own
+    is_error flag.
 
-    No signal → None (unknown), never a guess: scanning output for the word
-    "error" would convict every command that PRINTS about errors.
+    Reading only printed exit markers meant reading almost nothing. Measured
+    over real Claude Code sessions, ~1.7% of tool results print an exit marker
+    while ~39% carry `is_error` — so the great majority of commands landed in
+    "unknown", and every honest claim resting on them was reported as
+    UNSUPPORTED ("resting on nothing"). That is a false accusation at scale,
+    and it is worse than staying quiet.
+
+    `is_error` is the harness's own verdict on the call, so it is evidence,
+    not a guess. A printed exit code still wins when present: it is the more
+    specific signal, and a command can exit non-zero inside a tool call the
+    harness considers successful.
+
+    Still no signal → None (unknown), never a guess. Sniffing output for the
+    word "error" is what convicted commands whose FIRST LINE happened to be a
+    deprecation notice while their tests passed.
     """
     best_pos, best_ok = -1, None
     for rx in _EXIT_RES:
@@ -140,13 +157,16 @@ def _result_ok(text: str) -> Optional[bool]:
                 best_pos, best_ok = m.start(), (m.group(1) == "0")
     if best_ok is not None:
         return best_ok
-    if text.lstrip().startswith(("Error:", "<tool_use_error>")):
+    if is_error is not None:
+        return not is_error
+    # A harness-level tool error is explicit, not inferred from prose.
+    if text.lstrip().startswith("<tool_use_error>"):
         return False
     return None
 
 
 def _events(path: Path) -> Iterator[tuple]:
-    """Yield ("cmd_use", seq, id, command) / ("cmd_result", id, text) /
+    """Yield ("cmd_use", seq, id, command) / ("cmd_result", id, text, is_error) /
     ("text", seq, text) in file order. Unparseable lines are skipped —
     an auditor that crashes on one odd line audits nothing."""
     seq = 0
@@ -175,7 +195,8 @@ def _events(path: Path) -> Iterator[tuple]:
                     if isinstance(body, list):
                         body = "\n".join(
                             b.get("text", "") for b in body if isinstance(b, dict))
-                    yield ("cmd_result", c.get("tool_use_id"), str(body or ""))
+                    yield ("cmd_result", c.get("tool_use_id"), str(body or ""),
+                           c.get("is_error"))
 
 
 def audit_transcript(path: Path | str) -> Audit:
@@ -191,11 +212,11 @@ def audit_transcript(path: Path | str) -> Audit:
             _, seq, tid, cmd = ev
             pending[tid] = (seq, cmd)
         elif ev[0] == "cmd_result":
-            _, tid, body = ev
+            _, tid, body, is_error = ev
             if tid in pending:
                 seq, cmd = pending.pop(tid)
                 commands.append(Command(
-                    seq=seq, command=cmd, ok=_result_ok(body),
+                    seq=seq, command=cmd, ok=_result_ok(body, is_error),
                     piped=bool(_PIPE_EATS_EXIT.search(cmd))))
         elif ev[0] == "text":
             _, seq, text = ev
