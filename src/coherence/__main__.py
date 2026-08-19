@@ -275,14 +275,26 @@ def cmd_scope(argv: list[str]) -> int:
 def cmd_audit(argv: list[str]) -> int:
     """Audit an agent transcript: every checkable claim vs. what actually ran."""
     p = argparse.ArgumentParser(prog="coherence audit")
-    p.add_argument("transcript", help="agent session .jsonl (Claude Code format)")
+    p.add_argument("transcript", nargs="?",
+                   help="agent session .jsonl (Claude Code format)")
+    p.add_argument("--demo", action="store_true",
+                   help="audit a bundled sample session — no setup needed; "
+                        "shows all four verdicts, including a caught lie")
     p.add_argument("--json", action="store_true", dest="as_json")
     args = p.parse_args(argv)
     from coherence.audit.transcript import (
         audit_transcript, SUPPORTED, WEAK, UNSUPPORTED, CONTRADICTED)
     from pathlib import Path as _P
-    if not _P(args.transcript).exists():
-        print(f"error: no such file: {args.transcript}", file=sys.stderr)
+    if args.demo:
+        args.transcript = str(_P(__file__).parent / "data" / "sample-session.jsonl")
+        print(f"auditing bundled sample session\n")
+    if not args.transcript:
+        print("error: give a transcript path, or --demo to audit a bundled "
+              "sample session.", file=sys.stderr)
+        return 3
+    _t = _P(args.transcript)
+    if not _t.exists() or not _t.is_file():
+        print(f"error: not a readable file: {args.transcript}", file=sys.stderr)
         return 3
     a = audit_transcript(args.transcript)
     # A file we could not read as a transcript must never print like a clean

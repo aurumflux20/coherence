@@ -55,6 +55,27 @@ code. Nobody reads it. `coherence audit` does — it pulls out every checkable
 claim the agent made ("tests pass", "pushed to main") and checks each one
 against what actually ran, in the same file:
 
+Try it with no setup at all — a bundled sample session with a real lie in it:
+
+```bash
+pip install coherence-check
+coherence audit --demo
+```
+
+```
+audited: 3 commands, 4 checkable claims
+
+  supported     1
+  weak evidence 1   (piped exit codes — pytest | tail class)
+  unsupported   1   (claims resting on nothing)
+  CONTRADICTED  1   (claimed success; its own transcript says failure)
+
+  LIE at line 7 [test]: "All tests pass now - the build is green and ready to ship."
+      evidence against: line 5: pytest -q
+```
+
+Then point it at your own session:
+
 ```bash
 coherence audit ~/.claude/projects/<your-project>/<session>.jsonl
 ```

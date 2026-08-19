@@ -39,13 +39,18 @@ CONTRADICTED = "contradicted"
 CLAIM_PATTERNS = {
     "test": re.compile(
         r"\b(?:tests?|test suite|pytest|unit tests?)\b[^.!\n]{0,40}?"
-        r"\b(?:pass(?:ed|ing)?|green|succeed(?:ed)?)\b"
+        # "passes"/"succeeds" are among the most common phrasings and were
+        # missed: `pass(?:ed|ing)?\b` cannot match "passes" (the trailing \b
+        # fails on the 'e'). A claim the matcher never sees is a claim never
+        # checked -- a silent miss, which is the one failure mode an auditor
+        # cannot report on itself.
+        r"\b(?:pass(?:ed|ing|es)?|green|succeed(?:ed|s)?)\b"
         r"|\ball (?:\d+ )?tests? green\b"
         r"|\b\d+(?:/\d+)? tests? (?:pass(?:ed)?|green)\b"
         r"|\b\d+ passed\b",
         re.I),
     "build": re.compile(
-        r"\bbuilds? (?:succeed(?:ed|s)?|pass(?:ed|es)?|(?:is |are )?green|"
+        r"\bbuilds? (?:succeed(?:ed|s)?|pass(?:ed|es|ing)?|(?:is |are )?green|"
         r"work(?:s|ed))\b|\bcompil(?:es|ed) (?:cleanly|successfully|fine)\b",
         re.I),
     "push": re.compile(

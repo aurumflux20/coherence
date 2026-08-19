@@ -214,3 +214,42 @@ class NeverFalselyAccuse(unittest.TestCase):
         ]))
         self.assertNotEqual(a.claims[0].verdict, CONTRADICTED,
                             "output that merely PRINTS about an error is not a failure")
+
+
+class ClaimPhrasing(unittest.TestCase):
+    """A claim the matcher never sees is a claim never checked — a silent
+    miss, the one failure mode an auditor cannot report on itself."""
+
+    def test_passes_present_tense_is_a_claim(self):
+        a = audit_transcript(_t([
+            _bash("t1", "pytest -q"),
+            _result("t1", "2 failed\n[exited with code 1]"),
+            _say("The full test suite passes."),
+        ]))
+        self.assertEqual(len(a.claims), 1, "'passes' must be recognised")
+        self.assertEqual(a.claims[0].verdict, CONTRADICTED)
+
+    def test_succeeds_present_tense_is_a_claim(self):
+        a = audit_transcript(_t([
+            _bash("t1", "pytest -q"),
+            _result("t1", "1 failed\n[exited with code 1]"),
+            _say("The test run succeeds."),
+        ]))
+        self.assertEqual(len(a.claims), 1, "'succeeds' must be recognised")
+
+
+class BundledDemo(unittest.TestCase):
+    def test_sample_session_ships_and_shows_every_verdict(self):
+        """The zero-setup aha. If this file goes missing from the package,
+        `coherence audit --demo` breaks for every new user."""
+        from pathlib import Path
+        import coherence
+        p = Path(coherence.__file__).parent / "data" / "sample-session.jsonl"
+        self.assertTrue(p.exists(), "bundled sample transcript is missing")
+        a = audit_transcript(p)
+        c = a.counts()
+        self.assertGreaterEqual(c[SUPPORTED], 1)
+        self.assertGreaterEqual(c[WEAK], 1)
+        self.assertGreaterEqual(c[UNSUPPORTED], 1)
+        self.assertGreaterEqual(c[CONTRADICTED], 1)
+        self.assertEqual(a.exit_code(), 2)
