@@ -25,6 +25,27 @@ No dependencies. Pure standard library. It runs where your code runs.
 
 ---
 
+## The gate: 3 lines and your agent can't merge a "done" it can't prove
+
+Your agent opens a PR and says *"tests pass."* This makes that claim carry its
+own proof — or the PR does not merge:
+
+```yaml
+steps:
+  - uses: actions/checkout@v4
+  - uses: aurumflux20/coherence@v1
+    with:
+      prove: |
+        pytest -q
+```
+
+The PR gets a sticky comment with one of three verdicts:
+`✅ proof gate passed` · `❌ open facts — claims without evidence remain` ·
+`🚨 session TAMPERED — the agent edited its own record after the fact`.
+Full options: [the gate in one block](#github-action--the-gate-in-one-block).
+
+---
+
 
 ## See it in 10 seconds
 
