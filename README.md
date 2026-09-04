@@ -7,7 +7,12 @@
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/coherence-check.svg)](https://pypi.org/project/coherence-check/)
 [![Stars](https://img.shields.io/github/stars/aurumflux20/coherence)](https://github.com/aurumflux20/coherence)
 
-**Agent Honesty Snapshot — $297** (prepaid). 48h Markdown + Loom on 1–2 redacted agent sessions. Email only. No calls. Full refund if nothing material.
+## Primary — Money-Path CI Proof Gate — $2,500 (prepaid)
+
+Required GitHub check on billing/Stripe/payout PRs. 5 business days async. Email only. No calls.
+Pay: email hello@aurumflux.co — Stripe live next.
+
+## Tier 2 — **Agent Honesty Snapshot — $297** (prepaid). 48h Markdown + Loom on 1–2 redacted agent sessions. Email only. No calls. Full refund if nothing material.
 Pay: https://buy.stripe.com/3cI00jelW56U1Tk7lFdIA0n
 
 
