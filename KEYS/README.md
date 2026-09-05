@@ -8,3 +8,10 @@ coherence verify attestation.json --pub KEYS/aurumflux-attest.pub --session sess
 ```
 
 A worked example that anyone can reproduce is in `examples/attestation/` — a real proven fact about this repository, signed under this key. The private key is not in this repository and never will be.
+
+The example is also anchored in Sigstore's public Rekor transparency log. To check the timestamp as well as the signature:
+
+```bash
+coherence verify examples/attestation/attestation.json --pub KEYS/aurumflux-attest.pub \
+  --session examples/attestation/session.json --rekor examples/attestation/attestation.rekor.json
+```

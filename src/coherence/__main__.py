@@ -476,14 +476,26 @@ def main(argv: list[str] | None = None) -> None:
         ap = argparse.ArgumentParser(prog="coherence attest")
         ap.add_argument("--session", default=".coherence/session.json"); ap.add_argument("--key", default=".coherence/keys/coherence-attest.key")
         ap.add_argument("--out", default=".coherence/attestation.json"); ap.add_argument("--issuer", default="")
+        ap.add_argument("--anchor", choices=["rekor"], default=None, help="also submit to a public transparency log")
+        ap.add_argument("--pub", default=None, help="public key (needed for --anchor); defaults beside --key")
         a = ap.parse_args(rest); r = attest(Path(a.session), Path(a.key), Path(a.out), issuer=a.issuer)
-        print(json.dumps(r, indent=2)); raise SystemExit(0)
+        if a.anchor == "rekor":
+            from coherence.attest.anchor import anchor
+            pub = Path(a.pub) if a.pub else Path(a.key).with_suffix(".pub")
+            r["anchor"] = anchor(Path(a.out), pub)
+        print(json.dumps(r, indent=2)); raise SystemExit(0 if r.get("anchor", {}).get("status", "anchored") in ("anchored", "exists") else 1)
     if cmd == "verify":
         from coherence.attest import verify
         ap = argparse.ArgumentParser(prog="coherence verify"); ap.add_argument("envelope")
         ap.add_argument("--pub", required=True); ap.add_argument("--session", default=None)
+        ap.add_argument("--rekor", default=None, help="sidecar written by attest --anchor rekor; re-checks the log entry")
         a = ap.parse_args(rest); r = verify(Path(a.envelope), Path(a.pub), Path(a.session) if a.session else None)
-        print(json.dumps(r, indent=2)); raise SystemExit(0 if r.get("status") == "verified" else 1)
+        ok = r.get("status") == "verified"
+        if a.rekor:
+            from coherence.attest.anchor import check_anchor
+            r["anchor"] = check_anchor(Path(a.envelope), Path(a.rekor))
+            ok = ok and r["anchor"].get("status") == "anchored"
+        print(json.dumps(r, indent=2)); raise SystemExit(0 if ok else 1)
     if cmd in ("attest-selftest", "attest_selftest"):
         from coherence.attest import selftest
         r = selftest(); print(json.dumps(r, indent=2)); raise SystemExit(0 if r.get("instrument") == "honest" else 3)
@@ -504,8 +516,8 @@ def main(argv: list[str] | None = None) -> None:
             "  report [--json] [--out file.md]\n"
             "  checklist [--profile money,deploy,data,security|all] [--json]   (consequential claims must carry proof)\n"
             "  keygen [--out DIR]                (issuer keypair; extra: coherence-check[attest])\n"
-            "  attest [--session P] [--key P]    (sign the chain head: DSSE + in-toto statement)\n"
-            "  verify ENVELOPE --pub P [--session P]  (stranger-verifiable: record + public key only)\n"
+            "  attest [--session P] [--key P] [--anchor rekor]   (sign the chain head; optionally timestamp it in Sigstore Rekor)\n"
+            "  verify ENVELOPE --pub P [--session P] [--rekor SIDECAR]  (record + public key only; --rekor re-checks the log)\n"
             "  attest-selftest                   (mutation control: tampered/wrong-key/edited must fail)\n"
         )
         raise SystemExit(0)

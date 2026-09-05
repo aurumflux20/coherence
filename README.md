@@ -38,6 +38,8 @@ coherence attest --issuer "you@example.com"       # signs .coherence/session.jso
 coherence verify .coherence/attestation.json --pub .coherence/keys/coherence-attest.pub --session .coherence/session.json
 ```
 
+Add `--anchor rekor` and the envelope is also submitted to Sigstore's public Rekor transparency log, which records an integrated time and an inclusion proof that neither the issuer nor the verifier controls — so a record can't be backdated. `coherence verify … --rekor attestation.rekor.json` re-fetches the entry and binds it to this exact envelope by payload hash.
+
 Self-signing proves the record wasn't edited after *you* signed it. The paid tier is the signature that isn't yours: we run the gate, we sign the result under the AurumFlux key, and anyone can verify it against our published public key without trusting you or us.
 
 ### Your agent says the work is done. This makes it prove it.
