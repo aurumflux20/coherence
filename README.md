@@ -7,6 +7,12 @@
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/coherence-check.svg)](https://pypi.org/project/coherence-check/)
 [![Stars](https://img.shields.io/github/stars/aurumflux20/coherence)](https://github.com/aurumflux20/coherence)
 
+## AIO Phase 1 — evidence before money-path code merges
+
+When AI agents touch money, prove who was allowed, what they meant, and whether the rail did it — multi-phase. **Coherence is Phase 1:** evidence before money-path code merges.
+
+Use Coherence as required CI evidence on billing/Stripe/payout PRs.
+
 ## Primary — Money-Path CI Proof Gate — $2,500 (prepaid)
 
 Required GitHub check on billing/Stripe/payout PRs. 5 business days async. Email only. No calls.
