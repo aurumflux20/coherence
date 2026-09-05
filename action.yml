@@ -34,7 +34,7 @@ inputs:
     required: false
     default: "false"
   attest-key:
-    description: "PEM private key CONTENTS. Use a repo secret: ${{ secrets.COHERENCE_ATTEST_KEY }}. Never commit it."
+    description: "PEM private key CONTENTS. Pass a repo secret (with: attest-key: <secrets.COHERENCE_ATTEST_KEY>). Never commit it."
     required: false
     default: ""
   issuer:
