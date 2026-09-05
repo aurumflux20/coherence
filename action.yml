@@ -29,6 +29,18 @@ inputs:
     description: "Token used to post the PR comment."
     required: false
     default: ${{ github.token }}
+  attest:
+    description: "Sign the session's chain head after the check (DSSE + in-toto). Needs attest-key."
+    required: false
+    default: "false"
+  attest-key:
+    description: "PEM private key CONTENTS. Use a repo secret: ${{ secrets.COHERENCE_ATTEST_KEY }}. Never commit it."
+    required: false
+    default: ""
+  issuer:
+    description: "Issuer label recorded in the attestation (e.g. an email or org name)."
+    required: false
+    default: ""
 
 outputs:
   exit-code:
@@ -37,6 +49,12 @@ outputs:
   report:
     description: "Path to the generated markdown report."
     value: ${{ steps.report.outputs.path }}
+  attestation:
+    description: "Path to the signed DSSE attestation, when attest=true and the chain was clean."
+    value: ${{ steps.attest.outputs.attestation }}
+  keyid:
+    description: "Key id of the signature (sha256 of the public key, first 16 hex)."
+    value: ${{ steps.attest.outputs.keyid }}
 
 runs:
   using: "composite"
@@ -85,6 +103,36 @@ runs:
       run: |
         python3 -m coherence report --session "${{ inputs.session }}" --out coherence-report.md || true
         echo "path=coherence-report.md" >> "$GITHUB_OUTPUT"
+
+    - name: Attest — sign the chain head (DSSE + in-toto statement)
+      id: attest
+      if: always() && inputs.attest == 'true' && inputs.attest-key != ''
+      shell: bash
+      env:
+        ATTEST_KEY: ${{ inputs.attest-key }}
+      run: |
+        python3 -m pip install --quiet "${{ github.action_path }}[attest]"
+        umask 077
+        keyfile="$(mktemp)"
+        printf '%s' "$ATTEST_KEY" > "$keyfile"
+        if python3 -m coherence attest --session "${{ inputs.session }}" --key "$keyfile" \
+             --out coherence-attestation.json --issuer "${{ inputs.issuer }}" > attest-result.json; then
+          rm -f "$keyfile"
+          keyid="$(python3 -c 'import json;print(json.load(open("attest-result.json"))["keyid"])')"
+          echo "attestation=coherence-attestation.json" >> "$GITHUB_OUTPUT"
+          echo "keyid=$keyid" >> "$GITHUB_OUTPUT"
+          printf '\n---\n**Signed record** · keyid `%s` · verify with nothing but the artifact and the issuer public key:\n\n```bash\ncoherence verify coherence-attestation.json --pub issuer.pub\n```\n' "$keyid" >> coherence-report.md
+        else
+          rm -f "$keyfile"
+          echo "attest refused — the session chain did not verify, so nothing was signed"
+        fi
+
+    - name: Upload attestation
+      if: always() && steps.attest.outputs.attestation != ''
+      uses: actions/upload-artifact@v4
+      with:
+        name: coherence-attestation
+        path: coherence-attestation.json
 
     - name: Sticky PR comment
       if: >-

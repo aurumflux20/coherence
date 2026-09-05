@@ -1,0 +1,37 @@
+{
+  "version": 2,
+  "title": "ci-session",
+  "updated_at": 1788636363.2079449,
+  "law": "Nothing is done unless there is evidence. Nothing is finished unless there is a next. Nothing is remembered unless it was done.",
+  "chain_head": "da3f5113534a9b3cc6dfe4fa8a6b0c6c8ae2a02616ec0adffc93b60502dc5327",
+  "facts": [
+    {
+      "id": "fact_9b2a1355ca",
+      "claim": "ran: ./.venv/bin/python -m pytest -q tests/test_attest.py",
+      "evidence": "exit_code=0 output_digest=b9d561807c05fa0e4f0d65b2f29c5625eb8083f817b630a440f077cbdd1eae83",
+      "next": "close remaining open facts or chain complete",
+      "kind": "step",
+      "meta": {
+        "command": "./.venv/bin/python -m pytest -q tests/test_attest.py"
+      },
+      "created_at": 1788636363.207603,
+      "artifacts": [
+        {
+          "kind": "cmd_exit",
+          "value": "./.venv/bin/python -m pytest -q tests/test_attest.py \u2192 0",
+          "meta": {
+            "output_digest": "b9d561807c05fa0e4f0d65b2f29c5625eb8083f817b630a440f077cbdd1eae83",
+            "stdout_bytes": 98,
+            "stderr_bytes": 0
+          }
+        }
+      ],
+      "prev_hash": "genesis",
+      "entry_hash": "da3f5113534a9b3cc6dfe4fa8a6b0c6c8ae2a02616ec0adffc93b60502dc5327"
+    }
+  ],
+  "summary": {
+    "done": 1,
+    "open": 0
+  }
+}
