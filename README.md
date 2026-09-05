@@ -7,19 +7,23 @@
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/coherence-check.svg)](https://pypi.org/project/coherence-check/)
 [![Stars](https://img.shields.io/github/stars/aurumflux20/coherence)](https://github.com/aurumflux20/coherence)
 
-## AIO Phase 1 — evidence before money-path code merges
+## What Coherence is for
 
-When AI agents touch money, prove who was allowed, what they meant, and whether the rail did it — multi-phase. **Coherence is Phase 1:** evidence before money-path code merges.
+An agent writes code, runs a command, and reports back: *"Tests pass. Done."* But "done" was a sentence in a chat window, not an exit code. Coherence records the difference between **what an agent claimed** and **what it actually proved**, and refuses to call anything done without evidence.
 
-Use Coherence as required CI evidence on billing/Stripe/payout PRs.
+This holds for any agent-written work — tests, builds, migrations, deploys, research, reports. Money-path PRs are simply where a false "done" costs the most.
 
-## Primary — Money-Path CI Proof Gate — $2,500 (prepaid)
+### Coherence is not Seal
 
-Required GitHub check on billing/Stripe/payout PRs. 5 business days async. Email only. No calls.
+[Seal](https://github.com/aurumflux20/seal) and [EffectFence](https://github.com/aurumflux20/effectfence) stop an action from firing twice **while it happens** — runtime enforcement, on money movement. Coherence never touches your runtime: it reads the record **afterwards** and grades claim against evidence. **Prevention versus proof.** Different problems, different code, no overlap. Use either, or both.
+
+## Offers
+
+**Proof Gate — $2,500 (prepaid).** A required GitHub check on agent-written PRs — strongest on billing/Stripe/payout paths, where a false "done" is most expensive. 5 business days async. Email only. No calls.
 Pay: https://buy.stripe.com/bJecN5elWfLy9lMgWfdIA0p
-## Tier 2 — **Agent Honesty Snapshot — $297** (prepaid). 48h Markdown + Loom on 1–2 redacted agent sessions. Email only. No calls. Full refund if nothing material.
-Pay: https://buy.stripe.com/3cI00jelW56U1Tk7lFdIA0n
 
+**Agent Honesty Snapshot — $297 (prepaid).** 48h Markdown + Loom on 1–2 redacted agent sessions. Email only. No calls. Full refund if nothing material.
+Pay: https://buy.stripe.com/3cI00jelW56U1Tk7lFdIA0n
 
 ### Your agent says the work is done. This makes it prove it.
 
