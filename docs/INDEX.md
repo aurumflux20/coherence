@@ -17,3 +17,4 @@
 | [../CONTRIBUTING.md](../CONTRIBUTING.md) | How to contribute |
 | [../SECURITY.md](../SECURITY.md) | Report vulns |
 | [../SUPPORT.md](../SUPPORT.md) | Where to get help |
+- [CHECKLIST.md](CHECKLIST.md) — which claims must carry proof before a merge (profiles: money, deploy, data, security)

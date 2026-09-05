@@ -5,6 +5,7 @@ Format inspired by [Keep a Changelog](https://keepachangelog.com/).
 Versioning: [SemVer](https://semver.org/).
 
 ## [Unreleased]
+- checklist: consequential claims (money, deploy, data, security profiles) must carry proof before merge; `coherence checklist`.
 
 ### Planned
 

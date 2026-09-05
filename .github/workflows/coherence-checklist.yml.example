@@ -1,0 +1,37 @@
+# Example: require evidence for consequential claims before merge.
+# Copy to .github/workflows/coherence-checklist.yml and set your prove commands.
+#
+# Narrow it with `paths:` if you only want it on certain trees — for example
+# only billing code, or only migrations. Left open, it grades every PR.
+name: Coherence evidence checklist
+
+on:
+  pull_request:
+    # paths:
+    #   - "**/billing/**"
+    #   - "**/migrations/**"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  checklist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # The gate: each prove line becomes a fact with evidence (its exit code).
+      - uses: aurumflux20/coherence@v1
+        with:
+          prove: |
+            pytest -q
+          strict: "true"
+          comment: "true"
+
+      # The checklist: any consequential claim still without evidence blocks.
+      - name: Consequential claims must carry proof
+        run: python -m coherence checklist --profile all

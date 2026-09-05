@@ -377,6 +377,21 @@ def cmd_exit(session: Path) -> int:
     return check_exit_code(store.load(), strict=True)
 
 
+def cmd_checklist(argv: list[str]) -> int:
+    """Consequential claims (money, deploy, data, security) must carry proof."""
+    from coherence.checklist import ALL, checklist, format_checklist
+
+    p = argparse.ArgumentParser(prog="coherence checklist")
+    p.add_argument("--session", default=str(DEFAULT_SESSION))
+    p.add_argument("--profile", default="all", help="comma-separated profiles, or all")
+    p.add_argument("--json", action="store_true")
+    args = p.parse_args(argv)
+    profiles = ALL if args.profile == "all" else tuple(x.strip() for x in args.profile.split(",") if x.strip())
+    report = checklist(SessionStore(args.session).load(), profiles)
+    print(json.dumps(report, indent=2) if args.json else format_checklist(report))
+    return 0 if report["ok"] else 1
+
+
 def cmd_report(argv: list[str]) -> int:
     p = argparse.ArgumentParser(prog="coherence report")
     p.add_argument("--session", default=str(DEFAULT_SESSION))
@@ -472,6 +487,8 @@ def main(argv: list[str] | None = None) -> None:
     if cmd in ("attest-selftest", "attest_selftest"):
         from coherence.attest import selftest
         r = selftest(); print(json.dumps(r, indent=2)); raise SystemExit(0 if r.get("instrument") == "honest" else 3)
+    if cmd == "checklist":
+        raise SystemExit(cmd_checklist(rest))
     if cmd == "report":
         raise SystemExit(cmd_report(rest))
     if cmd in ("-h", "--help", "help"):
@@ -485,6 +502,7 @@ def main(argv: list[str] | None = None) -> None:
             "  scope FILE.jsonl   (blast radius: what it touched + what we cannot see)\n"
             "  check [--no-strict]\n"
             "  report [--json] [--out file.md]\n"
+            "  checklist [--profile money,deploy,data,security|all] [--json]   (consequential claims must carry proof)\n"
             "  keygen [--out DIR]                (issuer keypair; extra: coherence-check[attest])\n"
             "  attest [--session P] [--key P]    (sign the chain head: DSSE + in-toto statement)\n"
             "  verify ENVELOPE --pub P [--session P]  (stranger-verifiable: record + public key only)\n"
