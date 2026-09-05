@@ -451,6 +451,27 @@ def main(argv: list[str] | None = None) -> None:
         raise SystemExit(cmd_audit(rest))
     if cmd in ("tamper-demo", "tamper_demo", "tamper"):
         raise SystemExit(cmd_tamper_demo(rest))
+    if cmd == "keygen":
+        from coherence.attest import keygen
+        ap = argparse.ArgumentParser(prog="coherence keygen"); ap.add_argument("--out", default=".coherence/keys")
+        a = ap.parse_args(rest); k, pub = keygen(Path(a.out))
+        print(f"private key: {k}\npublic key:  {pub}\nshare the public key; never the private one."); raise SystemExit(0)
+    if cmd == "attest":
+        from coherence.attest import attest
+        ap = argparse.ArgumentParser(prog="coherence attest")
+        ap.add_argument("--session", default=".coherence/session.json"); ap.add_argument("--key", default=".coherence/keys/coherence-attest.key")
+        ap.add_argument("--out", default=".coherence/attestation.json"); ap.add_argument("--issuer", default="")
+        a = ap.parse_args(rest); r = attest(Path(a.session), Path(a.key), Path(a.out), issuer=a.issuer)
+        print(json.dumps(r, indent=2)); raise SystemExit(0)
+    if cmd == "verify":
+        from coherence.attest import verify
+        ap = argparse.ArgumentParser(prog="coherence verify"); ap.add_argument("envelope")
+        ap.add_argument("--pub", required=True); ap.add_argument("--session", default=None)
+        a = ap.parse_args(rest); r = verify(Path(a.envelope), Path(a.pub), Path(a.session) if a.session else None)
+        print(json.dumps(r, indent=2)); raise SystemExit(0 if r.get("status") == "verified" else 1)
+    if cmd in ("attest-selftest", "attest_selftest"):
+        from coherence.attest import selftest
+        r = selftest(); print(json.dumps(r, indent=2)); raise SystemExit(0 if r.get("instrument") == "honest" else 3)
     if cmd == "report":
         raise SystemExit(cmd_report(rest))
     if cmd in ("-h", "--help", "help"):
@@ -464,6 +485,10 @@ def main(argv: list[str] | None = None) -> None:
             "  scope FILE.jsonl   (blast radius: what it touched + what we cannot see)\n"
             "  check [--no-strict]\n"
             "  report [--json] [--out file.md]\n"
+            "  keygen [--out DIR]                (issuer keypair; extra: coherence-check[attest])\n"
+            "  attest [--session P] [--key P]    (sign the chain head: DSSE + in-toto statement)\n"
+            "  verify ENVELOPE --pub P [--session P]  (stranger-verifiable: record + public key only)\n"
+            "  attest-selftest                   (mutation control: tampered/wrong-key/edited must fail)\n"
         )
         raise SystemExit(0)
     print(f"Unknown command: {cmd}. Try: law | demo | prove-cmd | check | report", file=sys.stderr)

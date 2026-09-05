@@ -25,6 +25,21 @@ Pay: https://buy.stripe.com/bJecN5elWfLy9lMgWfdIA0p
 **Agent Honesty Snapshot — $297 (prepaid).** 48h Markdown + Loom on 1–2 redacted agent sessions. Email only. No calls. Full refund if nothing material.
 Pay: https://buy.stripe.com/3cI00jelW56U1Tk7lFdIA0n
 
+### The signed record — what you can't issue yourself
+
+The free gate is a self-claim with a good seal on it: the session is hash-chained, so editing it is *detectable*, but anyone can regenerate a consistent chain from scratch. A self-administered pass is a declaration, not a verification.
+
+`coherence attest` signs the chain head with an issuer key and emits a **DSSE envelope carrying an in-toto v1 Statement** — the format SLSA and in-toto tooling already consume. `coherence verify` checks it with nothing but the envelope and a public key, and when the session file is present it also binds the record to that exact file by digest and recomputes the chain. `coherence attest-selftest` is the mutation control: a tampered session, a wrong key, and an edited payload must each fail, or the instrument is lying.
+
+```bash
+pip install "coherence-check[attest]"
+coherence keygen                                  # issuer keypair (share the .pub, never the .key)
+coherence attest --issuer "you@example.com"       # signs .coherence/session.json -> .coherence/attestation.json
+coherence verify .coherence/attestation.json --pub .coherence/keys/coherence-attest.pub --session .coherence/session.json
+```
+
+Self-signing proves the record wasn't edited after *you* signed it. The paid tier is the signature that isn't yours: we run the gate, we sign the result under the AurumFlux key, and anyone can verify it against our published public key without trusting you or us.
+
 ### Your agent says the work is done. This makes it prove it.
 
 An AI agent writes code and reports back: *"Tests passed. Done."* But "done" was

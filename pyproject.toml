@@ -38,6 +38,7 @@ dependencies = []
 
 [project.optional-dependencies]
 dev = []
+attest = ["cryptography>=42"]
 
 [project.urls]
 Homepage = "https://github.com/aurumflux20/coherence"
