@@ -66,6 +66,24 @@ def _git_head() -> Optional[str]:
         return None
 
 
+
+# --------------------------------------------------------------------------- remote inputs
+
+def _local(path_or_url) -> Path:
+    """Accept a local path or an https URL. A URL is fetched to a temp file so a
+    stranger can verify a published record with one command and no clone."""
+    import tempfile
+    import urllib.request
+    s = str(path_or_url)
+    if s.startswith("http://") or s.startswith("https://"):
+        req = urllib.request.Request(s, headers={"User-Agent": "coherence-verify/1"})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            data = r.read()
+        f = tempfile.NamedTemporaryFile(delete=False, suffix="-" + s.rsplit("/", 1)[-1][:40])
+        f.write(data); f.close()
+        return Path(f.name)
+    return Path(s)
+
 # --------------------------------------------------------------------------- keys
 
 def keygen(out_dir: Path) -> tuple[Path, Path]:
@@ -158,6 +176,10 @@ def verify(envelope_path: Path, pub_path: Path, session_path: Optional[Path] = N
       head_mismatch     session chain head differs from the signed one
     """
     try:
+        envelope_path = _local(envelope_path)
+        pub_path = _local(pub_path)
+        if session_path is not None:
+            session_path = _local(session_path)
         env = json.loads(Path(envelope_path).read_text(encoding="utf-8"))
     except Exception as e:
         return {"status": "unsupported", "detail": f"unreadable envelope: {e}"}

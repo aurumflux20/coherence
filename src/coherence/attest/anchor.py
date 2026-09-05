@@ -81,8 +81,9 @@ def check_anchor(envelope_path: Path, sidecar_path: Path, fetch: Fetcher = _http
 
     Statuses: anchored · not_found · wrong_kind · payload_mismatch · unreachable
     """
-    side = json.loads(Path(sidecar_path).read_text(encoding="utf-8"))
-    envelope = json.loads(Path(envelope_path).read_text(encoding="utf-8"))
+    from coherence.attest import _local
+    side = json.loads(_local(sidecar_path).read_text(encoding="utf-8"))
+    envelope = json.loads(_local(envelope_path).read_text(encoding="utf-8"))
     want = _payload_sha256(envelope)
     status, raw = fetch(f"{side['log']}/api/v1/log/entries/{side['uuid']}", None, "GET")
     if status == 404:

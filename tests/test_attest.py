@@ -77,3 +77,24 @@ class TestAttest(unittest.TestCase):
         from coherence.attest import selftest
         r = selftest()
         self.assertEqual(r["instrument"], "honest", r)
+
+
+@unittest.skipUnless(HAVE_CRYPTO, "needs: pip install coherence-check[attest]")
+class TestRemoteVerify(unittest.TestCase):
+    def test_verify_accepts_https_urls(self):
+        import urllib.request
+        from unittest import mock
+        from coherence.attest import attest, keygen, verify
+        tmp = Path(tempfile.mkdtemp()); s = tmp / "session.json"
+        SessionStore(s).prove_command("true", claim="remote", next_action="x")
+        key, pub = keygen(tmp / "k"); env = tmp / "a.json"; attest(s, key, env, issuer="u")
+        files = {"https://x/a.json": env.read_bytes(), "https://x/k.pub": pub.read_bytes(), "https://x/s.json": s.read_bytes()}
+        class R:
+            def __init__(self, b): self.b = b
+            def read(self): return self.b
+            def __enter__(self): return self
+            def __exit__(self, *a): return False
+        with mock.patch.object(urllib.request, "urlopen", lambda req, timeout=30: R(files[req.full_url])):
+            r = verify("https://x/a.json", "https://x/k.pub", "https://x/s.json")
+        self.assertEqual(r["status"], "verified")
+        self.assertEqual(r["session"], "chain ok, digest bound")
