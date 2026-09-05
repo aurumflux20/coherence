@@ -1,4 +1,4 @@
-"""python -m coherence demo|evolve|law|prove-cmd|check|report"""
+"""python -m coherence demo|evolve|law|prove-cmd|check|report|aio"""
 
 from __future__ import annotations
 
@@ -397,6 +397,25 @@ def cmd_report(argv: list[str]) -> int:
     return 0
 
 
+
+def cmd_aio(argv: list[str]) -> int:
+    """AIO Phase 1 — money-path evidence checklist (not runtime admission)."""
+    from coherence.aio.checklist import aio_checklist, format_aio_checklist
+
+    p = argparse.ArgumentParser(prog="coherence aio")
+    p.add_argument("--session", default=str(DEFAULT_SESSION))
+    p.add_argument("--json", action="store_true")
+    args = p.parse_args(argv)
+    store = SessionStore(args.session)
+    c = store.load()
+    report = aio_checklist(c)
+    if args.json:
+        print(json.dumps(report, indent=2))
+    else:
+        print(format_aio_checklist(report))
+    return 0 if report["ok"] else 1
+
+
 def main(argv: list[str] | None = None) -> None:
     argv = list(sys.argv[1:] if argv is None else argv)
     if not argv:
@@ -453,6 +472,8 @@ def main(argv: list[str] | None = None) -> None:
         raise SystemExit(cmd_tamper_demo(rest))
     if cmd == "report":
         raise SystemExit(cmd_report(rest))
+    if cmd in ("aio", "aio-check", "money-path"):
+        raise SystemExit(cmd_aio(rest))
     if cmd in ("-h", "--help", "help"):
         print(
             "Usage: python -m coherence <command>\n"
@@ -464,6 +485,7 @@ def main(argv: list[str] | None = None) -> None:
             "  scope FILE.jsonl   (blast radius: what it touched + what we cannot see)\n"
             "  check [--no-strict]\n"
             "  report [--json] [--out file.md]\n"
+            "  aio [--json]   (AIO Phase-1 money-path evidence checklist)\n"
         )
         raise SystemExit(0)
     print(f"Unknown command: {cmd}. Try: law | demo | prove-cmd | check | report", file=sys.stderr)
