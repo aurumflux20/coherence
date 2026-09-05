@@ -1,0 +1,45 @@
+# Example: require Coherence proof on money-path paths only.
+# Copy to .github/workflows/coherence-money-path.yml and set your prove commands.
+# Phase 1 AIO — evidence before merge. Not runtime admission.
+name: Coherence money-path proof
+
+on:
+  pull_request:
+    paths:
+      - "**/billing/**"
+      - "**/stripe/**"
+      - "**/payout*/**"
+      - "**/payment*/**"
+      - "**/payments/**"
+      - "**/*stripe*"
+      - "**/*billing*"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  coherence-money-path:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Money-path proof gate
+        uses: aurumflux20/coherence@v1
+        with:
+          prove: |
+            pytest -q
+            # add your real billing/stripe tests here
+      - name: AIO Phase-1 checklist
+        if: always()
+        run: |
+          pip install coherence-check || pip install "git+https://github.com/aurumflux20/coherence.git"
+          python -m coherence aio --session .coherence/session.json || true
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coherence-money-path-report
+          path: coherence-report.md
