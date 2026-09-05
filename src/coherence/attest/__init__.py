@@ -75,6 +75,11 @@ def _local(path_or_url) -> Path:
     import tempfile
     import urllib.request
     s = str(path_or_url)
+    # pathlib collapses "https://" to "https:/" if a caller wrapped the URL in Path();
+    # accept both spellings so a URL survives that.
+    for scheme in ("https", "http"):
+        if s.startswith(scheme + ":/") and not s.startswith(scheme + "://"):
+            s = scheme + "://" + s[len(scheme) + 2:]
     if s.startswith("http://") or s.startswith("https://"):
         req = urllib.request.Request(s, headers={"User-Agent": "coherence-verify/1"})
         with urllib.request.urlopen(req, timeout=30) as r:

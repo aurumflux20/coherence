@@ -489,11 +489,11 @@ def main(argv: list[str] | None = None) -> None:
         ap = argparse.ArgumentParser(prog="coherence verify"); ap.add_argument("envelope")
         ap.add_argument("--pub", required=True); ap.add_argument("--session", default=None)
         ap.add_argument("--rekor", default=None, help="sidecar written by attest --anchor rekor; re-checks the log entry")
-        a = ap.parse_args(rest); r = verify(Path(a.envelope), Path(a.pub), Path(a.session) if a.session else None)
+        a = ap.parse_args(rest); r = verify(a.envelope, a.pub, a.session if a.session else None)
         ok = r.get("status") == "verified"
         if a.rekor:
             from coherence.attest.anchor import check_anchor
-            r["anchor"] = check_anchor(Path(a.envelope), Path(a.rekor))
+            r["anchor"] = check_anchor(a.envelope, a.rekor)
             ok = ok and r["anchor"].get("status") == "anchored"
         print(json.dumps(r, indent=2)); raise SystemExit(0 if ok else 1)
     if cmd in ("attest-selftest", "attest_selftest"):

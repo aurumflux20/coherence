@@ -98,3 +98,18 @@ class TestRemoteVerify(unittest.TestCase):
             r = verify("https://x/a.json", "https://x/k.pub", "https://x/s.json")
         self.assertEqual(r["status"], "verified")
         self.assertEqual(r["session"], "chain ok, digest bound")
+
+    def test_helper_survives_pathlib_collapsing_the_scheme(self):
+        from coherence.attest import _local
+        import urllib.request
+        from unittest import mock
+        class R:
+            def read(self): return b"{}"
+            def __enter__(self): return self
+            def __exit__(self, *a): return False
+        seen = {}
+        def fake(req, timeout=30):
+            seen["url"] = req.full_url; return R()
+        with mock.patch.object(urllib.request, "urlopen", fake):
+            _local(Path("https://x/y.json"))
+        self.assertEqual(seen["url"], "https://x/y.json")
