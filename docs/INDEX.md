@@ -5,6 +5,7 @@
 | [../README.md](../README.md) | Start here |
 | [320IQ.md](320IQ.md) | One law, two fields |
 | [CI.md](CI.md) | prove-cmd / check / PR badge |
+| [AIO.md](AIO.md) | Authority–Intent–Outcome Phase 1 (evidence pillar) |
 | [HEALTH.md](HEALTH.md) | Scheduled health + what “self-heal” means |
 | [NOVA-HEALTH-AGENT.md](NOVA-HEALTH-AGENT.md) | **Nova is the fixer** when health is RED |
 | [ROUTINE-HEALTH.md](ROUTINE-HEALTH.md) | **How Nova knows** — 3-layer routine |
