@@ -3,7 +3,8 @@
 `aurumflux-attest.pub` — the AurumFlux AI, Inc. attestation key. A record signed under it means **we** ran the gate and signed the result; verify it with nothing but the record and this file:
 
 ```bash
-pip install "coherence-check[attest]"
+pip install "coherence-check[attest]"   # 0.8.0 or newer; or straight from git:
+# pip install "coherence-check[attest] @ git+https://github.com/aurumflux20/coherence"
 coherence verify attestation.json --pub KEYS/aurumflux-attest.pub --session session.json
 ```
 
