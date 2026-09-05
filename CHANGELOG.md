@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- **AIO Phase 1 (evidence pillar):** `docs/AIO.md`, `coherence aio` money-path evidence checklist, and `.github/workflows/coherence-money-path.yml.example` with billing/Stripe/payout path filters.
+- Does **not** claim runtime admission, AP2, or provider settlement bind.
+
+
 All notable changes to this project are documented here.  
 Format inspired by [Keep a Changelog](https://keepachangelog.com/).  
 Versioning: [SemVer](https://semver.org/).
