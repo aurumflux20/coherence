@@ -1,0 +1,87 @@
+{
+  "tool": "hostile-facilitator",
+  "version": "0.1.2",
+  "schema": "https://aurumflux.co/hostile-facilitator/result/v1",
+  "target": {
+    "command": [
+      "./.venv/bin/python",
+      "/tmp/naive_pay.py"
+    ],
+    "facilitator_env": "FACILITATOR_URL"
+  },
+  "battery": {
+    "modes": [
+      "accept_then_timeout",
+      "5xx_after_settle",
+      "double_402",
+      "slow_answer",
+      "reconcile_unavailable",
+      "declared_safe",
+      "clean"
+    ],
+    "count": 7
+  },
+  "started_at": "2026-09-06T00:36:46Z",
+  "finished_at": "2026-09-06T00:36:53Z",
+  "results": [
+    {
+      "mode": "accept_then_timeout",
+      "distinct": 1,
+      "settle_calls": 1,
+      "unidentified": 0,
+      "passed": true
+    },
+    {
+      "mode": "5xx_after_settle",
+      "distinct": 2,
+      "settle_calls": 2,
+      "unidentified": 0,
+      "passed": false
+    },
+    {
+      "mode": "double_402",
+      "distinct": 2,
+      "settle_calls": 2,
+      "unidentified": 0,
+      "passed": false
+    },
+    {
+      "mode": "slow_answer",
+      "distinct": 1,
+      "settle_calls": 1,
+      "unidentified": 0,
+      "passed": true
+    },
+    {
+      "mode": "reconcile_unavailable",
+      "distinct": 1,
+      "settle_calls": 1,
+      "unidentified": 0,
+      "passed": true
+    },
+    {
+      "mode": "declared_safe",
+      "distinct": 1,
+      "settle_calls": 1,
+      "unidentified": 0,
+      "passed": true
+    },
+    {
+      "mode": "clean",
+      "distinct": 1,
+      "settle_calls": 1,
+      "unidentified": 0,
+      "passed": true
+    }
+  ],
+  "summary": {
+    "safe": 5,
+    "total": 7,
+    "verdict": "FAIL",
+    "double_paying_modes": [
+      "5xx_after_settle",
+      "double_402"
+    ],
+    "errored_modes": []
+  }
+}

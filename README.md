@@ -7,6 +7,26 @@
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/coherence-check.svg)](https://pypi.org/project/coherence-check/)
 [![Stars](https://img.shields.io/github/stars/aurumflux20/coherence)](https://github.com/aurumflux20/coherence)
 
+
+## Sign a conformance run
+
+A battery prints a scorecard. A scorecard is a claim by whoever ran it — which
+is the same problem a signed record exists to solve. `coherence conformance`
+turns a [`hostile-facilitator`](https://github.com/aurumflux20/hostile-facilitator)
+run into a record a third party can check:
+
+```bash
+hostile-facilitator test --json result.json -- ./make-one-purchase.sh
+coherence conformance result.json --out session.json     # exit 1 if the client double-paid
+coherence attest --session session.json --key <key> --anchor rekor
+```
+
+A mode where the client settled twice is recorded **open**, never proven — so a
+failing run cannot be signed as an all-green one, by us or by anyone. A real
+example, including the attempt to launder it:
+[`examples/conformance/`](examples/conformance/).
+
+
 ## What Coherence is for
 
 An agent writes code, runs a command, and reports back: *"Tests pass. Done."* But "done" was a sentence in a chat window, not an exit code. Coherence records the difference between **what an agent claimed** and **what it actually proved**, and refuses to call anything done without evidence.

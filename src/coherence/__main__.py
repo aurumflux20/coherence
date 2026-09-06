@@ -499,6 +499,20 @@ def main(argv: list[str] | None = None) -> None:
     if cmd in ("attest-selftest", "attest_selftest"):
         from coherence.attest import selftest
         r = selftest(); print(json.dumps(r, indent=2)); raise SystemExit(0 if r.get("instrument") == "honest" else 3)
+    if cmd == "conformance":
+        from coherence.conformance import from_result
+        ap = argparse.ArgumentParser(prog="coherence conformance",
+            description="Record a hostile-facilitator run as a signable session. "
+                        "A mode that double-paid is recorded OPEN, never proven.")
+        ap.add_argument("result", help="result document written by: hostile-facilitator test --json PATH")
+        ap.add_argument("--out", default=".coherence/session.json", help="session file to write")
+        ap.add_argument("--title", default="", help="title recorded in the session")
+        a = ap.parse_args(rest)
+        r = from_result(Path(a.result), Path(a.out), title=a.title)
+        print(json.dumps(r, indent=2))
+        # exit 1 when the run itself failed, so a pipeline stops on a client
+        # that double-pays; the record is written either way.
+        raise SystemExit(0 if r.get("verdict") == "PASS" else 1)
     if cmd == "checklist":
         raise SystemExit(cmd_checklist(rest))
     if cmd == "report":
@@ -507,6 +521,7 @@ def main(argv: list[str] | None = None) -> None:
         print(
             "Usage: python -m coherence <command>\n"
             "  law | demo | evolve | storm | health\n"
+            "  conformance RESULT --out SESSION   record a hostile-facilitator run\n"
             "  said CLAIM --next NEXT\n"
             "  prove-cmd 'pytest -q'\n"
             "  tamper-demo   (10s: forge a green, watch it get caught)\n"

@@ -1,0 +1,267 @@
+{
+  "version": 2,
+  "title": "conformance run \u2014 example client, hostile-facilitator 0.1.2",
+  "updated_at": 1788655142.871357,
+  "law": "Nothing is done unless there is evidence. Nothing is finished unless there is a next. Nothing is remembered unless it was done.",
+  "chain_head": "f3fcd3f8c0501c87d10b17fc04b992ed05f299d44ab462f210294ae9942e9311",
+  "facts": [
+    {
+      "id": "fact_5b06cafad8",
+      "claim": "conformance run recorded: hostile-facilitator 0.1.2, 7 modes",
+      "evidence": "result_sha256=8ce598b0b5ad6f56f8cfe9c2a01a83ccad94816bf18d702b60d54648b91489dd file=result.json",
+      "next": "sign this session, then anyone verifies it with the public key",
+      "kind": "step",
+      "meta": {
+        "result_digest": "8ce598b0b5ad6f56f8cfe9c2a01a83ccad94816bf18d702b60d54648b91489dd"
+      },
+      "created_at": 1788655142.870997,
+      "artifacts": [
+        {
+          "kind": "conformance_result",
+          "value": "result.json",
+          "meta": {
+            "result_digest": "8ce598b0b5ad6f56f8cfe9c2a01a83ccad94816bf18d702b60d54648b91489dd",
+            "tool": "hostile-facilitator",
+            "tool_version": "0.1.2",
+            "target_command": [
+              "./.venv/bin/python",
+              "/tmp/naive_pay.py"
+            ],
+            "started_at": "2026-09-06T00:36:46Z",
+            "finished_at": "2026-09-06T00:36:53Z"
+          }
+        }
+      ],
+      "prev_hash": "genesis",
+      "entry_hash": "b44a6d14b00ea91e6cdb74b204d7b85b607669a149fdc71e8959a95585e69b12"
+    },
+    {
+      "id": "fact_f239ef937a",
+      "claim": "accept_then_timeout: 1 distinct settlement for one purchase",
+      "evidence": "mode=accept_then_timeout distinct_settlements=1 settle_calls=1",
+      "next": "none \u2014 this mode is safe",
+      "kind": "step",
+      "meta": {
+        "mode": "accept_then_timeout",
+        "distinct": 1,
+        "settle_calls": 1,
+        "unidentified": 0,
+        "passed": true,
+        "result_digest": "8ce598b0b5ad6f56f8cfe9c2a01a83ccad94816bf18d702b60d54648b91489dd"
+      },
+      "created_at": 1788655142.871038,
+      "artifacts": [
+        {
+          "kind": "conformance_mode",
+          "value": "accept_then_timeout",
+          "meta": {
+            "mode": "accept_then_timeout",
+            "distinct": 1,
+            "settle_calls": 1,
+            "unidentified": 0,
+            "passed": true,
+            "result_digest": "8ce598b0b5ad6f56f8cfe9c2a01a83ccad94816bf18d702b60d54648b91489dd"
+          }
+        }
+      ],
+      "prev_hash": "b44a6d14b00ea91e6cdb74b204d7b85b607669a149fdc71e8959a95585e69b12",
+      "entry_hash": "42722164693d9759abcc11c2b4a8dbe52e16e3bc14ac2a10fd9f75b3d7d91dd0"
+    },
+    {
+      "id": "fact_64b65200fd",
+      "claim": "5xx_after_settle: 2 distinct settlements for one purchase",
+      "evidence": "",
+      "next": "fix the client: re-present the SAME payment authorization on an ambiguous retry instead of minting a new one, then re-run the battery",
+      "kind": "step",
+      "meta": {
+        "mode": "5xx_after_settle",
+        "distinct": 2,
+        "settle_calls": 2,
+        "unidentified": 0,
+        "passed": false,
+        "result_digest": "8ce598b0b5ad6f56f8cfe9c2a01a83ccad94816bf18d702b60d54648b91489dd"
+      },
+      "created_at": 1788655142.87109,
+      "artifacts": [
+        {
+          "kind": "conformance_mode",
+          "value": "5xx_after_settle",
+          "meta": {
+            "mode": "5xx_after_settle",
+            "distinct": 2,
+            "settle_calls": 2,
+            "unidentified": 0,
+            "passed": false,
+            "result_digest": "8ce598b0b5ad6f56f8cfe9c2a01a83ccad94816bf18d702b60d54648b91489dd"
+          }
+        }
+      ],
+      "prev_hash": "42722164693d9759abcc11c2b4a8dbe52e16e3bc14ac2a10fd9f75b3d7d91dd0",
+      "entry_hash": "006e2c2721eacdb82f735b8c9b8bd780e87aef4cc2524d61afae579226f571a1"
+    },
+    {
+      "id": "fact_67e98830db",
+      "claim": "double_402: 2 distinct settlements for one purchase",
+      "evidence": "",
+      "next": "fix the client: re-present the SAME payment authorization on an ambiguous retry instead of minting a new one, then re-run the battery",
+      "kind": "step",
+      "meta": {
+        "mode": "double_402",
+        "distinct": 2,
+        "settle_calls": 2,
+        "unidentified": 0,
+        "passed": false,
+        "result_digest": "8ce598b0b5ad6f56f8cfe9c2a01a83ccad94816bf18d702b60d54648b91489dd"
+      },
+      "created_at": 1788655142.871107,
+      "artifacts": [
+        {
+          "kind": "conformance_mode",
+          "value": "double_402",
+          "meta": {
+            "mode": "double_402",
+            "distinct": 2,
+            "settle_calls": 2,
+            "unidentified": 0,
+            "passed": false,
+            "result_digest": "8ce598b0b5ad6f56f8cfe9c2a01a83ccad94816bf18d702b60d54648b91489dd"
+          }
+        }
+      ],
+      "prev_hash": "006e2c2721eacdb82f735b8c9b8bd780e87aef4cc2524d61afae579226f571a1",
+      "entry_hash": "1af8270414ae9afab176905ac1ad277e914d4b89fbc86bd3901fee7fc145e8f9"
+    },
+    {
+      "id": "fact_39e2b12d7e",
+      "claim": "slow_answer: 1 distinct settlement for one purchase",
+      "evidence": "mode=slow_answer distinct_settlements=1 settle_calls=1",
+      "next": "none \u2014 this mode is safe",
+      "kind": "step",
+      "meta": {
+        "mode": "slow_answer",
+        "distinct": 1,
+        "settle_calls": 1,
+        "unidentified": 0,
+        "passed": true,
+        "result_digest": "8ce598b0b5ad6f56f8cfe9c2a01a83ccad94816bf18d702b60d54648b91489dd"
+      },
+      "created_at": 1788655142.871121,
+      "artifacts": [
+        {
+          "kind": "conformance_mode",
+          "value": "slow_answer",
+          "meta": {
+            "mode": "slow_answer",
+            "distinct": 1,
+            "settle_calls": 1,
+            "unidentified": 0,
+            "passed": true,
+            "result_digest": "8ce598b0b5ad6f56f8cfe9c2a01a83ccad94816bf18d702b60d54648b91489dd"
+          }
+        }
+      ],
+      "prev_hash": "1af8270414ae9afab176905ac1ad277e914d4b89fbc86bd3901fee7fc145e8f9",
+      "entry_hash": "436ca86aad3b76fafdaaecb4ba607a49c6fc87da736da06043ea3a061b805383"
+    },
+    {
+      "id": "fact_a4f093f540",
+      "claim": "reconcile_unavailable: 1 distinct settlement for one purchase",
+      "evidence": "mode=reconcile_unavailable distinct_settlements=1 settle_calls=1",
+      "next": "none \u2014 this mode is safe",
+      "kind": "step",
+      "meta": {
+        "mode": "reconcile_unavailable",
+        "distinct": 1,
+        "settle_calls": 1,
+        "unidentified": 0,
+        "passed": true,
+        "result_digest": "8ce598b0b5ad6f56f8cfe9c2a01a83ccad94816bf18d702b60d54648b91489dd"
+      },
+      "created_at": 1788655142.871134,
+      "artifacts": [
+        {
+          "kind": "conformance_mode",
+          "value": "reconcile_unavailable",
+          "meta": {
+            "mode": "reconcile_unavailable",
+            "distinct": 1,
+            "settle_calls": 1,
+            "unidentified": 0,
+            "passed": true,
+            "result_digest": "8ce598b0b5ad6f56f8cfe9c2a01a83ccad94816bf18d702b60d54648b91489dd"
+          }
+        }
+      ],
+      "prev_hash": "436ca86aad3b76fafdaaecb4ba607a49c6fc87da736da06043ea3a061b805383",
+      "entry_hash": "b3912cde5783ed313e516e766f69f9bbcc33c0672d4383fc7977d67fa08e1dcb"
+    },
+    {
+      "id": "fact_307bf56029",
+      "claim": "declared_safe: 1 distinct settlement for one purchase",
+      "evidence": "mode=declared_safe distinct_settlements=1 settle_calls=1",
+      "next": "none \u2014 this mode is safe",
+      "kind": "step",
+      "meta": {
+        "mode": "declared_safe",
+        "distinct": 1,
+        "settle_calls": 1,
+        "unidentified": 0,
+        "passed": true,
+        "result_digest": "8ce598b0b5ad6f56f8cfe9c2a01a83ccad94816bf18d702b60d54648b91489dd"
+      },
+      "created_at": 1788655142.871145,
+      "artifacts": [
+        {
+          "kind": "conformance_mode",
+          "value": "declared_safe",
+          "meta": {
+            "mode": "declared_safe",
+            "distinct": 1,
+            "settle_calls": 1,
+            "unidentified": 0,
+            "passed": true,
+            "result_digest": "8ce598b0b5ad6f56f8cfe9c2a01a83ccad94816bf18d702b60d54648b91489dd"
+          }
+        }
+      ],
+      "prev_hash": "b3912cde5783ed313e516e766f69f9bbcc33c0672d4383fc7977d67fa08e1dcb",
+      "entry_hash": "e04cb4fb092728795c42132f1a5a01d1750f0e69924bbb810b1bcaeb35bb8562"
+    },
+    {
+      "id": "fact_7e35027e7b",
+      "claim": "clean: 1 distinct settlement for one purchase",
+      "evidence": "mode=clean distinct_settlements=1 settle_calls=1",
+      "next": "none \u2014 this mode is safe",
+      "kind": "step",
+      "meta": {
+        "mode": "clean",
+        "distinct": 1,
+        "settle_calls": 1,
+        "unidentified": 0,
+        "passed": true,
+        "result_digest": "8ce598b0b5ad6f56f8cfe9c2a01a83ccad94816bf18d702b60d54648b91489dd"
+      },
+      "created_at": 1788655142.871155,
+      "artifacts": [
+        {
+          "kind": "conformance_mode",
+          "value": "clean",
+          "meta": {
+            "mode": "clean",
+            "distinct": 1,
+            "settle_calls": 1,
+            "unidentified": 0,
+            "passed": true,
+            "result_digest": "8ce598b0b5ad6f56f8cfe9c2a01a83ccad94816bf18d702b60d54648b91489dd"
+          }
+        }
+      ],
+      "prev_hash": "e04cb4fb092728795c42132f1a5a01d1750f0e69924bbb810b1bcaeb35bb8562",
+      "entry_hash": "f3fcd3f8c0501c87d10b17fc04b992ed05f299d44ab462f210294ae9942e9311"
+    }
+  ],
+  "summary": {
+    "done": 6,
+    "open": 2
+  }
+}
