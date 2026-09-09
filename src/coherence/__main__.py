@@ -281,6 +281,11 @@ def cmd_audit(argv: list[str]) -> int:
                    help="audit a bundled sample session — no setup needed; "
                         "shows all four verdicts, including a caught lie")
     p.add_argument("--json", action="store_true", dest="as_json")
+    p.add_argument("--out", default="",
+                   help="also write the audit as a hash-chained session that "
+                        "`coherence attest` can sign — a claim the transcript "
+                        "contradicts is recorded OPEN, never proven")
+    p.add_argument("--title", default="", help="title recorded in the session")
     args = p.parse_args(argv)
     from coherence.audit.transcript import (
         audit_transcript, SUPPORTED, WEAK, UNSUPPORTED, CONTRADICTED)
@@ -296,6 +301,16 @@ def cmd_audit(argv: list[str]) -> int:
     if not _t.exists() or not _t.is_file():
         print(f"error: not a readable file: {args.transcript}", file=sys.stderr)
         return 3
+    if args.out:
+        # Record first: from_audit refuses a file that is not a transcript, so a
+        # session is never written over something we could not read.
+        from coherence.audit.session import from_audit
+        from pathlib import Path as _PP
+        summary = from_audit(_PP(args.transcript), _PP(args.out), title=args.title)
+        print(json.dumps(summary, indent=2))
+        print(f"\nwrote {args.out} — sign it with:\n"
+              f"  coherence attest --session {args.out} --key <your key> "
+              f"--out attestation.json --anchor rekor")
     a = audit_transcript(args.transcript)
     # A file we could not read as a transcript must never print like a clean
     # audit. Say so, and exit non-zero.
@@ -525,7 +540,7 @@ def main(argv: list[str] | None = None) -> None:
             "  said CLAIM --next NEXT\n"
             "  prove-cmd 'pytest -q'\n"
             "  tamper-demo   (10s: forge a green, watch it get caught)\n"
-            "  audit FILE.jsonl   (agent transcript: claims vs. what actually ran)\n"
+            "  audit FILE.jsonl [--out SESSION]   (agent transcript: claims vs. what actually ran)\n"
             "  scope FILE.jsonl   (blast radius: what it touched + what we cannot see)\n"
             "  check [--no-strict]\n"
             "  report [--json] [--out file.md]\n"
