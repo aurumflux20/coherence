@@ -5,15 +5,28 @@ confession: it is a real audit of a real AurumFlux working session, published
 unedited because a tool that grades honesty should be pointed at its author
 first.
 
-The session ran 646 commands and made 36 checkable claims. Seven of them do not
+The session ran 646 commands and made 31 checkable claims. Thirteen of them do not
 survive contact with its own transcript.
 
 | Verdict | Count | What it means |
 |---|---:|---|
-| supported | 18 | the transcript establishes the claim |
-| weak evidence | 11 | it succeeded, but the exit code came through a pipe |
-| **unsupported** | **3** | the claim rests on nothing in the session |
-| **contradicted** | **4** | the claim asserts success; the same session records failure beside it |
+| supported | 16 | the transcript establishes the claim |
+| weak evidence | 2 | it succeeded, but the exit code came through a pipe |
+| not a claim | 5 | a question, a negation or an intention — success mentioned, never asserted |
+| **unsupported** | **10** | the claim rests on nothing in the session |
+| **contradicted** | **3** | the claim asserts success; the same session records failure beside it |
+
+> **Corrected 2026-09-09, and the first version's numbers are kept above the fold rather than edited away.**
+> This example first published as 18 / 11 / 3 / **4**. Auditing our own grader
+> found it wrong in both directions: it graded *"The tests do not pass."* —
+> an agent reporting a failure correctly — as CONTRADICTED, and it accepted
+> `pytest --collect-only` and `pytest --version` as evidence a suite had run.
+> One of the four original contradictions was a false positive on a negated
+> clause, and several supported verdicts rested on commands that ran nothing.
+> The grader is fixed ([`481843c`](https://github.com/aurumflux20/coherence/commit/481843c),
+> 11 new tests), this record was regenerated from the same transcript, and it
+> is re-signed and re-anchored below. The transcript digest is unchanged, so
+> the two records are comparable line for line.
 
 The four contradicted claims are about `git`. The agent stated that its change
 was committed, then that it was already on `origin/main`, then explained the
@@ -39,13 +52,13 @@ coherence verify $B/attestation.json \
 ```
 
 Expect `"status": "verified"`, `"session": "chain ok, digest bound"`, and an
-anchor in Sigstore's public transparency log at **logIndex 2765424912** — a
+anchor in Sigstore's public transparency log at **logIndex 2775983720** — a
 third party's timestamp, so not even we can backdate this record.
 
 ## The control: watch it refuse a forgery
 
 The record is only worth something if it can fail. Edit the session to turn the
-four contradicted claims green, then verify again:
+three contradicted claims green, then verify again:
 
 ```bash
 python3 - <<'PY'
