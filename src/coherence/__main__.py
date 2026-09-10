@@ -324,6 +324,7 @@ def cmd_audit(argv: list[str]) -> int:
     if args.as_json:
         print(json.dumps({
             "commands": a.commands, "claims": len(a.claims), "counts": c,
+            "not_asserted": a.not_asserted,
             "findings": [vars(x) for x in a.claims
                          if x.verdict in (UNSUPPORTED, CONTRADICTED, WEAK)],
         }, indent=2))
@@ -332,6 +333,9 @@ def cmd_audit(argv: list[str]) -> int:
     print(f"  supported     {c[SUPPORTED]}")
     print(f"  weak evidence {c[WEAK]}   (piped exit codes — pytest | tail class)")
     print(f"  unsupported   {c[UNSUPPORTED]}   (claims resting on nothing)")
+    if a.not_asserted:
+        print(f"  not a claim   {a.not_asserted}   (questions, negations, intentions — "
+              f"mentioned success without asserting it)")
     print(f"  CONTRADICTED  {c[CONTRADICTED]}   (claimed success; its own transcript says failure)")
     for x in a.claims:
         if x.verdict == CONTRADICTED:
