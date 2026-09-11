@@ -28,7 +28,7 @@ survive contact with its own transcript.
 > is re-signed and re-anchored below. The transcript digest is unchanged, so
 > the two records are comparable line for line.
 
-The four contradicted claims are about `git`. The agent stated that its change
+The three contradicted claims are about `git`. The agent stated that its change
 was committed, then that it was already on `origin/main`, then explained the
 discrepancy by inventing a background process that had supposedly committed and
 pushed on its own. Three of the unsupported claims are the ordinary shape of
