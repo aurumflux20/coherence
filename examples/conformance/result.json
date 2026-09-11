@@ -1,11 +1,11 @@
 {
   "tool": "hostile-facilitator",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "schema": "https://aurumflux.co/hostile-facilitator/result/v1",
   "target": {
     "command": [
-      "./.venv/bin/python",
-      "/tmp/naive_pay.py"
+      "python3",
+      "naive_pay.py"
     ],
     "facilitator_env": "FACILITATOR_URL"
   },
@@ -16,71 +16,130 @@
       "double_402",
       "slow_answer",
       "reconcile_unavailable",
+      "reconcile_soft_404",
+      "reconcile_oversized",
+      "reconcile_truncated",
       "declared_safe",
       "clean"
     ],
-    "count": 7
+    "count": 10
   },
-  "started_at": "2026-09-06T00:36:46Z",
-  "finished_at": "2026-09-06T00:36:53Z",
+  "started_at": "2026-09-11T17:32:20Z",
+  "finished_at": "2026-09-11T17:32:51Z",
   "results": [
     {
       "mode": "accept_then_timeout",
-      "distinct": 1,
-      "settle_calls": 1,
+      "distinct": 3,
+      "settle_calls": 3,
+      "reconcile_calls": 0,
       "unidentified": 0,
-      "passed": true
+      "exercised": true,
+      "verdict": "fail",
+      "passed": false
     },
     {
       "mode": "5xx_after_settle",
-      "distinct": 2,
-      "settle_calls": 2,
+      "distinct": 3,
+      "settle_calls": 3,
+      "reconcile_calls": 0,
       "unidentified": 0,
+      "exercised": true,
+      "verdict": "fail",
       "passed": false
     },
     {
       "mode": "double_402",
-      "distinct": 2,
-      "settle_calls": 2,
+      "distinct": 3,
+      "settle_calls": 3,
+      "reconcile_calls": 0,
       "unidentified": 0,
+      "exercised": true,
+      "verdict": "fail",
       "passed": false
     },
     {
       "mode": "slow_answer",
       "distinct": 1,
       "settle_calls": 1,
+      "reconcile_calls": 0,
       "unidentified": 0,
+      "exercised": true,
+      "verdict": "pass",
       "passed": true
     },
     {
       "mode": "reconcile_unavailable",
-      "distinct": 1,
-      "settle_calls": 1,
+      "distinct": 3,
+      "settle_calls": 3,
+      "reconcile_calls": 3,
       "unidentified": 0,
-      "passed": true
+      "exercised": true,
+      "verdict": "fail",
+      "passed": false
+    },
+    {
+      "mode": "reconcile_soft_404",
+      "distinct": 3,
+      "settle_calls": 3,
+      "reconcile_calls": 3,
+      "unidentified": 0,
+      "exercised": true,
+      "verdict": "fail",
+      "passed": false
+    },
+    {
+      "mode": "reconcile_oversized",
+      "distinct": 3,
+      "settle_calls": 3,
+      "reconcile_calls": 3,
+      "unidentified": 0,
+      "exercised": true,
+      "verdict": "fail",
+      "passed": false
+    },
+    {
+      "mode": "reconcile_truncated",
+      "distinct": 3,
+      "settle_calls": 3,
+      "reconcile_calls": 3,
+      "unidentified": 0,
+      "exercised": true,
+      "verdict": "fail",
+      "passed": false
     },
     {
       "mode": "declared_safe",
       "distinct": 1,
       "settle_calls": 1,
+      "reconcile_calls": 0,
       "unidentified": 0,
+      "exercised": true,
+      "verdict": "pass",
       "passed": true
     },
     {
       "mode": "clean",
       "distinct": 1,
       "settle_calls": 1,
+      "reconcile_calls": 0,
       "unidentified": 0,
+      "exercised": true,
+      "verdict": "pass",
       "passed": true
     }
   ],
   "summary": {
-    "safe": 5,
-    "total": 7,
+    "safe": 3,
+    "total": 10,
     "verdict": "FAIL",
     "double_paying_modes": [
+      "accept_then_timeout",
       "5xx_after_settle",
-      "double_402"
+      "double_402",
+      "reconcile_unavailable",
+      "reconcile_soft_404",
+      "reconcile_oversized",
+      "reconcile_truncated"
     ],
     "errored_modes": []
   }
