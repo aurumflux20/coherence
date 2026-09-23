@@ -35,3 +35,11 @@ dist/
 
 # Eval corpus and labels contain private session content — never commit.
 evals/private/
+
+# Eval corpus, labels and per-run scratch contain private session content — never commit.
+evals/v1/transcripts/
+evals/v1/labels.jsonl
+evals/v1/REAL-CASES-Sep23.md
+evals/v1/score-dev-*.json
+evals/**/*.jsonl
+!evals/v1/LABELLING.md

@@ -22,7 +22,7 @@ No dependencies. No model call. Runs locally; your transcripts never leave your 
 
 ## How accurate is it? Measured, not claimed
 
-We hand-labelled every checkable claim in 20 real Claude Code sessions and
+We labelled every checkable claim in 20 real Claude Code sessions and
 scored the auditor against them. Numbers from the held-out half
 ([full method, disclosures and limits](evals/v1/RESULTS.md)):
 
