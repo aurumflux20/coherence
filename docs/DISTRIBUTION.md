@@ -26,7 +26,7 @@ Yes: **claim ≠ proven** for agent PRs + CI.
 | **Awesome lists** | Evergreen discovery | PR to awesome-mcp, awesome-ai-agents, harness lists |
 | **Cursor / Claude Code communities** | Ideal user hangs out | “Drop this Action on agent PRs” |
 | **Sibling AurumFlux READMEs** | Warm traffic | Link from effectfence/seal “related” (not monorepo) |
-| **PyPI** (later) | `pip install` habit | Publish as `aurumflux-coherence` if name free |
+| **PyPI** (live) | `pip install coherence-check` | Published since 0.6.0 (2026-08-17) |
 | **Conference / meetup 1-pager** | Offline | Law on a slide; QR to repo |
 
 ---
