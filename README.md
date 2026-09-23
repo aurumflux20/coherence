@@ -8,24 +8,51 @@
 [![Stars](https://img.shields.io/github/stars/aurumflux20/coherence)](https://github.com/aurumflux20/coherence)
 
 
-## Sign a conformance run
-
-A battery prints a scorecard. A scorecard is a claim by whoever ran it — which
-is the same problem a signed record exists to solve. `coherence conformance`
-turns a [`hostile-facilitator`](https://github.com/aurumflux20/hostile-facilitator)
-run into a record a third party can check:
+**Your coding agent says "tests pass, pushed, done." Coherence reads the
+agent's own session log and tells you which of those claims the log backs up
+— and which it contradicts.**
 
 ```bash
-hostile-facilitator test --json result.json -- ./make-one-purchase.sh
-coherence conformance result.json --out session.json     # exit 1 if the client double-paid
-coherence attest --session session.json --key <key> --anchor rekor
+pip install coherence-check
+coherence audit --demo                                   # a bundled session with a real lie in it
+coherence audit ~/.claude/projects/<project>/<id>.jsonl  # your own session
 ```
 
-A mode where the client settled twice is recorded **open**, never proven — so a
-failing run cannot be signed as an all-green one, by us or by anyone. A real
-example, including the attempt to launder it:
-[`examples/conformance/`](examples/conformance/).
+No dependencies. No model call. Runs locally; your transcripts never leave your machine.
 
+## How accurate is it? Measured, not claimed
+
+We hand-labelled every checkable claim in 20 real Claude Code sessions and
+scored the auditor against them. Numbers from the held-out half
+([full method, disclosures and limits](evals/v1/RESULTS.md)):
+
+| | 0.10.0 | **0.11.0** |
+|---|---:|---:|
+| Real claims found (recall) | 20.7% | **43.5%** |
+| Findings that are real claims (precision) | 75.0% | **86.3%** |
+| Verdict right, on claims found | 54.2% | **88.0%** |
+| True claims wrongly called "rests on nothing" | 43% | **3%** |
+| False accusations of lying | 0 | **0**\* |
+
+\*The held-out sessions contained no contradicted claims for either version
+to find, and the first 0.11.0 run made one false accusation before a fix — the
+[results page](evals/v1/RESULTS.md) says exactly what happened.
+
+What that means in practice: it finds under half of the checkable claims in a
+real session — the rest slip past in unusual wording — and it grades most of
+what it finds correctly. Labels are model-drafted and awaiting human review, so
+treat these numbers as provisional.
+
+## Pricing
+
+| | What you get | Price |
+|---|---|---|
+| **Open source** | The auditor, the CI proof gate, self-signed attestations. Apache-2.0, forever. | Free |
+| **Agent Honesty Snapshot** | We audit 1–2 of your agent sessions by hand, not just by pattern — the claims the tool misses included. Written report + Loom in 48h, signed under the AurumFlux key so a third party can verify it. Full refund if we find nothing material. | **$297** · [buy](https://buy.stripe.com/3cI00jelW56U1Tk7lFdIA0n) |
+| **Proof Gate** | We install and tune a required GitHub check on your agent-written PRs, strongest on billing / Stripe / payout paths, and sign its results. 5 business days, async. | **$2,500** · [buy](https://buy.stripe.com/bJecN5elWfLy9lMgWfdIA0p) |
+
+Email only, no calls. The free tool tells you what it can see; the paid
+work covers what it can't — and a signature from someone other than you.
 
 ## What Coherence is for
 
@@ -36,14 +63,6 @@ This holds for any agent-written work — tests, builds, migrations, deploys, re
 ### Coherence is not Seal
 
 [Seal](https://github.com/aurumflux20/seal) and [EffectFence](https://github.com/aurumflux20/effectfence) stop an action from firing twice **while it happens** — runtime enforcement, on money movement. Coherence never touches your runtime: it reads the record **afterwards** and grades claim against evidence. **Prevention versus proof.** Different problems, different code, no overlap. Use either, or both.
-
-## Offers
-
-**Proof Gate — $2,500 (prepaid).** A required GitHub check on agent-written PRs — strongest on billing/Stripe/payout paths, where a false "done" is most expensive. 5 business days async. Email only. No calls.
-Pay: https://buy.stripe.com/bJecN5elWfLy9lMgWfdIA0p
-
-**Agent Honesty Snapshot — $297 (prepaid).** 48h Markdown + Loom on 1–2 redacted agent sessions. Email only. No calls. Full refund if nothing material.
-Pay: https://buy.stripe.com/3cI00jelW56U1Tk7lFdIA0n
 
 ### The signed record — what you can't issue yourself
 
@@ -159,23 +178,15 @@ Then point it at your own session:
 coherence audit ~/.claude/projects/<your-project>/<session>.jsonl
 ```
 
-```
-audited: 735 commands, 74 checkable claims
+The first time we ran it — on the 51 MB session of the agent that built it —
+it flagged its own author, including eleven "tests pass" claims whose only
+evidence was `pytest | tail` (which reports `tail`'s exit code, not pytest's).
+That first run also got things wrong, which is why the numbers that matter are
+the measured ones below, not an anecdote.
 
-  supported     20
-  weak evidence 11   (piped exit codes — pytest | tail class)
-  unsupported   41   (claims resting on nothing)
-  CONTRADICTED   2   (claimed success; its own transcript says failure)
-```
-
-That output is real: the auditor's first run was on the 51 MB session of the
-agent that built it. It flagged its own author — two success claims its own
-transcript contradicts, and eleven "tests pass" claims whose only evidence was
-a piped command (`pytest | tail` reports tail's exit code, not pytest's — a
-mistake that same agent had made earlier in the same session).
-
-Verdicts are heuristic pattern-matching, not magic: unusual phrasing slips
-past, and only checkable claims (tests / build / push / commit) are judged.
+Verdicts are heuristic pattern-matching, not magic: it finds about 44% of the
+checkable claims in a real session (measured below), and only checkable claims
+(tests / build / push / commit) are judged.
 The point is the direction of error — a claim with no evidence is flagged for
 a human, never silently trusted. Exit codes: 0 all supported · 1 unsupported ·
 2 contradicted.
@@ -374,6 +385,25 @@ Coherence records what was proven. It does not *do* the proving for you — you
 still write the test; it just refuses to let "done" mean anything less.
 
 ---
+
+## Sign a conformance run
+
+A battery prints a scorecard. A scorecard is a claim by whoever ran it — which
+is the same problem a signed record exists to solve. `coherence conformance`
+turns a [`hostile-facilitator`](https://github.com/aurumflux20/hostile-facilitator)
+run into a record a third party can check:
+
+```bash
+hostile-facilitator test --json result.json -- ./make-one-purchase.sh
+coherence conformance result.json --out session.json     # exit 1 if the client double-paid
+coherence attest --session session.json --key <key> --anchor rekor
+```
+
+A mode where the client settled twice is recorded **open**, never proven — so a
+failing run cannot be signed as an all-green one, by us or by anyone. A real
+example, including the attempt to launder it:
+[`examples/conformance/`](examples/conformance/).
+
 
 ## Documentation
 

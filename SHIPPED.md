@@ -1,3 +1,7 @@
+> **Historical record of the v0.4.0 ship (2026-08-15).** Current releases are on
+> PyPI as [`coherence-check`](https://pypi.org/project/coherence-check/) — see
+> [CHANGELOG.md](CHANGELOG.md).
+
 # SHIPPED — Coherence v0.4.0
 
 **Status: PUBLIC / SHIPPED**  

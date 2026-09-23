@@ -32,3 +32,6 @@ htmlcov/
 /tmp/
 *.log
 dist/
+
+# Eval corpus and labels contain private session content — never commit.
+evals/private/
