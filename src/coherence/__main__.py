@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import tempfile
 from pathlib import Path
@@ -345,6 +346,12 @@ def cmd_audit(argv: list[str]) -> int:
         if x.verdict == UNSUPPORTED:
             print(f"\n  unsupported line {x.seq} [{x.kind}]: \"{x.text[:100]}\"")
     print(f"\nexit {a.exit_code()}  (0 all supported · 1 unsupported · 2 contradicted)")
+    if (c[UNSUPPORTED] or c[CONTRADICTED]) and not os.environ.get("COHERENCE_NO_OFFER"):
+        # One line, only when there is something worth a second look, and
+        # silenced with COHERENCE_NO_OFFER=1. Never printed in --json mode.
+        print("\nWant a human read of this, signed under our key so a third party can "
+              "verify it? Agent Honesty Snapshot, $297: "
+              "https://buy.stripe.com/3cI00jelW56U1Tk7lFdIA0n  (COHERENCE_NO_OFFER=1 hides this)")
     return a.exit_code()
 
 
