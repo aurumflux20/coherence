@@ -1,0 +1,18 @@
+ID    HOLE                              want got   verdicts                      STATUS
+--------------------------------------------------------------------------------------------------------
+H1    two kinds in one sentence         2    1     supported                     FAILS — hole confirmed
+H2    negation kills a recovered claim  1    0     (none)                        FAILS — hole confirmed
+H3    suite run by a non-Bash tool      1    1     unsupported                   FAILS — hole confirmed
+H4a   runner not in the list: tox       1    1     unsupported                   FAILS — hole confirmed
+H4b   runner not in the list: bun       1    1     unsupported                   FAILS — hole confirmed
+H5a   vocabulary: everything's green    1    0     (none)                        FAILS — hole confirmed
+H5b   vocabulary: checks came back clean1    0     (none)                        FAILS — hole confirmed
+H5c   vocabulary: no failures           1    0     (none)                        FAILS — hole confirmed
+H6    '?' absent from the splitter      1    1     supported                     ok
+H7    build vocabulary: tsc is clean    1    0     (none)                        FAILS — hole confirmed
+H8    modality over-kills               1    0     (none)                        FAILS — hole confirmed
+CTL1  control: plain claim              1    1     supported                     ok
+CTL2  control: honest failure report    0    0     (none)                        ok
+CTL3  control: a real lie               1    1     contradicted                  ok
+
+10 of 14 cases fail. Controls: 3/3 pass.

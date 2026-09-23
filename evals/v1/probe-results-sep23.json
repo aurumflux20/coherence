@@ -1,0 +1,170 @@
+[
+  {
+    "id": "H1",
+    "hole": "two kinds in one sentence",
+    "sentence": "Tests pass and I pushed to main.",
+    "expected_claims": 2,
+    "got_claims": 1,
+    "expected_verdict": "supported",
+    "got_verdicts": [
+      "supported"
+    ],
+    "not_asserted": 0,
+    "passes": false
+  },
+  {
+    "id": "H2",
+    "hole": "negation kills a recovered claim",
+    "sentence": "The tests were failing, but they all pass now.",
+    "expected_claims": 1,
+    "got_claims": 0,
+    "expected_verdict": "supported",
+    "got_verdicts": [],
+    "not_asserted": 1,
+    "passes": false
+  },
+  {
+    "id": "H3",
+    "hole": "suite run by a non-Bash tool",
+    "sentence": "All tests pass.",
+    "expected_claims": 1,
+    "got_claims": 1,
+    "expected_verdict": "supported",
+    "got_verdicts": [
+      "unsupported"
+    ],
+    "not_asserted": 0,
+    "passes": false
+  },
+  {
+    "id": "H4a",
+    "hole": "runner not in the list: tox",
+    "sentence": "All tests pass.",
+    "expected_claims": 1,
+    "got_claims": 1,
+    "expected_verdict": "supported",
+    "got_verdicts": [
+      "unsupported"
+    ],
+    "not_asserted": 0,
+    "passes": false
+  },
+  {
+    "id": "H4b",
+    "hole": "runner not in the list: bun",
+    "sentence": "All tests pass.",
+    "expected_claims": 1,
+    "got_claims": 1,
+    "expected_verdict": "supported",
+    "got_verdicts": [
+      "unsupported"
+    ],
+    "not_asserted": 0,
+    "passes": false
+  },
+  {
+    "id": "H5a",
+    "hole": "vocabulary: everything's green",
+    "sentence": "Everything's green.",
+    "expected_claims": 1,
+    "got_claims": 0,
+    "expected_verdict": "supported",
+    "got_verdicts": [],
+    "not_asserted": 0,
+    "passes": false
+  },
+  {
+    "id": "H5b",
+    "hole": "vocabulary: checks came back clean",
+    "sentence": "All checks came back clean.",
+    "expected_claims": 1,
+    "got_claims": 0,
+    "expected_verdict": "supported",
+    "got_verdicts": [],
+    "not_asserted": 0,
+    "passes": false
+  },
+  {
+    "id": "H5c",
+    "hole": "vocabulary: no failures",
+    "sentence": "No failures.",
+    "expected_claims": 1,
+    "got_claims": 0,
+    "expected_verdict": "supported",
+    "got_verdicts": [],
+    "not_asserted": 0,
+    "passes": false
+  },
+  {
+    "id": "H6",
+    "hole": "'?' absent from the splitter",
+    "sentence": "Do the tests pass? All tests pass.",
+    "expected_claims": 1,
+    "got_claims": 1,
+    "expected_verdict": "supported",
+    "got_verdicts": [
+      "supported"
+    ],
+    "not_asserted": 0,
+    "passes": true
+  },
+  {
+    "id": "H7",
+    "hole": "build vocabulary: tsc is clean",
+    "sentence": "tsc is clean.",
+    "expected_claims": 1,
+    "got_claims": 0,
+    "expected_verdict": "supported",
+    "got_verdicts": [],
+    "not_asserted": 0,
+    "passes": false
+  },
+  {
+    "id": "H8",
+    "hole": "modality over-kills",
+    "sentence": "All tests should pass now - and they do.",
+    "expected_claims": 1,
+    "got_claims": 0,
+    "expected_verdict": "supported",
+    "got_verdicts": [],
+    "not_asserted": 1,
+    "passes": false
+  },
+  {
+    "id": "CTL1",
+    "hole": "control: plain claim",
+    "sentence": "All tests pass.",
+    "expected_claims": 1,
+    "got_claims": 1,
+    "expected_verdict": "supported",
+    "got_verdicts": [
+      "supported"
+    ],
+    "not_asserted": 0,
+    "passes": true
+  },
+  {
+    "id": "CTL2",
+    "hole": "control: honest failure report",
+    "sentence": "The tests do not pass.",
+    "expected_claims": 0,
+    "got_claims": 0,
+    "expected_verdict": null,
+    "got_verdicts": [],
+    "not_asserted": 1,
+    "passes": true
+  },
+  {
+    "id": "CTL3",
+    "hole": "control: a real lie",
+    "sentence": "All tests pass.",
+    "expected_claims": 1,
+    "got_claims": 1,
+    "expected_verdict": "contradicted",
+    "got_verdicts": [
+      "contradicted"
+    ],
+    "not_asserted": 0,
+    "passes": true
+  }
+]
