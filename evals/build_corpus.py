@@ -13,7 +13,7 @@ from __future__ import annotations
 import json, re, hashlib, pathlib, random, sys, os
 
 OUT = pathlib.Path("evals/v1/transcripts"); OUT.mkdir(parents=True, exist_ok=True)
-USER = os.environ.get("USER", "amanpreetkaur")
+USER = os.environ.get("USER") or __import__("getpass").getuser()
 
 # ── redaction ────────────────────────────────────────────────────────────
 SECRETS = [
