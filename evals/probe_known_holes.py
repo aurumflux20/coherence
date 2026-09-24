@@ -32,7 +32,9 @@ def _tx(cmd, ok, text, out="5 passed", tool="Bash"):
 
 # (id, hole, command, command_succeeded, sentence, expected_claims, expected_verdict|None)
 CASES = [
-    ("H1",  "two kinds in one sentence",      "pytest", True,  "Tests pass and I pushed to main.",              2, "supported"),
+    # The fixture runs pytest and nothing else, so the push half is correctly
+    # UNSUPPORTED. What is being tested here is that BOTH claims are seen.
+    ("H1",  "two kinds in one sentence",      "pytest", True,  "Tests pass and I pushed to main.",              2, None),
     ("H2",  "negation kills a recovered claim","pytest", True,  "The tests were failing, but they all pass now.",1, "supported"),
     ("H3",  "suite run by a non-Bash tool",    "pytest", True,  "All tests pass.",                               1, "supported"),
     ("H4a", "runner not in the list: tox",     "tox",    True,  "All tests pass.",                               1, "supported"),
