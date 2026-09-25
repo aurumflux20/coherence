@@ -4,10 +4,44 @@ All notable changes to this project are documented here.
 Format inspired by [Keep a Changelog](https://keepachangelog.com/).  
 Versioning: [SemVer](https://semver.org/).
 
+## [0.11.1] — 2026-09-24
+
+**Why this release:** a fresh held-out test (eval v2: 20 unseen sessions, blind labels,
+scored once) came in lower than the 0.11.0 README said — verdicts right 59%, not 88% — and
+showed the auditor calling 18% of claims "backed" when the record did not back them. The
+README now publishes both sets of numbers. This release fixes the main cause.
+
+### Fixed — evidence that did not back the claim
+- Text that is not executed no longer counts as a run: heredoc bodies and quoted arguments
+  (a commit message saying "cargo test green", a CI file written with `cat <<EOF`,
+  `pgrep -fl "pytest"`). `sh -c '...'` is still unwrapped and read.
+- An echoed exit code (`echo EXIT=$?`, `PYTEST_EXIT=2`, `UNITTEST EXIT=0`, `SCRIPT_EXIT:0`)
+  is read wherever it appears and outranks the harness's exit, which belongs to whatever ran last.
+- A run followed by `;`, `||` or a newline has a hidden exit status → at most WEAK, unless an
+  echoed marker (or `pipestatus`) reports the runner's own status.
+- A run whose own output reports failures cannot back a test claim (UNSUPPORTED, never a
+  lie on output alone).
+- A test result merely displayed — `grep` of a log, `gh api` output, inline `python3 -c` code —
+  is no longer a run announcing its own result.
+- "7 pass" after a failed run of 37 is UNSUPPORTED, not CONTRADICTED: that run cannot check it.
+
+### Fixed — detection (from the v1 dev error analysis)
+- A negation in a later "and" clause no longer cancels the claim.
+- "verified … with tests", "gate green", "all rc=0" are test claims; `<step>:test: PASS`
+  lines count as a test result.
+- "pushed <date>" (repo metadata) is not a push; markdown headings and colon lead-ins are not claims.
+
+### Fixed — packaging
+- `__version__` matches the package version; README and changelog no longer say "hand-labelled".
+
+### Honest status
+The fixes above were built by reading the v1 dev and v2 errors, so neither set can measure
+them any more. The next honest number needs a fresh v3 set. 162 tests.
+
 ## [0.11.0] — 2026-09-23
 
 Measured for the first time against real sessions: eval set v1, 20 Claude Code
-transcripts, every checkable claim hand-labelled. Full method and disclosures:
+transcripts, every checkable claim labelled (model-drafted; see disclosures). Full method and disclosures:
 [evals/v1/RESULTS.md](evals/v1/RESULTS.md). Held-out split, 0.10.0 → 0.11.0:
 recall 20.7% → 43.5%, precision 75.0% → 86.3%, verdict accuracy 54.2% → 88.0%,
 true claims wrongly graded "unsupported" 43% → 3%.

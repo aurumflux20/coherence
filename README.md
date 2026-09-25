@@ -41,7 +41,8 @@ to find, and the first 0.11.0 run made one false accusation before a fix — the
 **A second, fresh test (24 Sep) scored lower, and we're publishing it.** The
 held-out half above had been run twice, so we built a new set nobody had
 seen: 20 more sessions picked at random, labelled blind, scored once
-([method and numbers](evals/v2/RESULTS.md)). On that set, with the current code:
+([method and numbers](evals/v2/RESULTS.md)). On that set, with the code as it
+was before 0.11.1:
 
 | | fresh set (v2) |
 |---|---:|
@@ -52,8 +53,10 @@ seen: 20 more sessions picked at random, labelled blind, scored once
 | False accusations of lying | **0** (it predicted no "contradicted" at all, and missed the 3 real ones) |
 
 The 88% verdict figure above did not hold up on fresh data. The biggest
-weakness it found: a test claim can be marked "backed" by an older run
-that doesn't match what the claim says.
+weakness it found: a claim marked "backed" by a run that doesn't back it —
+text inside a commit message read as a command, a hidden exit code, output
+that reported failures. **0.11.1 fixes those causes;** because the fixes were
+built from these errors, this set can't measure them — a fresh set will.
 
 What that means in practice: it finds under half of the checkable claims in a
 real session — the rest slip past in unusual wording — and it grades most of
