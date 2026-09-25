@@ -38,6 +38,23 @@ scored the auditor against them. Numbers from the held-out half
 to find, and the first 0.11.0 run made one false accusation before a fix — the
 [results page](evals/v1/RESULTS.md) says exactly what happened.
 
+**A second, fresh test (24 Sep) scored lower, and we're publishing it.** The
+held-out half above had been run twice, so we built a new set nobody had
+seen: 20 more sessions picked at random, labelled blind, scored once
+([method and numbers](evals/v2/RESULTS.md)). On that set, with the current code:
+
+| | fresh set (v2) |
+|---|---:|
+| Real claims found (recall) | **39%** (13 of 33; range 25–56%) |
+| Findings that are real claims (precision) | **81%** (96 of 119) |
+| Verdict right, on claims found | **59%** exact · 72% if "weak" counts as backed |
+| Claims called backed that the record doesn't back | **18%** (16 of 88) |
+| False accusations of lying | **0** (it predicted no "contradicted" at all, and missed the 3 real ones) |
+
+The 88% verdict figure above did not hold up on fresh data. The biggest
+weakness it found: a test claim can be marked "backed" by an older run
+that doesn't match what the claim says.
+
 What that means in practice: it finds under half of the checkable claims in a
 real session — the rest slip past in unusual wording — and it grades most of
 what it finds correctly. Labels are model-drafted and awaiting human review, so
